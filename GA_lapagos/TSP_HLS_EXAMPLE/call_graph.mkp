@@ -1,0 +1,494 @@
+# Function Call Graph for 'GA_lapagos' (session: f1c42f738571a646)
+========== FUNCTION CALL GRAPH ==========
+# TOTAL TIME   FUNCTION
+    6.870  s : (1) GA_lapagos
+  284.067 us :  +-(1) _GLOBAL__sub_I_global_index
+  279.688 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.709 us :  |  +-(1) __cxa_atexit
+             :  | 
+    3.147 us :  +-(1) _GLOBAL__sub_I_xover_single_point
+    0.473 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.516 us :  |  +-(1) __cxa_atexit
+             :  | 
+    3.044 us :  +-(1) _GLOBAL__sub_I_xover_pmx
+    0.449 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.506 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.977 us :  +-(1) _GLOBAL__sub_I_selector_types_name
+    0.419 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.498 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.980 us :  +-(1) _GLOBAL__sub_I_read_mkp_problem_dat
+    0.421 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.501 us :  |  +-(1) __cxa_atexit
+             :  | 
+   34.963 us :  +-(1) _GLOBAL__sub_I_mkp_problem
+    0.584 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.586 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.952 us :  +-(1) _GLOBAL__sub_I_mkp_create_population
+    0.421 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.496 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.940 us :  +-(1) _GLOBAL__sub_I_configuration
+    0.416 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.497 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.912 us :  +-(1) _GLOBAL__sub_I_tsp_problem_adjacency
+    0.416 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.497 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.927 us :  +-(1) _GLOBAL__sub_I_tsp_problem_cartesian
+    0.416 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.497 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.927 us :  +-(1) _GLOBAL__sub_I_tsp_problem
+    0.416 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.497 us :  |  +-(1) __cxa_atexit
+             :  | 
+    3.012 us :  +-(1) _GLOBAL__sub_I_tsp_create_population
+    0.418 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.496 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.936 us :  +-(1) _GLOBAL__sub_I_return_string_in_list
+    0.416 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.496 us :  |  +-(1) __cxa_atexit
+             :  | 
+    4.317 us :  +-(1) _GLOBAL__sub_I_global_args
+    0.419 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.987 us :  |  +-(2) __cxa_atexit
+             :  | 
+    2.936 us :  +-(1) _GLOBAL__sub_I_argparse::ArgumentParser::ArgumentParser
+    0.416 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.496 us :  |  +-(1) __cxa_atexit
+             :  | 
+    2.668 ms :  +-(1) _GLOBAL__sub_I_argparse::INDENT::cxx11
+    0.418 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    1.932 us :  |  +-(3) __cxa_atexit
+             :  |  | 
+    2.661 ms :  |  +-(2) std::__cxx11::basic_string::basic_string
+    2.654 ms :  |     +-(2) strlen
+             :  |     | 
+    0.937 us :  |     +-(2) memcpy
+             :  | 
+    3.323 us :  +-(1) _GLOBAL__sub_I_argparse::split_leading_dashes
+    0.690 us :  |  +-(1) std::ios_base::Init::Init
+             :  |  | 
+    0.503 us :  |  +-(1) __cxa_atexit
+             :  | 
+    6.867  s :  +-(1) main
+  158.201 us :  |  +-(3) __printf_chk
+             :  |  | 
+   39.472 ms :  |  +-(1) get_options
+    0.917 us :  |  |  +-(1) strlen
+             :  |  |  | 
+   21.229 us :  |  |  +-(9) std::__cxx11::basic_string::_M_create
+             :  |  |  | 
+    0.970 us :  |  |  +-(2) memcpy
+             :  |  |  | 
+    6.060 ms :  |  |  +-(1) argparse::ArgumentParser::ArgumentParser
+   13.136 us :  |  |  |  +-(7) std::__cxx11::basic_string::_M_construct
+    2.672 us :  |  |  |  |  +-(2) std::__cxx11::basic_string::_M_create
+             :  |  |  |  |  | 
+    1.864 us :  |  |  |  |  +-(4) memcpy
+             :  |  |  |  | 
+    1.470 us :  |  |  |  +-(1) operator new
+             :  |  |  |  | 
+    0.546 us :  |  |  |  +-(1) argparse::DefaultFormatter::DefaultFormatter
+             :  |  |  |  | 
+   11.641 us :  |  |  |  +-(1) argparse::basename
+    8.254 us :  |  |  |  |  +-(1) std::__cxx11::basic_string::rfind
+             :  |  |  |  |  | 
+    0.541 us :  |  |  |  |  +-(1) memcpy
+             :  |  |  |  | 
+    0.639 us :  |  |  |  +-(1) memcpy
+             :  |  |  |  | 
+    7.174 us :  |  |  |  +-(2) operator delete
+             :  |  |  |  | 
+    2.538 us :  |  |  |  +-(1) std::vector::_M_realloc_insert
+    1.075 us :  |  |  |    (1) operator new
+             :  |  |  | 
+    5.528 us :  |  |  +-(11) operator delete
+             :  |  |  | 
+    1.718 us :  |  |  +-(1) argparse::ArgumentParser::prog::cxx11
+    0.454 us :  |  |  | (1) memcpy
+             :  |  |  | 
+   12.756 ms :  |  |  +-(4) argparse::ArgumentParser::add_argument
+    5.216 us :  |  |  |  +-(12) memcpy
+             :  |  |  |  | 
+    6.918 ms :  |  |  |  +-(4) argparse::make_singlevalue_argument
+   13.084 us :  |  |  |  |  +-(6) operator new
+             :  |  |  |  |  | 
+    5.279 us :  |  |  |  |  +-(12) memcpy
+             :  |  |  |  |  | 
+    1.742 ms :  |  |  |  |  +-(4) argparse::Argument::Argument
+   19.654 us :  |  |  |  |  |  +-(16) std::__cxx11::basic_string::_M_construct
+    3.893 us :  |  |  |  |  |  | (8) memcpy
+             :  |  |  |  |  |  | 
+    1.534 us :  |  |  |  |  |  +-(4) argparse::split_leading_dashes
+             :  |  |  |  |  |  | 
+    8.556 us :  |  |  |  |  |  +-(4) argparse::toupper
+    3.278 us :  |  |  |  |  |    (4) toupper
+             :  |  |  |  |  | 
+    1.679 us :  |  |  |  |  +-(4) std::_Sp_counted_ptr_inplace::_M_get_deleter
+             :  |  |  |  |  | 
+    1.542 ms :  |  |  |  |  +-(1) argparse::Argument::choices
+    9.522 us :  |  |  |  |  | (1) std::vector::operator=
+    1.727 us :  |  |  |  |  |  +-(1) operator new
+             :  |  |  |  |  |  | 
+    3.770 us :  |  |  |  |  |  +-(2) std::__cxx11::basic_string::_M_construct
+    0.999 us :  |  |  |  |  |    (2) memcpy
+             :  |  |  |  |  | 
+    1.113 us :  |  |  |  |  +-(2) operator delete
+             :  |  |  |  | 
+   11.203 us :  |  |  |  +-(3) std::vector::_M_realloc_insert
+    3.056 us :  |  |  |  |  +-(3) operator new
+             :  |  |  |  |  | 
+    0.975 us :  |  |  |  |  +-(2) operator delete
+             :  |  |  |  | 
+    8.144 us :  |  |  |  +-(4) argparse::ArgumentGroup::name::cxx11
+    1.905 us :  |  |  |  | (4) memcpy
+             :  |  |  |  | 
+   16.453 us :  |  |  |  +-(4) argparse::Argument::group_name
+   11.413 us :  |  |  |    (4) std::__cxx11::basic_string::_M_assign
+             :  |  |  | 
+   11.023 us :  |  |  +-(4) argparse::Argument::help
+    6.004 us :  |  |  | (4) std::__cxx11::basic_string::_M_assign
+             :  |  |  | 
+    5.719 us :  |  |  +-(3) argparse::Argument::metavar
+    2.011 us :  |  |  | (3) std::__cxx11::basic_string::_M_assign
+             :  |  |  | 
+    1.596 ms :  |  |  +-(3) argparse::Argument::default_value
+  100.377 us :  |  |  | (3) std::vector::_M_realloc_insert
+    3.259 us :  |  |  |  +-(3) operator new
+             :  |  |  |  | 
+    9.683 us :  |  |  |  +-(3) std::__cxx11::basic_string::_M_construct
+    2.303 us :  |  |  |     +-(2) std::__cxx11::basic_string::_M_create
+             :  |  |  |     | 
+    1.463 us :  |  |  |     +-(3) memcpy
+             :  |  |  | 
+    1.496 us :  |  |  +-(1) argparse::Argument::action
+    0.381 us :  |  |  | (1) argparse::Argument::nargs
+             :  |  |  | 
+   15.802 ms :  |  |  +-(1) argparse::ArgumentParser::parse_args
+   15.801 ms :  |  |  | (1) argparse::ArgumentParser::parse_args_throw
+    2.393 us :  |  |  |  +-(4) strlen
+             :  |  |  |  | 
+    4.450 us :  |  |  |  +-(8) memcpy
+             :  |  |  |  | 
+    4.245 us :  |  |  |  +-(4) operator new
+             :  |  |  |  | 
+    2.352 us :  |  |  |  +-(4) operator delete
+             :  |  |  |  | 
+   15.763 ms :  |  |  |  +-(1) argparse::ArgumentParser::parse_args_throw
+    0.620 us :  |  |  |     +-(1) argparse::ArgumentParser::add_help_option_if_unspecified
+             :  |  |  |     | 
+   34.959 us :  |  |  |     +-(3) std::vector::vector
+    3.771 us :  |  |  |     |  +-(6) operator new
+             :  |  |  |     |  | 
+    1.578 us :  |  |  |     |  +-(3) memcpy
+             :  |  |  |     | 
+  165.712 us :  |  |  |     +-(3) argparse::SingleValueArgument::set_dest_to_default
+   14.990 us :  |  |  |     |  +-(3) argparse::Argument::default_value::cxx11
+   11.207 us :  |  |  |     |  | (3) std::__cxx11::basic_string::_M_construct
+    1.588 us :  |  |  |     |  |  +-(2) std::__cxx11::basic_string::_M_create
+             :  |  |  |     |  |  | 
+    1.657 us :  |  |  |     |  |  +-(3) memcpy
+             :  |  |  |     |  | 
+  105.166 us :  |  |  |     |  +-(3) argparse::strdup
+    1.972 us :  |  |  |     |  |  +-(3) strlen
+             :  |  |  |     |  |  | 
+    3.292 us :  |  |  |     |  |  +-(3) operator new[]
+             :  |  |  |     |  |  | 
+   50.218 us :  |  |  |     |  |  +-(3) strcpy
+             :  |  |  |     |  | 
+    1.618 us :  |  |  |     |  +-(2) operator delete
+             :  |  |  |     |  | 
+   14.272 us :  |  |  |     |  +-(3) argparse::Argument::name::cxx11
+    8.470 us :  |  |  |     |  | (6) std::__cxx11::basic_string::_M_construct
+    1.716 us :  |  |  |     |  | (3) memcpy
+             :  |  |  |     |  | 
+    4.190 us :  |  |  |     |  +-(6) std::__cxx11::basic_string::_M_assign
+             :  |  |  |     |  | 
+    6.581 us :  |  |  |     |  +-(3) argparse::Argument::group_name::cxx11
+    1.639 us :  |  |  |     |    (3) memcpy
+             :  |  |  |     | 
+    3.656 us :  |  |  |     +-(6) operator delete
+             :  |  |  |     | 
+   11.320 us :  |  |  |     +-(24) memcpy
+             :  |  |  |     | 
+   28.447 us :  |  |  |     +-(4) std::_Rb_tree::_M_emplace_unique
+    3.567 us :  |  |  |     |  +-(4) operator new
+             :  |  |  |     |  | 
+    2.210 us :  |  |  |     |  +-(4) std::_Rb_tree_insert_and_rebalance
+             :  |  |  |     |  | 
+    4.839 us :  |  |  |     |  +-(11) memcmp
+             :  |  |  |     | 
+   37.435 us :  |  |  |     +-(2) argparse::ArgumentParser::no_space_short_arg
+    3.474 us :  |  |  |     |  +-(8) memcpy
+             :  |  |  |     |  | 
+    4.638 us :  |  |  |     |  +-(8) std::_Rb_tree_increment
+             :  |  |  |     | 
+    3.053 us :  |  |  |     +-(6) memcmp
+             :  |  |  |     | 
+    7.524 us :  |  |  |     +-(2) std::_Rb_tree::_M_insert_unique
+    2.175 us :  |  |  |     |  +-(2) operator new
+             :  |  |  |     |  | 
+    0.900 us :  |  |  |     |  +-(2) std::_Rb_tree_insert_and_rebalance
+             :  |  |  |     | 
+   32.256 us :  |  |  |     +-(2) argparse::is_argument
+    7.010 us :  |  |  |     |  +-(16) memcmp
+             :  |  |  |     |  | 
+    3.796 us :  |  |  |     |  +-(8) std::_Rb_tree_increment
+             :  |  |  |     | 
+    1.446 ms :  |  |  |     +-(2) argparse::SingleValueArgument::is_valid_value
+    2.191 us :  |  |  |     |  +-(4) memcpy
+             :  |  |  |     |  | 
+   11.935 us :  |  |  |     |  +-(2) argparse::strdup
+    0.990 us :  |  |  |     |  |  +-(2) strlen
+             :  |  |  |     |  |  | 
+    3.327 us :  |  |  |     |  |  +-(2) operator new[]
+             :  |  |  |     |  |  | 
+    1.514 us :  |  |  |     |  |  +-(2) strcpy
+             :  |  |  |     |  | 
+    0.828 us :  |  |  |     |  +-(2) argparse::Argument::choices::cxx11
+             :  |  |  |     |  | 
+    0.687 us :  |  |  |     |  +-(2) argparse::is_valid_choice
+             :  |  |  |     | 
+    8.412 us :  |  |  |     +-(2) std::vector::_M_realloc_insert
+    1.027 us :  |  |  |     |  +-(2) operator new
+             :  |  |  |     |  | 
+    3.436 us :  |  |  |     |  +-(2) std::__cxx11::basic_string::_M_construct
+    0.867 us :  |  |  |     |    (2) memcpy
+             :  |  |  |     | 
+    0.692 us :  |  |  |     +-(2) argparse::is_valid_choice
+             :  |  |  |     | 
+   10.295 us :  |  |  |     +-(6) std::__cxx11::basic_string::_M_construct
+    2.635 us :  |  |  |     | (6) memcpy
+             :  |  |  |     | 
+   33.453 us :  |  |  |     +-(2) argparse::SingleValueArgument::set_dest_to_value
+    0.862 us :  |  |  |     |  +-(2) memcpy
+             :  |  |  |     |  | 
+    9.532 us :  |  |  |     |  +-(2) argparse::strdup
+    0.845 us :  |  |  |     |  |  +-(2) strlen
+             :  |  |  |     |  |  | 
+    2.029 us :  |  |  |     |  |  +-(2) operator new[]
+             :  |  |  |     |  |  | 
+    0.887 us :  |  |  |     |  |  +-(2) strcpy
+             :  |  |  |     |  | 
+    7.454 us :  |  |  |     |  +-(2) argparse::Argument::name::cxx11
+    4.423 us :  |  |  |     |  | (4) std::__cxx11::basic_string::_M_construct
+    0.902 us :  |  |  |     |  | (2) memcpy
+             :  |  |  |     |  | 
+    2.833 us :  |  |  |     |  +-(4) std::__cxx11::basic_string::_M_assign
+             :  |  |  |     |  | 
+    3.433 us :  |  |  |     |  +-(2) argparse::Argument::group_name::cxx11
+    0.867 us :  |  |  |     |    (2) memcpy
+             :  |  |  |     | 
+    3.175 us :  |  |  |     +-(1) std::vector::~vector
+    0.988 us :  |  |  |     | (2) operator delete
+             :  |  |  |     | 
+   12.464 us :  |  |  |     +-(2) std::_Rb_tree::_M_erase
+    1.846 us :  |  |  |        +-(4) operator delete
+             :  |  |  |        | 
+    5.420 us :  |  |  |        +-(2) std::_Rb_tree::_M_erase
+    0.686 us :  |  |  |           +-(2) std::_Rb_tree::_M_erase
+             :  |  |  |           | 
+    0.922 us :  |  |  |           +-(2) operator delete
+             :  |  |  | 
+    8.284 us :  |  |  +-(1) argparse::DefaultFormatter::~DefaultFormatter
+    7.032 us :  |  |  | (1) operator delete
+             :  |  |  | 
+   23.140 us :  |  |  +-(4) std::_Sp_counted_ptr_inplace::_M_dispose
+   19.448 us :  |  |  | (4) argparse::SingleValueArgument::~SingleValueArgument
+    6.835 us :  |  |  | (12) operator delete
+             :  |  |  | 
+    6.773 us :  |  |  +-(4) std::_Sp_counted_ptr_inplace::_M_destroy
+    1.926 us :  |  |    (4) operator delete
+             :  |  | 
+   45.329 ms :  |  +-(1) read_config_file
+   42.392 ms :  |  |  +-(1) xmlParseFile
+             :  |  |  | 
+    0.432 us :  |  |  +-(1) xmlDocGetRootElement
+             :  |  |  | 
+  104.184 us :  |  |  +-(349) xmlStrcmp
+             :  |  |  | 
+    8.392 us :  |  |  +-(17) xmlNodeListGetString
+             :  |  |  | 
+   10.771 us :  |  |  +-(3) return_string_in_list
+    3.641 us :  |  |  | (13) strcmp
+             :  |  |  | 
+    1.626 us :  |  |  +-(3) strtol
+             :  |  |  | 
+    8.142 us :  |  |  +-(9) strtod
+             :  |  |  | 
+    6.172 us :  |  |  +-(1) xmlFreeDoc
+             :  |  | 
+   51.041 us :  |  +-(2) fopen
+             :  |  | 
+    3.091 us :  |  +-(1) srand
+             :  |  | 
+    0.518 us :  |  +-(1) rand_float_seed
+             :  |  | 
+   11.611 ms :  |  +-(1) mkp_setup_problem
+    2.302 us :  |  |  +-(1) return_string_in_list
+    0.714 us :  |  |  | (2) strcmp
+             :  |  |  | 
+   11.608 ms :  |  |  +-(1) read_mkp_problem_dat
+    9.899 ms :  |  |     +-(1) fopen
+             :  |  |     | 
+    1.457 ms :  |  |     +-(147) fscanf
+             :  |  |     | 
+    2.000 us :  |  |     +-(7) malloc
+             :  |  |     | 
+  165.308 us :  |  |     +-(1) fclose
+             :  |  | 
+    4.548 ms :  |  +-(1) ga_init
+    0.741 us :  |  |  +-(2) malloc
+             :  |  |  | 
+    4.545 ms :  |  |  +-(2) mkp_create_population
+   34.730 us :  |  |     +-(102) malloc
+             :  |  |     | 
+  191.615 us :  |  |     +-(100) bitstr_new
+   63.863 us :  |  |     | (200) malloc
+             :  |  |     | 
+  911.755 us :  |  |     +-(2800) rand
+             :  |  |     | 
+  280.338 us :  |  |     +-(1339) bitstr_clear
+             :  |  |     | 
+  275.002 us :  |  |     +-(1461) bitstr_set
+             :  |  | 
+    6.753  s :  |  +-(1) mkp_run_ga
+    0.311 us :  |  |  +-(1) setup_crossover_function
+             :  |  |  | 
+    0.265 us :  |  |  +-(1) setup_selector_init_function
+             :  |  |  | 
+    0.197 us :  |  |  +-(1) setup_selector_function
+             :  |  |  | 
+    6.752  s :  |  |  +-(1) run_base_ga
+   92.634 us :  |  |  |  +-(13) __printf_chk
+             :  |  |  |  | 
+    3.072  s :  |  |  |  +-(700) mkp_cost_function_and_order
+    2.913  s :  |  |  |  |  +-(35000) mkp_cost_function_fix
+    7.866 ms :  |  |  |  |  |  +-(35000) malloc
+             :  |  |  |  |  |  | 
+  959.921 ms :  |  |  |  |  |  +-(5907424) bitstr_test
+             :  |  |  |  |  |  | 
+    3.118 ms :  |  |  |  |  |  +-(18848) bitstr_clear
+             :  |  |  |  |  |  | 
+   12.814 ms :  |  |  |  |  |  +-(83823) bitstr_set
+             :  |  |  |  |  |  | 
+    7.447 ms :  |  |  |  |  |  +-(35000) free
+             :  |  |  |  |  | 
+   39.794 ms :  |  |  |  |  +-(700) __printf_chk
+             :  |  |  |  |  | 
+  101.751 ms :  |  |  |  |  +-(700) mkp_verify_satisfiability
+  229.528 us :  |  |  |  |     +-(700) malloc
+             :  |  |  |  |     | 
+   14.401 ms :  |  |  |  |     +-(78400) bitstr_test
+             :  |  |  |  |     | 
+   51.034 ms :  |  |  |  |     +-(2800) __printf_chk
+             :  |  |  |  |     | 
+  183.108 us :  |  |  |  |     +-(700) free
+             :  |  |  |  | 
+    1.700 ms :  |  |  |  +-(700) mkp_copy_old_genomes
+    1.189 ms :  |  |  |  | (1400) bitstr_copy
+  328.938 us :  |  |  |  | (1400) memcpy
+             :  |  |  |  | 
+  124.517 us :  |  |  |  +-(700) mkp_cross_breed
+             :  |  |  |  | 
+   15.077 ms :  |  |  |  +-(700) mkp_mutate
+    2.597 ms :  |  |  |  |  +-(10500) rand
+             :  |  |  |  |  | 
+    4.418 ms :  |  |  |  |  +-(3500) bitstr_copy
+  714.148 us :  |  |  |  |  | (3500) memcpy
+             :  |  |  |  |  | 
+    1.054 ms :  |  |  |  |  +-(7000) bitstr_flip
+             :  |  |  |  | 
+  699.046 ms :  |  |  |  +-(700) mkp_breed_and_mutate
+  641.938 ms :  |  |  |  |  +-(700) mkp_cross_breed
+  242.491 us :  |  |  |  |  |  +-(700) selector_roulette_init
+             :  |  |  |  |  |  | 
+   24.909 ms :  |  |  |  |  |  +-(28000) selector_roulette
+    4.826 ms :  |  |  |  |  |  | (28000) rand_float
+             :  |  |  |  |  |  | 
+  603.740 ms :  |  |  |  |  |  +-(14000) xover_uniform
+   89.923 ms :  |  |  |  |  |     +-(392000) rand
+             :  |  |  |  |  |     | 
+  125.280 ms :  |  |  |  |  |     +-(784000) bitstr_bitcopy
+             :  |  |  |  |  | 
+   12.556 ms :  |  |  |  |  +-(56000) rand
+             :  |  |  |  |  | 
+    8.300 ms :  |  |  |  |  +-(56000) bitstr_flip
+             :  |  |  |  | 
+   42.399 ms :  |  |  |  +-(700) mkp_random_new
+    9.473 ms :  |  |  |  |  +-(39200) rand
+             :  |  |  |  |  | 
+    3.009 ms :  |  |  |  |  +-(19838) bitstr_clear
+             :  |  |  |  |  | 
+    2.971 ms :  |  |  |  |  +-(19362) bitstr_set
+             :  |  |  |  | 
+   33.358 ms :  |  |  |  +-(700) mkp_exit_condition
+   30.954 ms :  |  |  |  |  +-(700) __printf_chk
+             :  |  |  |  |  | 
+  683.257 us :  |  |  |  |  +-(700) __fprintf_chk
+             :  |  |  |  |  | 
+  321.968 us :  |  |  |  |  +-(700) fflush
+             :  |  |  |  | 
+    2.886  s :  |  |  |  +-(700) mkp_cost_report_best
+  308.666 us :  |  |  |     +-(700) malloc
+             :  |  |  |     | 
+    2.869  s :  |  |  |     +-(35000) mkp_cost_function_fix
+    7.195 ms :  |  |  |     |  +-(35000) malloc
+             :  |  |  |     |  | 
+  949.904 ms :  |  |  |     |  +-(5880000) bitstr_test
+             :  |  |  |     |  | 
+    8.314 ms :  |  |  |     |  +-(35000) free
+             :  |  |  |     | 
+    2.490 ms :  |  |  |     +-(700) __fprintf_chk
+             :  |  |  |     | 
+  151.383 us :  |  |  |     +-(700) free
+             :  |  |  | 
+   66.388 us :  |  |  +-(1) mkp_cost_function_fix
+    0.189 us :  |  |  |  +-(1) malloc
+             :  |  |  |  | 
+   22.760 us :  |  |  |  +-(168) bitstr_test
+             :  |  |  |  | 
+    0.179 us :  |  |  |  +-(1) free
+             :  |  |  | 
+    8.631 us :  |  |  +-(1) output_test_details
+    7.080 us :  |  |    (4) __fprintf_chk
+             :  |  | 
+  230.730 us :  |  +-(1) ga_clean
+  229.828 us :  |  |  +-(1) mkp_free_population
+  156.271 us :  |  |  |  +-(100) bitstr_del
+   35.911 us :  |  |  |  | (200) free
+             :  |  |  |  | 
+   17.826 us :  |  |  |  +-(102) free
+             :  |  |  | 
+    0.184 us :  |  |  +-(1) free
+             :  |  | 
+    4.455 us :  |  +-(1) mkp_free_problem
+    4.011 us :  |  | (1) free_mkp_problem_dat
+    1.392 us :  |  | (7) free
+             :  |  | 
+  140.990 us :  |  +-(2) fclose
+             :  | 
+    0.466 us :  +-(1) global_args_t_t::~global_args_t_t
+

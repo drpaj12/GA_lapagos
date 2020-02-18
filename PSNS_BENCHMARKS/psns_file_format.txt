@@ -1,0 +1,8 @@
+nbase_stations // how many base stations to place in the problem
+nUEs // number of User Equipment
+nTimeSteps // number of time steps
+max_X max_Y // the max size of the space
+{GBR list} // |{GBR list}| = nUEs ... all integers
+{Priority List // |{Priority list}| = nUEs ... all integers
+{Locations} // x and y per time |{Locations}| = 2*nUEs ... all integers x, y
+" ... // as above per nTimeSteps

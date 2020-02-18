@@ -1,0 +1,29 @@
+
+Steps to convert (first time)
+
+0. note this file is .txtx so "make clean" doesn't delete on Legup
+1. Copy over directory and code from SRC and tsp/tsp..._hw.*
+2. Delete and flatten for respective design...for tsp:
+
+3. Start with function tsp_ga_hw.cpp run_ga_hw and start bringing in all the functions needed
+
+4. Get the hardware.out file that defines the internal memories and some global defines and signals
+
+5. Make a directory in Legup4.0/examples for this hardware to run
+
+5. Start compiling from vgoop_main_hw.c to see what needs to be included...
+
+6. "make" -- runs legup on top code
+   "make p" -- makes project for quartus with top code
+   "make q" for Quartus mapper flow
+   "make f" for Quartus full flow
+   "make v" for simulation
+
+Steps to Convert (second time)
+- Need legup 4.0 on a Linux machine.  We recommend using their Linux image
+- Need to create the static data structures for the ga.  Run base GA-lapagos with hardware output to generate data structures (-c ./config.xml -t ./test_out.test -m 2 -g hardware_out.txt ... "-m = mode 2 hw_generate" "-g = hardware file for output data structures")
+- Run the software based tsp with a tracing program (recommend utrace) to see all the functions called
+- Create a file(s) for the hardware version of the code and flatten all function pointer calls
+- Create functions to copy data, random number with fixed point, 
+- Move the c files you want to compile into a directory in the Legup home directory for legup4.0/examples/ and use the existing Makefile example with their make system to compile and run legup and quartus
+

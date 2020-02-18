@@ -1,0 +1,26 @@
+<ga_config>
+	<ga_type>PSNS_GA</ga_type>
+    <crossover_type>UNIFORM</crossover_type>
+    <selector_type>ROULETTE</selector_type>
+	<rand_seed>2</rand_seed>
+    <!--<problem_type>PSNS_DAT_FORMAT_BITS</problem_type>-->
+    <problem_type>PSNS_DAT_FORMAT_GRAY_CODE</problem_type>
+	<benchmark_file_name>../../PSNS_BENCHMARKS/BM_150ue_9base_station_1000s/bm_150ue_9base_station_1000s.dat</benchmark_file_name>
+	<a>../../PSNS_BENCHMARKS/psns_base.dat</a>
+    <ga_params>
+        <num_population>200</num_population>
+        <!-- following parameters must add to 1.0 -->
+        <percent_to_keep>0.05</percent_to_keep>
+        <percent_from_mutate>0.10</percent_from_mutate>
+        <percent_from_breed>0.0</percent_from_breed>
+        <percent_from_breed_and_mutate>0.80</percent_from_breed_and_mutate>
+        <percent_to_random>0.05</percent_to_random>
+        <!-- the above parameters must add to 1.0 -->
+        <top_percent_to_breed_from>0.25</top_percent_to_breed_from>
+        <top_percent_to_mutate_from>0.25</top_percent_to_mutate_from>
+        <top_percent_to_breed_mutate_from>0.25</top_percent_to_breed_mutate_from>
+        <percent_of_genome_mutations>0.10</percent_of_genome_mutations>
+        <!-- if tournament selection -->
+        <tournament_size>8</tournament_size>
+    </ga_params>
+</ga_config>

@@ -1,0 +1,24 @@
+<ga_config>
+	<ga_type>MKP_GA</ga_type>
+	<crossover_type>UNIFORM</crossover_type>
+	<selector_type>RANK</selector_type>
+	<rand_seed>1</rand_seed>
+	<problem_type>DAT_FORMAT_PENALTY</problem_type>
+	<benchmark_file_name>../../MKP_BENCHMARKS/sac94/hp/hp1.dat</benchmark_file_name>
+	<ga_params>
+		<num_population>50</num_population>
+		<!-- following parameters must add to 1.0 -->
+		<percent_to_keep>0.05</percent_to_keep>
+		<percent_from_mutate>0.10</percent_from_mutate>
+		<percent_from_breed>0.10</percent_from_breed>
+		<percent_from_breed_and_mutate>0.70</percent_from_breed_and_mutate>
+		<percent_to_random>0.05</percent_to_random>
+		<!-- the above parameters must add to 1.0 -->
+		<top_percent_to_breed_from>0.25</top_percent_to_breed_from>
+		<top_percent_to_mutate_from>0.25</top_percent_to_mutate_from>
+		<top_percent_to_breed_mutate_from>0.25</top_percent_to_breed_mutate_from>
+		<percent_of_genome_mutations>0.10</percent_of_genome_mutations>
+		<!-- if tournament selection -->
+		<tournament_size>8</tournament_size>
+	</ga_params>
+</ga_config>

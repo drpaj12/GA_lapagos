@@ -1,0 +1,6 @@
+NAME=GA_lapagos_main_hw
+NO_OPT=1
+NO_INLINE=1
+LOCAL_CONFIG = -legup-config=config.tcl
+LEVEL = ..
+include $(LEVEL)/Makefile.common
