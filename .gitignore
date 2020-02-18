@@ -16,6 +16,11 @@ GA-lapagos
 *.bak
 galib*
 *.gz
+*.a
+*.lo
+*.so*
+*.la
+*.log
 PAPERS/*
 PSNS_BENCHMARKS/bonnmotion*
 TSP_BENCHMARKS/sources*
@@ -29,6 +34,17 @@ TSP_BENCHMARKS/pcb3038.xml
 TSP_BENCHMARKS/pr2392.xml
 TSP_BENCHMARKS/u*
 TSP_BENCHMARKS/vm*.xml
+
+GA_lapagos/LIBS/libxml2-2.9.9/LOCAL/*
+GA_lapagos/LIBS/libxml2-2.9.9/xmllint
+GA_lapagos/LIBS/libxml2-2.9.9/xmlcatalog
+GA_lapagos/LIBS/libxml2-2.9.9/xml2Conf.sh
+GA_lapagos/LIBS/libxml2-2.9.9/.libs/xmllint
+GA_lapagos/LIBS/libxml2-2.9.9/.libs/xmlcatalog
+GA_lapagos/LIBS/libxml2-2.9.9/.libs/testdso.lai
+GA_lapagos/LIBS/libxml2-2.9.9/.libs/libxml2.lai
+
+GA_lapagos/GA_lapagos
 GA_lapagos/CTestTestfile.cmake
 GA_lapagos/SANDBOX/*out*
 GA_lapagos/SANDBOX/uftrace.data.old/default.opts
@@ -37,5 +53,4 @@ GA_lapagos/SCRIPTS/SANDBOX/
 GA_lapagos/TESTS/default*
 GA_lapagos/TESTS/*log*
 GA_lapagos/Testing/*
-
 

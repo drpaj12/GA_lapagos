@@ -1,4 +1,4 @@
-prefix=/home/jamiespa/H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/GA_LAPAGOS/GA_lapagos/LIBS/libxml2-2.9.9/LOCAL
+prefix=/home/jamiespa/H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/GA_LAPAGOS_/GA_lapagos/GA_lapagos/LIBS/libxml2-2.9.9/LOCAL
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

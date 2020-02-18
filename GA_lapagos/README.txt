@@ -30,41 +30,43 @@ This file provides some rudimentary ideas on how to use GA-lapagos and the assoc
 BEFORE you start dependencies
 ------------------------------------------------------------
  // Before compiling - Needed other things installed
-- libxml2 in LIBS directory
+- libxml2 in LIBS directory (NOTE - we are including libxml2.9 in github for now)
     - download libxml2 - for example - http://xmlsoft.org/downloads.html and go to DOWNLOADS -> xmlsoft.org/libxml2 and download LATEST_LIBXML2
     - put in LIBS directory 
-    - untar with "tar -xzvf LATEST_LIBXML2"
+    - untar with "tar -xzvf {LATEST_LIBXML2}"
     - config with your directory for example "./configure --prefix=/home/jamiespa/H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/GA_LAPAGOS_/GA_lapagos/GA_lapagos/LIBS/libxml2-2.9.9/LOCAL --without-python"
-    - make (that LOCAL dir NOTE=use your own local)
-    - make install
+    - "make" (that LOCAL dir NOTE=use your own local)
+    - "make install"
     - update CMakeLists.txt with proper version in HINTS (find_library(LIBXML2 NAMES libxml2 xml2 HINTS LIBS/libxml2-2.9.9/LOCAL/lib PATH_SUFFIXES libxml2) and in libxml2 include dir ("include_directories(LIBS/libxml2-2.9.10/LOCAL/include/libxml2")
-    - FIXES I DID to get automake updated - "sudo apt-get autoremove automake" "sudo apt-get install automake autoconf libtool" "autoreconf -i" 
+
+- FIXES PETER DID in UBUNTU (Note not sure if needed) to get automake updated - "sudo apt-get autoremove automake" "sudo apt-get install automake autoconf libtool" "autoreconf -i" 
+
 - python3 for scripts
 
 2 -----------------------------------------------------------
-Basic Build
+Basic Build of GA_lapagos
 -------------------------------------------------------------
-// Builds the make files.  Make has to be done in the root of GA_lapagos.
-- cmake . 
+// Builds the make files.  Make has to be done in the root of GA_lapagos (the one with the CMakeLists.txt).
+- "cmake ."
 OR for Debugging
-- cmake -DCMAKE_BUILD_TYPE=Debug . 
+- "cmake -DCMAKE_BUILD_TYPE=Debug ."
 
-// Then to compile
-- make
+// Then to compile GA_lapagos executable:
+- "make"
 
 3 -----------------------------------------------------------
 Basic Testing
 -------------------------------------------------------------
 // Then to test
-- make test
+- "make test"
 OR to see more outputs from python script
-- ctest -VV
+- "ctest -VV"
 
 4 -----------------------------------------------------------
 Advanced Debug and Tools
 -------------------------------------------------------------
 // Valgrind - compile with -g (DEBUG)
-1. run script in SANDBOX to start up valgrind
+1. run script in SANDBOX to start up valgrind (see the script there)
 2. run gdb in another process and attach
 
 // PRofile
