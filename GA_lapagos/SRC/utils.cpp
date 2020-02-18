@@ -28,7 +28,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <string.h>
 #include <math.h>
 #include <time.h>
- 
+#include <sys/time.h>
 #include "globals.h"
 #include "types.h"
 #include "utils.h"
@@ -417,3 +417,18 @@ void __cyg_profile_func_exit (void *func, void *caller)
 }
 }
 #endif
+
+double get_wall_time()
+{
+    struct timeval time;
+    if (gettimeofday(&time,NULL))
+    {
+        //  Handle error
+        return 0;
+    }
+    return (double)time.tv_sec + (double)time.tv_usec * .000001;
+}
+double get_cpu_time()
+{
+    return (double)clock() / CLOCKS_PER_SEC;
+}

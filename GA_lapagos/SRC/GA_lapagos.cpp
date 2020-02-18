@@ -78,6 +78,10 @@ int main(int argc, char **argv)
 {
 	int final_pop_idx; 
     int i;
+    double start_wall_time = 0;
+    double start_cpu_time = 0;
+    double end_wall_time = 0;
+    double end_cpu_time = 0;
 
 	printf("--------------------------------------------------------------------\n");
 	printf("Welcome the GA-lapagos a framework for experimenting with GAs\n");
@@ -124,9 +128,17 @@ int main(int argc, char **argv)
         /* create the double population to make easy copy to and from */
 	    ga_init(tsp_create_population);
 	
+        /* time analysis */
+        start_wall_time = get_wall_time();
+        start_cpu_time = get_cpu_time();
+
         /* call the run of the ga */
         tsp_run_ga();
 	
+        /* end timers */
+        end_wall_time = get_wall_time();
+        end_cpu_time = get_cpu_time();
+
         /* clean the data structures up */
         ga_clean(tsp_free_population);
         tsp_free_problem();
@@ -140,9 +152,17 @@ int main(int argc, char **argv)
         /* create the double population to make easy copy to and from */
 	    ga_init(mkp_create_population);
 	
+        /* time analysis */
+        start_wall_time = get_wall_time();
+        start_cpu_time = get_cpu_time();
+
         /* call the run of the ga */
         mkp_run_ga();
 	
+        /* end timers */
+        end_wall_time = get_wall_time();
+        end_cpu_time = get_cpu_time();
+
         /* clean the data structures up */
         ga_clean(mkp_free_population);
         mkp_free_problem();
@@ -156,9 +176,17 @@ int main(int argc, char **argv)
         /* create the double population to make easy copy to and from */
         psns_do_in_ga_init();
 	
+        /* time analysis */
+        start_wall_time = get_wall_time();
+        start_cpu_time = get_cpu_time();
+
         /* call the run of the ga */
         psns_run_ga();
 	
+        /* end timers */
+        end_wall_time = get_wall_time();
+        end_cpu_time = get_cpu_time();
+
         /* clean the data structures up */
         psns_do_in_ga_clean();
 	
@@ -186,6 +214,10 @@ int main(int argc, char **argv)
         /* create the double population to make easy copy to and from */
 	    ga_init(tsp_create_population);
 	
+        /* time analysis */
+        start_wall_time = get_wall_time();
+        start_cpu_time = get_cpu_time();
+
         for (i = 0; i < configuration.num_threads; i++)
         {
             ts[i].lock = &lock;
@@ -201,6 +233,10 @@ int main(int argc, char **argv)
         {
             pthread_join(thread_id[i], NULL);
         }
+
+        /* end timers */
+        end_wall_time = get_wall_time();
+        end_cpu_time = get_cpu_time();
 
         /* clean up the ids and thread structures */
         free(thread_id);
@@ -238,6 +274,9 @@ int main(int argc, char **argv)
 	{
 		printf("Unsupported GA type\n");
 	}
+
+    printf("Wall clock time = %lf\n", end_wall_time - start_wall_time);
+    printf("CPU time = %lf\n", end_cpu_time - start_cpu_time);
 	
 	/*-------------------FREE_PROBLEM------------------*/
 	/* free the problem */

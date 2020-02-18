@@ -51,3 +51,6 @@ extern unsigned int bitstr_gray_int(bstr src, int start, int end);
 
 extern unsigned int gray_decode(unsigned int n) ;
 extern unsigned int gray_encode(unsigned int n) ;
+
+extern double get_wall_time();
+extern double get_cpu_time();
