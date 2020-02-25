@@ -150,7 +150,7 @@ typedef struct str_t {
 } bstr_t, *bstr;
 #define str_len(s) ((s)->len)
  
-#define GENOME_SIZE_HW 198 /* types.h */
+#define GENOME_SIZE_HW 280 /* types.h */
 #define POPULATION_SIZE_HW 40 /* types.h */
 typedef struct ga_hw_t_t ga_hw_t;
 struct ga_hw_t_t

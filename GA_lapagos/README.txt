@@ -87,6 +87,13 @@ NOTE - uftrace needs to be on a linux drive (if you're using a Virtual Box) for 
 - cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=-finstrument-functions . 
 
 5 -----------------------------------------------------------
+How to run
+-------------------------------------------------------------
+To run GA_lapagos from the command line, you specify the arguments as follows:
+- 
+
+
+6 -----------------------------------------------------------
 GA_lapagos Notes
 -------------------------------------------------------------
 

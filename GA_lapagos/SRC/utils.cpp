@@ -418,6 +418,7 @@ void __cyg_profile_func_exit (void *func, void *caller)
 }
 #endif
 
+/* In seconds */
 double get_wall_time()
 {
     struct timeval time;
@@ -428,6 +429,7 @@ double get_wall_time()
     }
     return (double)time.tv_sec + (double)time.tv_usec * .000001;
 }
+/* In seconds */
 double get_cpu_time()
 {
     return (double)clock() / CLOCKS_PER_SEC;
