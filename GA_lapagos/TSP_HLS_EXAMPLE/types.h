@@ -103,7 +103,6 @@ struct config_t_t
 typedef struct ga_pop_t_t ga_pop_t;
 typedef struct population_t_t population_t;
 typedef struct ga_problem_t_t ga_problem_t;
-typedef struct parent_history_t_t parent_history_t;
 
 struct ga_pop_t_t
 {
@@ -134,9 +133,7 @@ struct ga_pop_t_t
 
 struct population_t_t
 {
-	long long int id;
 	void *genome;
-	parent_history_t *parents;
 };
 
 struct parent_history_t_t

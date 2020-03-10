@@ -36,6 +36,7 @@ typedef struct tsp_city_t_t tsp_city_t;
 
 typedef struct tsp_problem_adjacency_t_t tsp_problem_adjacency_t;
 typedef struct tsp_problem_adjacency_hw_t_t tsp_problem_adjacency_hw_t;
+typedef struct tsp_problem_adjacency_gpu_t_t tsp_problem_adjacency_gpu_t;
 
 struct tsp_problem_t_t
 {
@@ -65,8 +66,13 @@ struct tsp_city_t_t
 #define ADJACENCY_HW_SIZE 1
 struct tsp_problem_adjacency_hw_t_t
 {
-        int adjacency_matrix[ADJACENCY_HW_SIZE][ADJACENCY_HW_SIZE];
+        short adjacency_matrix[ADJACENCY_HW_SIZE][ADJACENCY_HW_SIZE];
 };
+struct tsp_problem_adjacency_gpu_t_t
+{
+        int adjacency_matrix[ADJACENCY_HW_SIZE*ADJACENCY_HW_SIZE];
+};
+
 
 #endif
 

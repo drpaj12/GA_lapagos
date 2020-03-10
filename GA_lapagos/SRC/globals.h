@@ -33,8 +33,11 @@ extern FILE *fresult_out;
 extern FILE *ftest_out;
 extern double global_best;
 extern const char *ga_types_name[];
-extern ga_hw_t ga_hw_data; 
 extern int global_index_hw;
+
+// generator_static_memory.cpp
+extern ga_hw_t ga_hw_data; 
+extern ga_gpu_t ga_gpu_data; 
 
 // in genetic_algorithm.cpp
 extern short global_index;

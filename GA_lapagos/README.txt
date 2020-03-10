@@ -80,8 +80,8 @@ Advanced Debug and Tools
 1. make
 NOTE - uftrace needs to be on a linux drive (if you're using a Virtual Box) for mkfifo to work so from
 ~/TMP/
-2. ../H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/VIRTUAL_GOOP/uftrace-git/uftrace/bin/bin/uftrace record ../H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/VIRTUAL_GOOP/virtual_goop/GA_lapagos -c config.xml -t test.out 
-3. ../H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/VIRTUAL_GOOP/uftrace-git/uftrace/bin/bin/uftrace graph
+2. ../H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/GA_LAPAGOS_/GA_lapagos/uftrace-git/uftrace/bin/bin/uftrace record ../H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/GA_LAPAGOS_/GA_lapagos/GA_lapagos/GA_lapagos -c config.xml -t test.out -m 1
+3. ../H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/GA_LAPAGOS_/GA_lapagos/uftrace-git/uftrace/bin/bin/uftrace graph
 
 // call trace
 - cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=-finstrument-functions . 

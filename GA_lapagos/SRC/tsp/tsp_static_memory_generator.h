@@ -23,7 +23,15 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-void tsp_generate_adjacency_array(FILE *hw_output);
-void tsp_print_genome_array(FILE *hw_output, population_t **population);
+void tsp_generate_hw_variables(short mode,
+                            FILE *file_output,
+                            int (*fptr_genome_size)(),
+                            void (*fptr_genome_type)(FILE *),
+                            void (*fptr_genome2d)(FILE *, population_t **),
+                            void (*fptr_genome1d)(FILE *, population_t **));
+void tsp_generate_adjacency_array_2d(FILE *file_output);
+void tsp_generate_adjacency_array_1d(FILE *file_output);
+void tsp_print_genome_array_2d(FILE *file_output, population_t **population);
+void tsp_print_genome_array_1d(FILE *file_output, population_t **population);
 int tsp_genome_size();
-void tsp_genome_type(FILE *hw_output);
+void tsp_genome_type(FILE *file_output);

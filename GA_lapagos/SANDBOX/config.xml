@@ -6,6 +6,9 @@
 	<num_threads>4</num_threads>
     <problem_type>ADJACENCY</problem_type>
 	<benchmark_file_name>../../TSP_BENCHMARKS/a280.xml</benchmark_file_name>
+<!--	<benchmark_file_name>../../TSP_BENCHMARKS/d198.xml</benchmark_file_name>-->
+<!--	<benchmark_file_name>../../TSP_BENCHMARKS/a280.xml</benchmark_file_name>-->
+<!--	<benchmark_file_name>../../TSP_BENCHMARKS/nrw1379.xml</benchmark_file_name>-->
     <ga_params>
         <num_population>100</num_population>
         <!-- following parameters must add to 1.0 -->

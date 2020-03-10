@@ -353,7 +353,7 @@ short tsp_exit_condition()
 	fprintf(fresult_out, "%d", breeding_cycles);
 	fflush(stdout);
 
-#if 0
+#if 1
 	if (breeding_cycles == 1000)
 	{
 		breeding_cycles = 0;
@@ -364,7 +364,7 @@ short tsp_exit_condition()
 		return FALSE;
 	}
 #endif 
-
+#if 0
 	if (global_best <= recuring_best)
 	{
 		recuring_best = global_best;
@@ -385,6 +385,7 @@ short tsp_exit_condition()
 	{
 		return FALSE;
 	}
+#endif
 }
 
 /*---------------------------------------------------------------------------------------------

@@ -27,3 +27,43 @@ Steps to Convert (second time)
 - Create functions to copy data, random number with fixed point, 
 - Move the c files you want to compile into a directory in the Legup home directory for legup4.0/examples/ and use the existing Makefile example with their make system to compile and run legup and quartus
 
+- Add to Verilog file to count cycles:
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+reg [127:0]breed_clocks;
+/* Unsynthesizable Statements */
+always @(posedge clk)
+begin
+	if (!memory_controller_waitrequest) begin
+	/* tsp_exit_condition_hw: %0*/
+	/*   %3 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([17 x i8]* @.str1, i32 0, i32 0), i32 %2) #2*/
+	if ((cur_state == LEGUP_F_tsp_exit_condition_hw_BB__0_4)) begin
+		$write("breed cycle: %d\n", $signed(tsp_exit_condition_hw_0_2_reg));
+		$write("clock cycles: %d\n", $signed(breed_clocks));
+		// to fix quartus warning
+		if (reset == 1'b0 && ^(tsp_exit_condition_hw_0_2_reg) === 1'bX) finish <= 0;
+	end
+end
+	if (reset == 1'b1)
+		breed_clocks <= 128'd0;
+	else
+		breed_clocks <= breed_clocks + 1'b1;
+
+
+end
+-----------------------------------------------------------------------------------------------------------
+----- Replacing
+-----------------------------------------------------------------------------------------------------------
+/* Unsynthesizable Statements */
+always @(posedge clk)
+	if (!memory_controller_waitrequest) begin
+	/* tsp_exit_condition_hw: %0*/
+	/*   %3 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([17 x i8]* @.str1, i32 0, i32 0), i32 %2) #2*/
+	if ((cur_state == LEGUP_F_tsp_exit_condition_hw_BB__0_4)) begin
+		$write("breed cycle: %d\n", $signed(tsp_exit_condition_hw_0_2_reg));
+		// to fix quartus warning
+		if (reset == 1'b0 && ^(tsp_exit_condition_hw_0_2_reg) === 1'bX) finish <= 0;
+	end
+end
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------

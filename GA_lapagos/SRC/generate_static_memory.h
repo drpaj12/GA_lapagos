@@ -23,8 +23,11 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */ 
 
-void generate_hw_variables(FILE *hw_output,
+void generate_static_variables(
+                            short mode,
+                            FILE *file_output,
                             int (*fptr_genome_size)(),
                             void (*fptr_genome_type)(FILE *),
-                            void (*fptr_genome)(FILE *, population_t **));
+                            void (*fptr_genome2d)(FILE *, population_t **),
+                            void (*fptr_genome1d)(FILE *, population_t **));
 

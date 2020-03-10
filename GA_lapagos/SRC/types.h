@@ -49,7 +49,7 @@ struct global_args_t_t
 	argparse::ArgValue<char*> output_file;
 	argparse::ArgValue<char*> test_file;
 	argparse::ArgValue<char*> config_file;
-	argparse::ArgValue<char*> hardware_file;
+	argparse::ArgValue<char*> hardcoded_file;
 	argparse::ArgValue<int> mode;
 
 	argparse::ArgValue<bool> show_help;
@@ -68,7 +68,8 @@ enum GA_TYPE {
 enum MODES { 
                 GA_C, 
                 GA_THREADED,
-                GENERATE_HW
+                GENERATE_FPGA,
+                GENERATE_GPU
                 };
 
 
@@ -114,7 +115,6 @@ struct config_t_t
 typedef struct ga_pop_t_t ga_pop_t;
 typedef struct population_t_t population_t;
 typedef struct ga_problem_t_t ga_problem_t;
-typedef struct parent_history_t_t parent_history_t;
 
 struct ga_pop_t_t
 {
@@ -145,14 +145,7 @@ struct ga_pop_t_t
 
 struct population_t_t
 {
-	long long int id;
 	void *genome;
-	parent_history_t *parents;
-};
-
-struct parent_history_t_t
-{
-	long long int *ids;
 };
 
 typedef struct str_t {
@@ -173,7 +166,7 @@ struct ga_hw_t_t
 	int rand_seed;
 
 	int num_population;
-    int population[2][POPULATION_SIZE_HW][GENOME_SIZE_HW];
+    short population[2][POPULATION_SIZE_HW][GENOME_SIZE_HW];
 
 	int costs[POPULATION_SIZE_HW];
 
@@ -200,5 +193,44 @@ struct ga_hw_t_t
 	int max_generations;
 	int num_parents;
 };
+
+typedef struct ga_gpu_t_t ga_gpu_t;
+struct ga_gpu_t_t
+{
+	enum GA_TYPE ga_type;
+	enum CROSSOVER_TYPE crossover_type;
+	enum SELECTOR_TYPE selector_type;
+
+	int rand_seed;
+
+	int num_population;
+    int population[2][POPULATION_SIZE_HW*GENOME_SIZE_HW];
+
+	int costs[POPULATION_SIZE_HW];
+
+    int idx_start_keep;
+	int idx_end_keep;
+	int idx_start_mutate;
+	int idx_end_mutate;
+	int idx_start_breed;
+	int idx_end_breed;
+	int idx_start_breed_and_mutate;
+	int idx_end_breed_and_mutate;
+	int idx_start_random;
+	int idx_end_random;
+
+	int idx_end_breed_from;
+	int idx_end_mutate_from;
+	int idx_end_breed_mutate_from;
+
+    int num_mutations;
+
+    int tournament_size;
+    int truncate_size;
+	
+	int max_generations;
+	int num_parents;
+};
+
 
 #endif // TYPES_H

@@ -37,7 +37,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include "genetic_algorithm.h"
 
-#include "generate_hw.h"
+#include "generate_static_memory.h"
 
 #include "thread_utils.h"
 
@@ -47,7 +47,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "tsp_ga_genome_combinatorial_tupple_threaded.h"
 #include "tsp_adjacency.h"
 #include "tsp_cartesian.h"
-#include "tsp_hw_generator.h"
+#include "tsp_static_memory_generator.h"
 
 #include "mkp_ga.h"
 #include "mkp_ga_genome_binary.h"
@@ -62,11 +62,8 @@ global_args_t global_args;
 ga_pop_t genomes;
 FILE *fresult_out;
 FILE *ftest_out;
-FILE *fhardware_out;
+FILE *static_memory_out;
 double global_best;
-
-/* Hardware Variables */
-ga_hw_t ga_hw_data;
 
 const char *ga_types_name[] = { 
                                 "TSP_GA", 
@@ -104,10 +101,10 @@ int main(int argc, char **argv)
     oassert(fresult_out != NULL);
     ftest_out = fopen(global_args.test_file, "w");
     oassert(ftest_out != NULL);
-    if (global_args.mode == GENERATE_HW)
+    if (global_args.mode == GENERATE_FPGA || global_args.mode == GENERATE_GPU)
     {
-        fhardware_out = fopen(global_args.hardware_file, "w");
-        oassert(fhardware_out != NULL);
+        static_memory_out = fopen(global_args.hardcoded_file, "w");
+        oassert(static_memory_out != NULL);
     }
     
     /* This is used in the exit condition...just have to set it to something */
@@ -218,6 +215,7 @@ int main(int argc, char **argv)
         start_wall_time = get_wall_time();
         start_cpu_time = get_cpu_time();
 
+        printf("Begining %d Threads\n", configuration.num_threads);
         for (i = 0; i < configuration.num_threads; i++)
         {
             ts[i].lock = &lock;
@@ -246,8 +244,8 @@ int main(int argc, char **argv)
         ga_clean(tsp_free_population);
         tsp_free_problem();
     }
-    /* ---- HARDWARE GENERATOR - Special Mode for outputting variables that can be used in HLS flow ---- */
-	else if (configuration.ga_type == TSP_GA && global_args.mode == GENERATE_HW)
+    /* ---- FPGA HLS GENERATOR - Special Mode for outputting variables that can be used in HLS flow ---- */
+	else if (configuration.ga_type == TSP_GA && global_args.mode == GENERATE_FPGA)
 	{
         /* read or create the proper problem */
 	    /* initialize the population parameters */
@@ -258,13 +256,40 @@ int main(int argc, char **argv)
 	
         /* generate the base variables */
         /* generate the memory initialization for the genomes for this problem */
-        generate_hw_variables(fhardware_out, 
+        generate_static_variables(global_args.mode,
+                                        static_memory_out, 
                                         tsp_genome_size,
                                         tsp_genome_type,
-                                        tsp_print_genome_array); 
+                                        tsp_print_genome_array_2d,
+                                        tsp_print_genome_array_1d); 
 
         /* generate the tsp problem */
-        tsp_generate_adjacency_array(fhardware_out);
+        tsp_generate_adjacency_array_2d(static_memory_out);
+	
+        /* clean the data structures up */
+        ga_clean(tsp_free_population);
+        tsp_free_problem();
+	}
+	else if (configuration.ga_type == TSP_GA && global_args.mode == GENERATE_GPU)
+	{
+        /* read or create the proper problem */
+	    /* initialize the population parameters */
+		tsp_setup_problem();
+	
+        /* create the double population to make easy copy to and from */
+	    ga_init(tsp_create_population);
+
+        /* generate the base variables */
+        /* generate the memory initialization for the genomes for this problem */
+        generate_static_variables(global_args.mode,
+                                        static_memory_out, 
+                                        tsp_genome_size,
+                                        tsp_genome_type,
+                                        tsp_print_genome_array_2d,
+                                        tsp_print_genome_array_1d); 
+
+        /* generate the tsp problem */
+        tsp_generate_adjacency_array_1d(static_memory_out);
 	
         /* clean the data structures up */
         ga_clean(tsp_free_population);
@@ -313,14 +338,14 @@ void get_options(int argc, char** argv)
 			.metavar("TEST_FILE_PATH")
 			;
 	
-	    parser.add_argument(global_args.hardware_file, "-g")
-			.help("Hardware Generation file")
-			.default_value("hardware_out.txt")
-			.metavar("HARDWARE_OUTPUT_FILE")
+	    parser.add_argument(global_args.hardcoded_file, "-g")
+			.help("Hardcoded Generation file")
+			.default_value("hardcoded_out.txt")
+			.metavar("HARDCODED_OUTPUT_FILE")
 			;
 	
 	    parser.add_argument(global_args.mode, "-m")
-			.help("Mode to run in {GA_C = 0, GA_THREADED = 1, GENERATE_HW = 2}")
+			.help("Mode to run in {GA_C = 0, GA_THREADED = 1, GENERATE_FPGA = 2, GENERATE_CPU = 3}")
 			.default_value("0")
 			.metavar("MODE")
 			;
