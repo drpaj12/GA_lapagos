@@ -45,6 +45,7 @@ const char *crossover_types_name[] = {
                                         "CX",
                                         "CX2",
                                         "OX",
+                                        "CSR",
                                         "SINGLE_POINT",
                                         "TWO_POINT",
                                         "UNIFORM"

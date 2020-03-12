@@ -60,6 +60,8 @@ void* setup_crossover_function()
             return (void*)xover_cx2;
         case OX:
             return (void*)xover_ox;
+        case CSR:
+            return (void*)confined_swap_recombination;
         case SINGLE_POINT:
             return (void*)xover_single_point;
         case TWO_POINT:
@@ -500,3 +502,81 @@ void xover_ox(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 	free(list_of_idx_to_gene_spots_to_not_copy1);
 	free(list_of_idx_to_gene_spots_to_not_copy2);
 }
+
+/*---------------------------------------------------------------------------------------------
+ * (function: xover_pmx)
+ * Advancing genetic algorithm approaches to field programmable gate array placement with enhanced recombination operators Robert Collier, Christian Fobel, Ryan Pattison, Gary Grewal, Shawki Areibi, and Peter Jamieson. Journal of Evolutionary Intelligence. October 2014. 
+ *-------------------------------------------------------------------------------------------*/
+void confined_swap_recombination(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+{
+	int i, j;
+	int *p1_lookup; // Algorithmically A
+	int *p2_lookup; // Algorithmically B
+	int *p3_lookup; // Algorithmically A2 so I can make 2 children
+	int *p4_lookup; // Algorithmically B2 so I can make 2 children
+
+    int *genome_p1 = (int*)gp1;
+    int *genome_p2 = (int*)gp2;
+    int *genome_c1 = (int*)gc1;
+    int *genome_c2 = (int*)gc2;
+
+    int x1, x2, y1, y2;
+    int rand_int1;
+    int rand_int2;
+    int temp_idx1, temp_idx2;
+
+	p1_lookup = (int*)malloc(sizeof(int) * genome_size);
+	p2_lookup = (int*)malloc(sizeof(int) * genome_size);
+	p3_lookup = (int*)malloc(sizeof(int) * genome_size);
+	p4_lookup = (int*)malloc(sizeof(int) * genome_size);
+
+	/* create the reverse lookup...as in if i want to know where city 3 is in genome p1 I can write p1_lookup[3] */
+	for (j = 0; j < genome_size; j++)
+	{
+        genome_c1[j] = genome_p1[j];
+        genome_c2[j] = genome_p2[j];
+        /* Algorithm inverse lookup A = inverse(Q) */
+		p1_lookup[genome_p1[j]] = j;
+        /* Algorithm inverse lookup B = inverse(P') */
+		p2_lookup[genome_p2[j]] = j;
+		p3_lookup[genome_p1[j]] = j;
+		p3_lookup[genome_p2[j]] = j;
+	}
+
+	/* now copy do X swaps where we will make X = to size of Genome */
+	for (j = 0; j < genome_size; j++)
+	{
+        rand_int1 = rand() % genome_size;
+        rand_int2 = rand() % genome_size;
+
+        /* ALgorithm x = A[rand_int] y = B[rand_int] */
+        x1 = p1_lookup[rand_int1];
+        y1 = p2_lookup[rand_int1];
+        x2 = p3_lookup[rand_int2];
+        y2 = p4_lookup[rand_int2];
+
+        /* Algorithm swap Q[x] with Q[y] */
+        temp_idx1 = genome_c1[x1];
+        temp_idx2 = genome_c2[x2];
+
+        genome_c1[x1] = genome_c1[y1];
+        genome_c2[x2] = genome_c2[y2];
+
+        genome_c1[y1] = temp_idx1;
+        genome_c2[y2] = temp_idx2;
+
+        /* algorithm update A; A[Q[x]] = x */
+        p1_lookup[genome_c1[x1]] = x1;
+        p1_lookup[genome_c1[y1]] = y1;
+        p2_lookup[genome_c2[x2]] = x2;
+        p1_lookup[genome_c2[y2]] = y2;
+	}
+
+	/* cleanup */
+	free(p1_lookup);
+	free(p2_lookup);
+	free(p3_lookup);
+	free(p4_lookup);
+}
+
+

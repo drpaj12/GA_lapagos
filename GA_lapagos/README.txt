@@ -31,9 +31,9 @@ BEFORE you start dependencies
 ------------------------------------------------------------
  // Before compiling - Needed other things installed
 - libxml2 in LIBS directory (NOTE - we are including libxml2.9 in github for now)
-    - download libxml2 - for example - http://xmlsoft.org/downloads.html and go to DOWNLOADS -> xmlsoft.org/libxml2 and download LATEST_LIBXML2
-    - put in LIBS directory 
-    - untar with "tar -xzvf {LATEST_LIBXML2}"
+    - [can skip stepl if using included libxml] download libxml2 - for example - http://xmlsoft.org/downloads.html and go to DOWNLOADS -> xmlsoft.org/libxml2 and download LATEST_LIBXML2
+    - [can skip step if using included libxml] put in LIBS directory 
+    - [can skip step if using included libxml] untar with "tar -xzvf {LATEST_LIBXML2}"
     - config with your directory for example "./configure --prefix=/home/jamiespa/H_DRIVE/RESEARCH/SUPERVISION_AND_PROJECTS/PROGRAMS_PROJECTS_DEVELOPMENT/GA_LAPAGOS_/GA_lapagos/GA_lapagos/LIBS/libxml2-2.9.9/LOCAL --without-python"
     - "make" (that LOCAL dir NOTE=use your own local)
     - "make install"

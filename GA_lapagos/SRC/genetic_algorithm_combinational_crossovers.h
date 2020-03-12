@@ -29,3 +29,4 @@ extern void xover_position(void *gp1, void *gp2, void *gc1, void *gc2, int genom
 extern void xover_cx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
 extern void xover_cx2(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
 extern void xover_ox(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
+extern void confined_swap_recombination(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
