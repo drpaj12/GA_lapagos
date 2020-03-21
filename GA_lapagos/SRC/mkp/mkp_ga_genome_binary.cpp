@@ -67,9 +67,9 @@ void mkp_free_population()
 
 	for (i = 0; i < genomes.num_population; i++)
 	{
-        bitstr_del((bstr)genomes.population[0][i]->genome);
+		bitstr_del((bstr)genomes.population[0][i]->genome);
 		free(genomes.population[0][i]);
-        bitstr_del((bstr)genomes.population[1][i]->genome);
+		bitstr_del((bstr)genomes.population[1][i]->genome);
 		free(genomes.population[1][i]);
 	}
 	free(genomes.population[0]);
@@ -81,7 +81,7 @@ void mkp_free_population()
  *-------------------------------------------------------------------------------------------*/
 void mkp_cost_function_and_order(
 		double (*fptr_cost_function)(void *)
-        )
+		)
 {
 	int i, j;
 	int index_of_greatest_cost;
@@ -116,17 +116,17 @@ void mkp_cost_function_and_order(
 
 	printf("Best solution costs: %f\n", genomes.costs[0]);
 	global_best = genomes.costs[0];
-//    bitstr_print((bstr)genomes.population[global_index][0]->genome);
-    mkp_verify_satisfiability((bstr)genomes.population[global_index][0]->genome);
+//	  bitstr_print((bstr)genomes.population[global_index][0]->genome);
+	mkp_verify_satisfiability((bstr)genomes.population[global_index][0]->genome);
 }
 
 /*---------------------------------------------------------------------------------------------
  * (function: mkp_cost_report_best)
  *-------------------------------------------------------------------------------------------*/
 void mkp_cost_report_best(
-        FILE *fout, 
+		FILE *fout, 
 		double (*fptr_cost_function)(void *)
-        )
+		)
 {
 	float *costs;
 	int i, j;
@@ -193,20 +193,20 @@ void mkp_copy_solution(bstr from, bstr to)
 {
 	int i;
 
-    bitstr_copy(from, to);
+	bitstr_copy(from, to);
 }
 
 /*---------------------------------------------------------------------------------------------
  * (function: mkp_cross_breed)
  *-------------------------------------------------------------------------------------------*/
 void mkp_cross_breed(
-                            void (*fptr_crossover)(void *, void *, void *, void *, int),
-                            int (*fptr_selector)(),
-                            void (*fptr_selector_init)(int),
-                            population_t **from, 
-                            population_t **to, 
-                            int start, 
-                            int end)
+							void (*fptr_crossover)(void *, void *, void *, void *, int),
+							int (*fptr_selector)(),
+							void (*fptr_selector_init)(int),
+							population_t **from, 
+							population_t **to, 
+							int start, 
+							int end)
 {
 	int i, j;
 	int parent1;
@@ -219,13 +219,13 @@ void mkp_cross_breed(
 	if (start == end)
 		return;
 
-    /* initialize the selector */
-    (*fptr_selector_init)(end-start);
+	/* initialize the selector */
+	(*fptr_selector_init)(end-start);
 
 	int temp_end = end-(end - start)%2; // make sure even number
 	for (i = start; i < temp_end; i += 2)
 	{
-        /* pick up 2 parents */
+		/* pick up 2 parents */
 		parent1 = (*fptr_selector)();
 		parent2 = (*fptr_selector)();
 
@@ -235,7 +235,7 @@ void mkp_cross_breed(
 			parent2 = (parent2 != genomes.num_population-1) ? parent2 + 1 : parent2 - 1;
 		}
 
-        /* setup parents and child */
+		/* setup parents and child */
 		genome_p1 = (int*)from[parent1]->genome;
 		genome_p2 = (int*)from[parent2]->genome;
 		genome_c1 = (int*)to[i]->genome;
@@ -265,7 +265,7 @@ void mkp_mutate(population_t **from, population_t **to, int start, int end, int 
 		for (j = 0; j < num_mutations; j++)
 		{
 			idx_to_mutate = rand() % mkp_problem.num_variables;
-            bitstr_flip((bstr)to[i]->genome, idx_to_mutate);
+			bitstr_flip((bstr)to[i]->genome, idx_to_mutate);
 		}
 	}
 }
@@ -274,13 +274,13 @@ void mkp_mutate(population_t **from, population_t **to, int start, int end, int 
  * (function: mkp_breed_and_mutate)
  *-------------------------------------------------------------------------------------------*/
 void mkp_breed_and_mutate(
-                            void (*fptr_crossover)(void *, void *, void *, void *, int),
-                            int (*fptr_selector)(),
-                            void (*fptr_selector_init)(int),
-                            population_t **from, 
-                            population_t **to, 
-                            int start, 
-                            int end)
+							void (*fptr_crossover)(void *, void *, void *, void *, int),
+							int (*fptr_selector)(),
+							void (*fptr_selector_init)(int),
+							population_t **from, 
+							population_t **to, 
+							int start, 
+							int end)
 {
 	int i, j;
 	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * mkp_problem.num_variables);
@@ -296,7 +296,7 @@ void mkp_breed_and_mutate(
 		for (j = 0; j < num_mutations; j++)
 		{
 			idx_to_mutate = rand() % mkp_problem.num_variables;
-            bitstr_flip((bstr)to[i]->genome, idx_to_mutate);
+			bitstr_flip((bstr)to[i]->genome, idx_to_mutate);
 		}
 	}
 }
@@ -348,12 +348,12 @@ void mkp_random_new(population_t **to, int start, int end)
 
 	for (i = start; i < end; i++)
 	{
-	    for (j = 0; j < mkp_problem.num_variables; j++)
+		for (j = 0; j < mkp_problem.num_variables; j++)
 		{
-	        if (rand()%2 == 0)
-	            bitstr_clear((bstr)to[i]->genome, j);
-	        else
-	            bitstr_set((bstr)to[i]->genome, j);
+			if (rand()%2 == 0)
+				bitstr_clear((bstr)to[i]->genome, j);
+			else
+				bitstr_set((bstr)to[i]->genome, j);
 		}
 	}
 }
@@ -370,10 +370,10 @@ void *mkp_create_random_solution()
 
 	for (i = 0; i < mkp_problem.num_variables; i++)
 	{
-        if (rand()%2 == 0)
-            bitstr_clear(return_genome, i);
-        else
-            bitstr_set(return_genome, i);
+		if (rand()%2 == 0)
+			bitstr_clear(return_genome, i);
+		else
+			bitstr_set(return_genome, i);
 	}
 
 	return return_genome;

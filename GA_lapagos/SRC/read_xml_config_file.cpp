@@ -81,22 +81,22 @@ void read_config_file(char *config_file_name)
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"ga_type")))
 		{
 			string_data = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
-            configuration.ga_type = (enum GA_TYPE)return_string_in_list((char*)string_data, (char**)ga_types_name, NUM_GA_TYPES);
+			configuration.ga_type = (enum GA_TYPE)return_string_in_list((char*)string_data, (char**)ga_types_name, NUM_GA_TYPES);
 			xmlFree(string_data);
 		}
-        else if ((!xmlStrcmp(cur->name, (const xmlChar *)"crossover_type")))
+		else if ((!xmlStrcmp(cur->name, (const xmlChar *)"crossover_type")))
 		{
 			string_data = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
-            configuration.crossover_type = (enum CROSSOVER_TYPE)return_string_in_list((char*)string_data, (char**)crossover_types_name, NUM_CROSSOVER_TYPES);
+			configuration.crossover_type = (enum CROSSOVER_TYPE)return_string_in_list((char*)string_data, (char**)crossover_types_name, NUM_CROSSOVER_TYPES);
 			xmlFree(string_data);
 		}
-        else if ((!xmlStrcmp(cur->name, (const xmlChar *)"selector_type")))
+		else if ((!xmlStrcmp(cur->name, (const xmlChar *)"selector_type")))
 		{
 			string_data = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
-            configuration.selector_type = (enum SELECTOR_TYPE)return_string_in_list((char*)string_data, (char**)selector_types_name, NUM_SELECTOR_TYPES);
+			configuration.selector_type = (enum SELECTOR_TYPE)return_string_in_list((char*)string_data, (char**)selector_types_name, NUM_SELECTOR_TYPES);
 			xmlFree(string_data);
 		}
-        else if ((!xmlStrcmp(cur->name, (const xmlChar *)"benchmark_file_name")))
+		else if ((!xmlStrcmp(cur->name, (const xmlChar *)"benchmark_file_name")))
 		{
 			string_data = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
 			configuration.benchmark_file_name = (char*)string_data;
@@ -106,96 +106,96 @@ void read_config_file(char *config_file_name)
 			string_data = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
 			configuration.problem_type = (char*)string_data;
 		}
-        else if ((!xmlStrcmp(cur->name, (const xmlChar *)"rand_seed")))
+		else if ((!xmlStrcmp(cur->name, (const xmlChar *)"rand_seed")))
 		{
 			string_data = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
 			configuration.rand_seed = atoi((char*)string_data);
 			xmlFree(string_data);
 		}
-        else if ((!xmlStrcmp(cur->name, (const xmlChar *)"num_threads")))
+		else if ((!xmlStrcmp(cur->name, (const xmlChar *)"num_threads")))
 		{
 			string_data = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
 			configuration.num_threads = atoi((char*)string_data);
 			xmlFree(string_data);
 		}
 
-        else if ((!xmlStrcmp(cur->name, (const xmlChar *)"ga_params")))
+		else if ((!xmlStrcmp(cur->name, (const xmlChar *)"ga_params")))
 		{
-	        xmlNodePtr ga_params = cur->xmlChildrenNode;
-        	while (ga_params != NULL) 
-	        {
-                if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"num_population")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.num_population = atoi((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_to_keep")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.percent_to_keep = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_from_mutate")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.percent_from_mutate = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_from_breed")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.percent_from_breed = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_from_breed_and_mutate")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.percent_from_breed_and_mutate = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_to_random")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.percent_to_random = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"top_percent_to_breed_from")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.top_percent_to_breed_from = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"top_percent_to_mutate_from")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.top_percent_to_mutate_from = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"top_percent_to_breed_mutate_from")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.top_percent_to_breed_mutate_from = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_of_genome_mutations")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.percent_of_genome_mutations = atof((char*)string_data);
-		        	xmlFree(string_data);
-		        }
-                else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"tournament_size")))
-		        {
-        			string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
-	        		genomes.tournament_size = atoi((char*)string_data);
-		        	xmlFree(string_data);
-		        }
+			xmlNodePtr ga_params = cur->xmlChildrenNode;
+			while (ga_params != NULL) 
+			{
+				if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"num_population")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.num_population = atoi((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_to_keep")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.percent_to_keep = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_from_mutate")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.percent_from_mutate = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_from_breed")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.percent_from_breed = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_from_breed_and_mutate")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.percent_from_breed_and_mutate = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_to_random")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.percent_to_random = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"top_percent_to_breed_from")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.top_percent_to_breed_from = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"top_percent_to_mutate_from")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.top_percent_to_mutate_from = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"top_percent_to_breed_mutate_from")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.top_percent_to_breed_mutate_from = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"percent_of_genome_mutations")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.percent_of_genome_mutations = atof((char*)string_data);
+					xmlFree(string_data);
+				}
+				else if ((!xmlStrcmp(ga_params->name, (const xmlChar *)"tournament_size")))
+				{
+					string_data = xmlNodeListGetString(doc, ga_params->xmlChildrenNode, 1);
+					genomes.tournament_size = atoi((char*)string_data);
+					xmlFree(string_data);
+				}
 
 
 
-                ga_params = ga_params->next;
-            }
-        }
+				ga_params = ga_params->next;
+			}
+		}
 
 		cur = cur->next;
 	}

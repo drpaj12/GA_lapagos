@@ -43,20 +43,20 @@ OTHER DEALINGS IN THE SOFTWARE.
  *-------------------------------------------------------------------------------------------*/
 void xover_single_point(void *genome_p1, void *genome_p2, void *genome_c1, void *genome_c2, int genome_size)
 {
-    /* cut point 1 needs to be in the first half */
-    int cut_point1 = rand() % (genome_size);
+	/* cut point 1 needs to be in the first half */
+	int cut_point1 = rand() % (genome_size);
 
-    bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, cut_point1);
-    bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c1, cut_point1, genome_size);
-    bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, cut_point1);
-    bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c2, cut_point1, genome_size);
+	bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, cut_point1);
+	bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c1, cut_point1, genome_size);
+	bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, cut_point1);
+	bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c2, cut_point1, genome_size);
 
 #if 0
-    printf("cut_point1 = %d\n", cut_point1);
-    bitstr_print((bstr)genome_p1);
-    bitstr_print((bstr)genome_p2);
-    bitstr_print((bstr)genome_c1);
-    bitstr_print((bstr)genome_c2);
+	printf("cut_point1 = %d\n", cut_point1);
+	bitstr_print((bstr)genome_p1);
+	bitstr_print((bstr)genome_p2);
+	bitstr_print((bstr)genome_c1);
+	bitstr_print((bstr)genome_c2);
 #endif
 }
 
@@ -67,62 +67,62 @@ void xover_single_point(void *genome_p1, void *genome_p2, void *genome_c1, void 
  *-------------------------------------------------------------------------------------------*/
 void xover_two_point(void *genome_p1, void *genome_p2, void *genome_c1, void *genome_c2, int genome_size)
 {
-    /* cut point 1 needs to be in the first half */
-    int cut_point1 = rand() % (genome_size);
-    int cut_point2 = rand() % (genome_size);
-    int big, little;
+	/* cut point 1 needs to be in the first half */
+	int cut_point1 = rand() % (genome_size);
+	int cut_point2 = rand() % (genome_size);
+	int big, little;
 
-    if (cut_point1 == cut_point2)
-    {
-        little = cut_point1;
-        big = cut_point2 + 1;
-    }
-    else if (cut_point1 > cut_point2)
-    {
-        little = cut_point1;
-        big = cut_point2;
-    }
-    else
-    {
-        little = cut_point2;
-        big = cut_point1;
-    }
+	if (cut_point1 == cut_point2)
+	{
+		little = cut_point1;
+		big = cut_point2 + 1;
+	}
+	else if (cut_point1 > cut_point2)
+	{
+		little = cut_point1;
+		big = cut_point2;
+	}
+	else
+	{
+		little = cut_point2;
+		big = cut_point1;
+	}
 
-    if (little == 0 && big == genome_size)
-    {
-        bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, genome_size);
-        bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, genome_size);
-    }
-    else if (little == 0)
-    {
-        bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, big);
-        bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, big);
-        bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c2, big, genome_size);
-        bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c1, big, genome_size);
-    }
-    else if (big == genome_size)
-    {
-        bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, little);
-        bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, little);
-        bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c2, little, genome_size);
-        bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c1, little, genome_size);
-    }
-    else
-    {
-        bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, little);
-        bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, little);
-        bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c2, little, big);
-        bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c1, little, big);
-        bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, big, genome_size);
-        bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, big, genome_size);
-    }
+	if (little == 0 && big == genome_size)
+	{
+		bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, genome_size);
+		bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, genome_size);
+	}
+	else if (little == 0)
+	{
+		bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, big);
+		bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, big);
+		bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c2, big, genome_size);
+		bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c1, big, genome_size);
+	}
+	else if (big == genome_size)
+	{
+		bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, little);
+		bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, little);
+		bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c2, little, genome_size);
+		bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c1, little, genome_size);
+	}
+	else
+	{
+		bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, 0, little);
+		bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, 0, little);
+		bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c2, little, big);
+		bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c1, little, big);
+		bitstr_copy_substr((bstr)genome_p1, (bstr)genome_c1, big, genome_size);
+		bitstr_copy_substr((bstr)genome_p2, (bstr)genome_c2, big, genome_size);
+	}
 
 #if 0
-    printf("cut_point1 = %d; cut_point2 = %d\n", cut_point1, cut_point2);
-    bitstr_print((bstr)genome_p1);
-    bitstr_print((bstr)genome_p2);
-    bitstr_print((bstr)genome_c1);
-    bitstr_print((bstr)genome_c2);
+	printf("cut_point1 = %d; cut_point2 = %d\n", cut_point1, cut_point2);
+	bitstr_print((bstr)genome_p1);
+	bitstr_print((bstr)genome_p2);
+	bitstr_print((bstr)genome_c1);
+	bitstr_print((bstr)genome_c2);
 #endif
 }
 
@@ -131,26 +131,26 @@ void xover_two_point(void *genome_p1, void *genome_p2, void *genome_c1, void *ge
  *-------------------------------------------------------------------------------------------*/
 void xover_uniform(void *genome_p1, void *genome_p2, void *genome_c1, void *genome_c2, int genome_size)
 {
-    int i; 
+	int i; 
 
-    for (i = 0; i < genome_size; i++)
-    {
-        if (rand() % 2 == 0)
-        {
-            bitstr_bitcopy((bstr)genome_p1, (bstr)genome_c1, i);
-            bitstr_bitcopy((bstr)genome_p2, (bstr)genome_c2, i);
-        }
-        else
-        {
-            bitstr_bitcopy((bstr)genome_p1, (bstr)genome_c2, i);
-            bitstr_bitcopy((bstr)genome_p2, (bstr)genome_c1, i);
-        }
-    }
+	for (i = 0; i < genome_size; i++)
+	{
+		if (rand() % 2 == 0)
+		{
+			bitstr_bitcopy((bstr)genome_p1, (bstr)genome_c1, i);
+			bitstr_bitcopy((bstr)genome_p2, (bstr)genome_c2, i);
+		}
+		else
+		{
+			bitstr_bitcopy((bstr)genome_p1, (bstr)genome_c2, i);
+			bitstr_bitcopy((bstr)genome_p2, (bstr)genome_c1, i);
+		}
+	}
 
 #if 0
-    bitstr_print((bstr)genome_p1);
-    bitstr_print((bstr)genome_p2);
-    bitstr_print((bstr)genome_c1);
-    bitstr_print((bstr)genome_c2);
+	bitstr_print((bstr)genome_p1);
+	bitstr_print((bstr)genome_p2);
+	bitstr_print((bstr)genome_c1);
+	bitstr_print((bstr)genome_c2);
 #endif
 }

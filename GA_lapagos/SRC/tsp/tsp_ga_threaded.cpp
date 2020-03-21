@@ -50,41 +50,41 @@ OTHER DEALINGS IN THE SOFTWARE.
  *-----------------------------------------------------------------------*/
 void *tsp_run_ga_threaded(void *thread_structure)
 {
-    double (*fptr_cost_function)(void *);
-    thread_t *thread_struct = (thread_t*)thread_structure;
-       
-    switch(tsp_problem.problem_type)
-    {
-        case ADJACENCY:
-            fptr_cost_function = tsp_cost_function_from_adjacency;
-            break;
-        case CARTESIAN:
-            fptr_cost_function = tsp_cost_function_from_cartesian;
-            break;
-        default:
-            printf("Not recognized tsp problem type!!!\n");
-            return NULL;
-    }
+	double (*fptr_cost_function)(void *);
+	thread_t *thread_struct = (thread_t*)thread_structure;
+	   
+	switch(tsp_problem.problem_type)
+	{
+		case ADJACENCY:
+			fptr_cost_function = tsp_cost_function_from_adjacency;
+			break;
+		case CARTESIAN:
+			fptr_cost_function = tsp_cost_function_from_cartesian;
+			break;
+		default:
+			printf("Not recognized tsp problem type!!!\n");
+			return NULL;
+	}
 
-    run_base_ga_threaded(
-        thread_struct,
-        (int (*)())setup_selector_function(),
-        (void (*)(int))setup_selector_init_function(),
-        tsp_cost_function_and_order_threaded,
-        fptr_cost_function,
-        tsp_copy_old_genomes_threaded,
-        tsp_cross_breed_threaded,
-        tsp_mutate_threaded,
-        tsp_breed_and_mutate_threaded,
-        tsp_random_new_threaded,
-        tsp_cost_report_best,
-        (void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
-        tsp_exit_condition);
+	run_base_ga_threaded(
+		thread_struct,
+		(int (*)())setup_selector_function(),
+		(void (*)(int))setup_selector_init_function(),
+		tsp_cost_function_and_order_threaded,
+		fptr_cost_function,
+		tsp_copy_old_genomes_threaded,
+		tsp_cross_breed_threaded,
+		tsp_mutate_threaded,
+		tsp_breed_and_mutate_threaded,
+		tsp_random_new_threaded,
+		tsp_cost_report_best,
+		(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+		tsp_exit_condition);
 
-    /* TEST OUT REPORT */
-    output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
+	/* TEST OUT REPORT */
+	output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
 
-    return NULL;
+	return NULL;
 }
 
 

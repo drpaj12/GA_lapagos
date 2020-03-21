@@ -46,7 +46,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 tsp_problem_t tsp_problem;
 const char *tsp_problem_types_name[] = { "ADJACENCY", 
-                                        "CARTESIAN" };
+										"CARTESIAN" };
 
 /*-------------------------------------------------------------------------
  * (function: tsp_setup_problem)
@@ -54,21 +54,21 @@ const char *tsp_problem_types_name[] = { "ADJACENCY",
 void tsp_setup_problem()
 {
 
-    tsp_problem.problem_type = (enum TSP_PROBLEM_TYPES)return_string_in_list(configuration.problem_type, (char**)tsp_problem_types_name, NUM_TSP_PROBLEM_TYPES);
+	tsp_problem.problem_type = (enum TSP_PROBLEM_TYPES)return_string_in_list(configuration.problem_type, (char**)tsp_problem_types_name, NUM_TSP_PROBLEM_TYPES);
 
-    switch(tsp_problem.problem_type)
-    {
-        case ADJACENCY:
-	        /* read the benchmark xml in */
-           	read_tsp_problem_adjacency(configuration.benchmark_file_name, &tsp_problem_adjacency);
-            break;
-        case CARTESIAN:
-            /* initialize a random city */
-            tsp_init_problem_cartesian(tsp_problem.num_cities);
-            break;
-        default:
-            printf("Not recognized tsp problem type!!!\n");
-    }
+	switch(tsp_problem.problem_type)
+	{
+		case ADJACENCY:
+			/* read the benchmark xml in */
+			read_tsp_problem_adjacency(configuration.benchmark_file_name, &tsp_problem_adjacency);
+			break;
+		case CARTESIAN:
+			/* initialize a random city */
+			tsp_init_problem_cartesian(tsp_problem.num_cities);
+			break;
+		default:
+			printf("Not recognized tsp problem type!!!\n");
+	}
 }
 
 /*-------------------------------------------------------------------------
@@ -76,19 +76,19 @@ void tsp_setup_problem()
  *-----------------------------------------------------------------------*/
 void tsp_free_problem()
 {
-    switch(tsp_problem.problem_type)
-    {
-        case ADJACENCY:
+	switch(tsp_problem.problem_type)
+	{
+		case ADJACENCY:
 			/* free data structures */
 			free_tsp_problem_adjacency(tsp_problem_adjacency);
-            break;
-        case CARTESIAN:
-            /* initialize a random city */
-            tsp_free_problem_cartesian();
-            break;
-        default:
-            printf("Not recognized tsp problem type!!!\n");
-    }
+			break;
+		case CARTESIAN:
+			/* initialize a random city */
+			tsp_free_problem_cartesian();
+			break;
+		default:
+			printf("Not recognized tsp problem type!!!\n");
+	}
 }
 
 /*-------------------------------------------------------------------------
@@ -96,37 +96,37 @@ void tsp_free_problem()
  *-----------------------------------------------------------------------*/
 void tsp_run_ga()
 {
-    double (*fptr_cost_function)(void *);
-       
-    switch(tsp_problem.problem_type)
-    {
-        case ADJACENCY:
-            fptr_cost_function = tsp_cost_function_from_adjacency;
-            break;
-        case CARTESIAN:
-            fptr_cost_function = tsp_cost_function_from_cartesian;
-            break;
-        default:
-            printf("Not recognized tsp problem type!!!\n");
-            return;
-    }
+	double (*fptr_cost_function)(void *);
+	   
+	switch(tsp_problem.problem_type)
+	{
+		case ADJACENCY:
+			fptr_cost_function = tsp_cost_function_from_adjacency;
+			break;
+		case CARTESIAN:
+			fptr_cost_function = tsp_cost_function_from_cartesian;
+			break;
+		default:
+			printf("Not recognized tsp problem type!!!\n");
+			return;
+	}
 
-    run_base_ga(
-        (int (*)())setup_selector_function(),
-        (void (*)(int))setup_selector_init_function(),
-        tsp_cost_function_and_order,
-        fptr_cost_function,
-        tsp_copy_old_genomes,
-        tsp_cross_breed,
-        tsp_mutate,
-        tsp_breed_and_mutate,
-        tsp_random_new,
-        tsp_cost_report_best,
-        (void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
-        tsp_exit_condition);
+	run_base_ga(
+		(int (*)())setup_selector_function(),
+		(void (*)(int))setup_selector_init_function(),
+		tsp_cost_function_and_order,
+		fptr_cost_function,
+		tsp_copy_old_genomes,
+		tsp_cross_breed,
+		tsp_mutate,
+		tsp_breed_and_mutate,
+		tsp_random_new,
+		tsp_cost_report_best,
+		(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+		tsp_exit_condition);
 
-    /* TEST OUT REPORT */
-    output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
+	/* TEST OUT REPORT */
+	output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
 }
 
 

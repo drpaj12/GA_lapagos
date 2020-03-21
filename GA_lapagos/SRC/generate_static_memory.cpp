@@ -42,19 +42,19 @@ ga_gpu_t ga_gpu_data;
  * (function: generate_static_variables)
  *-------------------------------------------------------------------------------------------*/
 void generate_static_variables(
-                            short mode,
-                            FILE *file_output,
-                            int (*fptr_genome_size)(),
-                            void (*fptr_genome_type)(FILE *),
-                            void (*fptr_genome2d)(FILE *, population_t **),
-                            void (*fptr_genome1d)(FILE *, population_t **))
+							short mode,
+							FILE *file_output,
+							int (*fptr_genome_size)(),
+							void (*fptr_genome_type)(FILE *),
+							void (*fptr_genome2d)(FILE *, population_t **),
+							void (*fptr_genome1d)(FILE *, population_t **))
 {
-    /* only TSP right now */
-    tsp_generate_hw_variables(mode,
-                                file_output,
-                                fptr_genome_size,
-                                fptr_genome_type,
-                                fptr_genome2d,
-                                fptr_genome1d);
+	/* only TSP right now */
+	tsp_generate_hw_variables(mode,
+								file_output,
+								fptr_genome_size,
+								fptr_genome_type,
+								fptr_genome2d,
+								fptr_genome1d);
 }
 

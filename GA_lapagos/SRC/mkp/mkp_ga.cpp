@@ -44,29 +44,29 @@ OTHER DEALINGS IN THE SOFTWARE.
 /* Prototypes */
 
 mkp_problem_t mkp_problem;
-const char *mkp_problem_types_name[] = {    "DAT_FORMAT_PENALTY",
-                                            "DAT_FORMAT_FIX" 
-                                       };
+const char *mkp_problem_types_name[] = {	"DAT_FORMAT_PENALTY",
+											"DAT_FORMAT_FIX" 
+									   };
 
 /*-------------------------------------------------------------------------
  * (function: mkp_setup_problem)
  *-----------------------------------------------------------------------*/
 void mkp_setup_problem()
 {
-    mkp_problem.problem_type = (enum MKP_PROBLEM_TYPES)return_string_in_list(configuration.problem_type, (char**)mkp_problem_types_name, NUM_MKP_PROBLEM_TYPES);
+	mkp_problem.problem_type = (enum MKP_PROBLEM_TYPES)return_string_in_list(configuration.problem_type, (char**)mkp_problem_types_name, NUM_MKP_PROBLEM_TYPES);
 
-    mkp_problem.num_variables = 0;
+	mkp_problem.num_variables = 0;
 
-    switch(mkp_problem.problem_type)
-    {
-        case DAT_FORMAT_PENALTY:
-        case DAT_FORMAT_FIX:
-	        /* read the benchmark xml in */
-           	read_mkp_problem_dat(configuration.benchmark_file_name);
-            break;
-        default:
-            printf("Not recognized mkp problem type!!!\n");
-    }
+	switch(mkp_problem.problem_type)
+	{
+		case DAT_FORMAT_PENALTY:
+		case DAT_FORMAT_FIX:
+			/* read the benchmark xml in */
+			read_mkp_problem_dat(configuration.benchmark_file_name);
+			break;
+		default:
+			printf("Not recognized mkp problem type!!!\n");
+	}
 }
 
 /*-------------------------------------------------------------------------
@@ -74,16 +74,16 @@ void mkp_setup_problem()
  *-----------------------------------------------------------------------*/
 void mkp_free_problem()
 {
-    switch(mkp_problem.problem_type)
-    {
-        case DAT_FORMAT_PENALTY:
-        case DAT_FORMAT_FIX:
+	switch(mkp_problem.problem_type)
+	{
+		case DAT_FORMAT_PENALTY:
+		case DAT_FORMAT_FIX:
 			/* free data structures */
 			free_mkp_problem_dat();
-            break;
-        default:
-            printf("Not recognized mkp problem type!!!\n");
-    }
+			break;
+		default:
+			printf("Not recognized mkp problem type!!!\n");
+	}
 }
 
 /*-------------------------------------------------------------------------
@@ -91,35 +91,35 @@ void mkp_free_problem()
  *-----------------------------------------------------------------------*/
 void mkp_run_ga()
 {
-    double (*fptr_cost_function)(void *);
-       
-    switch(mkp_problem.problem_type)
-    {
-        case DAT_FORMAT_PENALTY:
-            fptr_cost_function = mkp_cost_function_penalty;
-            break;
-        case DAT_FORMAT_FIX:
-            fptr_cost_function = mkp_cost_function_fix;
-            break;
-        default:
-            printf("Not recognized mkp problem type!!!\n");
-            return;
-    }
+	double (*fptr_cost_function)(void *);
+	   
+	switch(mkp_problem.problem_type)
+	{
+		case DAT_FORMAT_PENALTY:
+			fptr_cost_function = mkp_cost_function_penalty;
+			break;
+		case DAT_FORMAT_FIX:
+			fptr_cost_function = mkp_cost_function_fix;
+			break;
+		default:
+			printf("Not recognized mkp problem type!!!\n");
+			return;
+	}
 
-    run_base_ga(
-        (int (*)())setup_selector_function(),
-        (void (*)(int))setup_selector_init_function(),
-        mkp_cost_function_and_order,
-        fptr_cost_function,
-        mkp_copy_old_genomes,
-        mkp_cross_breed,
-        mkp_mutate,
-        mkp_breed_and_mutate,
-        mkp_random_new,
-        mkp_cost_report_best,
-        (void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
-        mkp_exit_condition);
+	run_base_ga(
+		(int (*)())setup_selector_function(),
+		(void (*)(int))setup_selector_init_function(),
+		mkp_cost_function_and_order,
+		fptr_cost_function,
+		mkp_copy_old_genomes,
+		mkp_cross_breed,
+		mkp_mutate,
+		mkp_breed_and_mutate,
+		mkp_random_new,
+		mkp_cost_report_best,
+		(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+		mkp_exit_condition);
 
-    /* TEST OUT REPORT */
-    output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
+	/* TEST OUT REPORT */
+	output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
 }

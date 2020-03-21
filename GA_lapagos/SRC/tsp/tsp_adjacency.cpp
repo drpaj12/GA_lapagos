@@ -45,7 +45,7 @@ tsp_problem_adjacency_t *tsp_problem_adjacency;
 
 /*-------------------------------------------------------------------------
  * (function: read_tsp_benchmark)
- * Reads TSPLIB xml benchmarks.  These are a vertex weigh form.
+ * Reads TSPLIB xml benchmarks.	 These are a vertex weigh form.
  * See: https://wwwproxy.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/index.html
  *-----------------------------------------------------------------------*/
 void read_tsp_problem_adjacency(char *benchmark_name, tsp_problem_adjacency_t **tsp_problem_adjacency)
@@ -205,7 +205,7 @@ double tsp_cost_function_from_adjacency(void *genome)
 {
 	int i;
 	double cost = 0.0;
-    int *solution = (int*)genome;
+	int *solution = (int*)genome;
 
 	for (i = 1; i < tsp_problem.num_cities; i++)
 	{

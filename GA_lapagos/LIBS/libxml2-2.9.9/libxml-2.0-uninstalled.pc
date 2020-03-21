@@ -8,5 +8,5 @@ Name: libXML
 Version: 2.9.9
 Description: libXML library version2.
 Requires:
-Libs: -L${libdir} -lxml2   -lz -llzma  -lm 
+Libs: -L${libdir} -lxml2   -lz   -lm 
 Cflags: -I${includedir} -I${includedir}/libxml2 

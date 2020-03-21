@@ -33,27 +33,27 @@ OTHER DEALINGS IN THE SOFTWARE.
  *-------------------------------------------------------------------------------------------*/
 void *barrier(thread_t *thread_struct)
 {
-    int i;
+	int i;
 
-    pthread_mutex_lock(thread_struct->lock);
-    //printf("Thread %d -- waiting for barrier as %d one\n", thread_struct->id, *thread_struct->ndone);
+	pthread_mutex_lock(thread_struct->lock);
+	//printf("Thread %d -- waiting for barrier as %d one\n", thread_struct->id, *thread_struct->ndone);
 
-    *thread_struct->ndone = *thread_struct->ndone + 1;
+	*thread_struct->ndone = *thread_struct->ndone + 1;
 
-    if (*thread_struct->ndone < configuration.num_threads) 
-    {
-        pthread_cond_wait(thread_struct->cv, thread_struct->lock);
-    } 
-    else 
-    {
-        //printf("Thread %d -- signalling\n", thread_struct->id);
-        for (i = 1; i < configuration.num_threads; i++) 
-            pthread_cond_signal(thread_struct->cv);
-        *thread_struct->ndone = 0;
-    }
-    pthread_mutex_unlock(thread_struct->lock);
+	if (*thread_struct->ndone < configuration.num_threads) 
+	{
+		pthread_cond_wait(thread_struct->cv, thread_struct->lock);
+	} 
+	else 
+	{
+		//printf("Thread %d -- signalling\n", thread_struct->id);
+		for (i = 1; i < configuration.num_threads; i++) 
+			pthread_cond_signal(thread_struct->cv);
+		*thread_struct->ndone = 0;
+	}
+	pthread_mutex_unlock(thread_struct->lock);
 
-    //printf("Thread %d -- after barrier\n", thread_struct->id);
+	//printf("Thread %d -- after barrier\n", thread_struct->id);
 }
 
 

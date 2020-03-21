@@ -48,27 +48,27 @@ OTHER DEALINGS IN THE SOFTWARE.
 psns_problem_t psns_problem;
 psns_problem_bits_t psns_genome_bits;
 
-const char *psns_problem_types_name[] = {    "PSNS_DAT_FORMAT_BITS",
-                                            "PSNS_DAT_FORMAT_GRAY_CODE" 
-                                       };
+const char *psns_problem_types_name[] = {	 "PSNS_DAT_FORMAT_BITS",
+											"PSNS_DAT_FORMAT_GRAY_CODE" 
+									   };
 
 /*-------------------------------------------------------------------------
  * (function: psns_setup_problem)
  *-----------------------------------------------------------------------*/
 void psns_setup_problem()
 {
-    psns_problem.problem_type = (enum PSNS_PROBLEM_TYPES)return_string_in_list(configuration.problem_type, (char**)psns_problem_types_name, NUM_PSNS_PROBLEM_TYPES);
+	psns_problem.problem_type = (enum PSNS_PROBLEM_TYPES)return_string_in_list(configuration.problem_type, (char**)psns_problem_types_name, NUM_PSNS_PROBLEM_TYPES);
 
-    switch(psns_problem.problem_type)
-    {
-        case PSNS_DAT_FORMAT_BITS:
-        case PSNS_DAT_FORMAT_GRAY_CODE:
-	        /* read the benchmark xml in */
-           	read_psns_problem_dat(configuration.benchmark_file_name);
-            break;
-        default:
-            printf("Not recognized psns problem type!!!\n");
-    }
+	switch(psns_problem.problem_type)
+	{
+		case PSNS_DAT_FORMAT_BITS:
+		case PSNS_DAT_FORMAT_GRAY_CODE:
+			/* read the benchmark xml in */
+			read_psns_problem_dat(configuration.benchmark_file_name);
+			break;
+		default:
+			printf("Not recognized psns problem type!!!\n");
+	}
 }
 
 /*-------------------------------------------------------------------------
@@ -76,16 +76,16 @@ void psns_setup_problem()
  *-----------------------------------------------------------------------*/
 void psns_free_problem()
 {
-    switch(psns_problem.problem_type)
-    {
-        case PSNS_DAT_FORMAT_BITS:
-        case PSNS_DAT_FORMAT_GRAY_CODE:
+	switch(psns_problem.problem_type)
+	{
+		case PSNS_DAT_FORMAT_BITS:
+		case PSNS_DAT_FORMAT_GRAY_CODE:
 			/* free data structures */
 			free_psns_problem_dat();
-            break;
-        default:
-            printf("Not recognized psns problem type!!!\n");
-    }
+			break;
+		default:
+			printf("Not recognized psns problem type!!!\n");
+	}
 }
 
 /*-------------------------------------------------------------------------
@@ -93,16 +93,16 @@ void psns_free_problem()
  *-----------------------------------------------------------------------*/
 void psns_do_in_ga_init()
 {
-    switch(psns_problem.problem_type)
-    {
-        case PSNS_DAT_FORMAT_BITS:
-        case PSNS_DAT_FORMAT_GRAY_CODE:
-	        ga_init(psns_create_population_bits);
-            break;
-            break;
-        default:
-            printf("Not recognized psns problem type!!!\n");
-    }
+	switch(psns_problem.problem_type)
+	{
+		case PSNS_DAT_FORMAT_BITS:
+		case PSNS_DAT_FORMAT_GRAY_CODE:
+			ga_init(psns_create_population_bits);
+			break;
+			break;
+		default:
+			printf("Not recognized psns problem type!!!\n");
+	}
 }
 
 /*-------------------------------------------------------------------------
@@ -110,15 +110,15 @@ void psns_do_in_ga_init()
  *-----------------------------------------------------------------------*/
 void psns_do_in_ga_clean()
 {
-    switch(psns_problem.problem_type)
-    {
-        case PSNS_DAT_FORMAT_BITS:
-        case PSNS_DAT_FORMAT_GRAY_CODE:
-    	    ga_clean(psns_free_population_bits);
-            break;
-        default:
-            printf("Not recognized psns problem type!!!\n");
-    }
+	switch(psns_problem.problem_type)
+	{
+		case PSNS_DAT_FORMAT_BITS:
+		case PSNS_DAT_FORMAT_GRAY_CODE:
+			ga_clean(psns_free_population_bits);
+			break;
+		default:
+			printf("Not recognized psns problem type!!!\n");
+	}
 }
 
 /*-------------------------------------------------------------------------
@@ -126,61 +126,61 @@ void psns_do_in_ga_clean()
  *-----------------------------------------------------------------------*/
 void psns_run_ga()
 {
-    double (*fptr_cost_function)(void *);
-       
-    switch(psns_problem.problem_type)
-    {
-        case PSNS_DAT_FORMAT_BITS:
-            fptr_cost_function = psns_cost_function_bits;
+	double (*fptr_cost_function)(void *);
+	   
+	switch(psns_problem.problem_type)
+	{
+		case PSNS_DAT_FORMAT_BITS:
+			fptr_cost_function = psns_cost_function_bits;
 
-		    run_base_ga(
-		        (int (*)())setup_selector_function(),
-		        (void (*)(int))setup_selector_init_function(),
-		        psns_cost_function_and_order,
-		        fptr_cost_function,
-		        psns_copy_old_genomes_bits,
-		        psns_cross_breed_bits,
-		        psns_mutate_bits,
-		        psns_breed_and_mutate_bits,
-		        psns_random_new_bits,
-		        psns_cost_report_best,
-		        (void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
-		        psns_exit_condition);
-            break;
-        case PSNS_DAT_FORMAT_GRAY_CODE:
-            fptr_cost_function = psns_cost_function_gray_code_bits;
+			run_base_ga(
+				(int (*)())setup_selector_function(),
+				(void (*)(int))setup_selector_init_function(),
+				psns_cost_function_and_order,
+				fptr_cost_function,
+				psns_copy_old_genomes_bits,
+				psns_cross_breed_bits,
+				psns_mutate_bits,
+				psns_breed_and_mutate_bits,
+				psns_random_new_bits,
+				psns_cost_report_best,
+				(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+				psns_exit_condition);
+			break;
+		case PSNS_DAT_FORMAT_GRAY_CODE:
+			fptr_cost_function = psns_cost_function_gray_code_bits;
 
-		    run_base_ga(
-		        (int (*)())setup_selector_function(),
-		        (void (*)(int))setup_selector_init_function(),
-		        psns_cost_function_and_order,
-		        fptr_cost_function,
-		        psns_copy_old_genomes_bits,
-		        psns_cross_breed_bits,
-		        psns_mutate_bits,
-		        psns_breed_and_mutate_bits,
-		        psns_random_new_bits,
-		        psns_cost_report_best,
-		        (void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
-		        psns_exit_condition);
-            break;
-        default:
-            printf("Not recognized psns problem type!!!\n");
-            return;
-    }
+			run_base_ga(
+				(int (*)())setup_selector_function(),
+				(void (*)(int))setup_selector_init_function(),
+				psns_cost_function_and_order,
+				fptr_cost_function,
+				psns_copy_old_genomes_bits,
+				psns_cross_breed_bits,
+				psns_mutate_bits,
+				psns_breed_and_mutate_bits,
+				psns_random_new_bits,
+				psns_cost_report_best,
+				(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+				psns_exit_condition);
+			break;
+		default:
+			printf("Not recognized psns problem type!!!\n");
+			return;
+	}
 
-    /* TEST OUT REPORT */
-    output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
+	/* TEST OUT REPORT */
+	output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
 
-    /* OTHER methods */
-    psns_solve_by_kmeans();
-    printf("Cost after kmeans %f\n", psns_cost_function_after_assignment());
-    psns_solve_by_weighted_kmeans();
-    printf("Cost after weighted kmeans %f\n", psns_cost_function_after_assignment());
-    psns_solve_by_kmeans_with_time();
-    printf("Cost after kmeans with time %f\n", psns_cost_function_after_assignment());
-    psns_solve_by_weighted_kmeans_with_time();
-    printf("Cost after weighted kmeans with time %f\n", psns_cost_function_after_assignment());
+	/* OTHER methods */
+	psns_solve_by_kmeans();
+	printf("Cost after kmeans %f\n", psns_cost_function_after_assignment());
+	psns_solve_by_weighted_kmeans();
+	printf("Cost after weighted kmeans %f\n", psns_cost_function_after_assignment());
+	psns_solve_by_kmeans_with_time();
+	printf("Cost after kmeans with time %f\n", psns_cost_function_after_assignment());
+	psns_solve_by_weighted_kmeans_with_time();
+	printf("Cost after weighted kmeans with time %f\n", psns_cost_function_after_assignment());
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -223,9 +223,9 @@ short psns_exit_condition()
  * (function: psns_cost_report_best)
  *-------------------------------------------------------------------------------------------*/
 void psns_cost_report_best(
-        FILE *fout, 
+		FILE *fout, 
 		double (*fptr_cost_function)(void *)
-        )
+		)
 {
 	float *costs;
 	int i, j;
@@ -277,7 +277,7 @@ void psns_cost_report_best(
  *-------------------------------------------------------------------------------------------*/
 void psns_cost_function_and_order(
 		double (*fptr_cost_function)(void *)
-        )
+		)
 {
 	int i, j;
 	int index_of_greatest_cost;

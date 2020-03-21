@@ -56,8 +56,8 @@ void my_srand(int x)
  
 int my_rand(void) // RAND_MAX assumed to be 32767
 {
-    hw_next = hw_next * 1103515245 + 12345;
-    return (unsigned int)(hw_next/65536) % 32768;
+	hw_next = hw_next * 1103515245 + 12345;
+	return (unsigned int)(hw_next/65536) % 32768;
 }
 
 
@@ -139,14 +139,14 @@ void tsp_cost_function_and_order_hw(int toggle_idx)
 				index_of_lowest_cost = j;
 		}
 
-	    /* swap the top with new low */
-        tsp_copy_genome_from_hw(global_index, i);
+		/* swap the top with new low */
+		tsp_copy_genome_from_hw(global_index, i);
 		temp_cost = ga_hw_data.costs[i];
 
 		tsp_copy_genomes_in_hw(global_index, index_of_lowest_cost, i);
-        ga_hw_data.costs[i] = ga_hw_data.costs[index_of_lowest_cost];
+		ga_hw_data.costs[i] = ga_hw_data.costs[index_of_lowest_cost];
 
-        tsp_copy_genome_to_hw(global_index, index_of_lowest_cost);
+		tsp_copy_genome_to_hw(global_index, index_of_lowest_cost);
 		ga_hw_data.costs[index_of_lowest_cost] = temp_cost;
 	}
 
@@ -213,9 +213,9 @@ void tsp_cross_breed_hw(int toggle_idx, int start, int end)
 	int temp_end = end-(end - start)%2; // make sure even number
 	for (i = start; i < temp_end; i += 2)
 	{
-        /* pick up 2 parents */
-        parent1 = selector_random_hw();
-        parent2 = selector_random_hw();
+		/* pick up 2 parents */
+		parent1 = selector_random_hw();
+		parent2 = selector_random_hw();
 
 		if (parent1 == parent2)
 		{
@@ -223,7 +223,7 @@ void tsp_cross_breed_hw(int toggle_idx, int start, int end)
 			parent2 = (parent2 != ga_hw_data.num_population-1) ? parent2 + 1 : parent2 - 1;
 		}
 
-        xover_pmx_hw(toggle_idx, parent1, parent2, i, i+1, GENOME_SIZE_HW);
+		xover_pmx_hw(toggle_idx, parent1, parent2, i, i+1, GENOME_SIZE_HW);
 	}
 }
 

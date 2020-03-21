@@ -42,25 +42,25 @@ OTHER DEALINGS IN THE SOFTWARE.
  *-------------------------------------------------------------------------------------------*/
 int setup_selector_function_hw()
 {
-    switch(ga_hw_data.selector_type)
-    {
-        case ROULETTE:
-            return selector_roulette_hw();
-        case SUS:
-            printf("Not supported for hw hls\n");
-            return selector_sus_hw();
-        case TOURNAMENT:
-            return selector_tournament_hw();
-        case RANK:
-            printf("Not supported for hw hls\n");
-            return selector_rank_hw();
-        case RANDOM:
-            return selector_random_hw();
-        case TRUNCATE:
-            return selector_truncate_hw();
-        default:
-            return 0;
-    }
+	switch(ga_hw_data.selector_type)
+	{
+		case ROULETTE:
+			return selector_roulette_hw();
+		case SUS:
+			printf("Not supported for hw hls\n");
+			return selector_sus_hw();
+		case TOURNAMENT:
+			return selector_tournament_hw();
+		case RANK:
+			printf("Not supported for hw hls\n");
+			return selector_rank_hw();
+		case RANDOM:
+			return selector_random_hw();
+		case TRUNCATE:
+			return selector_truncate_hw();
+		default:
+			return 0;
+	}
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -68,29 +68,29 @@ int setup_selector_function_hw()
  *-------------------------------------------------------------------------------------------*/
 void setup_selector_init_function_hw(int value)
 {
-    switch(ga_hw_data.selector_type)
-    {
-        case ROULETTE:
-            selector_roulette_init_hw(value);
-            break;
-        case SUS:
-            selector_sus_init_hw(value);
-            break;
-        case TOURNAMENT:
-            selector_tournament_init_hw(value);
-            break;
-        case RANK:
-            selector_rank_init_hw(value);
-            break;
-        case RANDOM:
-            selector_random_init_hw(value);
-            break;
-        case TRUNCATE:
-            selector_truncate_init_hw(value);
-            break;
-        default:
-            break;
-    }
+	switch(ga_hw_data.selector_type)
+	{
+		case ROULETTE:
+			selector_roulette_init_hw(value);
+			break;
+		case SUS:
+			selector_sus_init_hw(value);
+			break;
+		case TOURNAMENT:
+			selector_tournament_init_hw(value);
+			break;
+		case RANK:
+			selector_rank_init_hw(value);
+			break;
+		case RANDOM:
+			selector_random_init_hw(value);
+			break;
+		case TRUNCATE:
+			selector_truncate_init_hw(value);
+			break;
+		default:
+			break;
+	}
 }
 
 int total_cost_int;
@@ -99,14 +99,14 @@ int total_cost_int;
  *-------------------------------------------------------------------------------------------*/
 void selector_roulette_init_hw(int dummy)
 {
-    int i;
+	int i;
 
-    total_cost_int = 0;
+	total_cost_int = 0;
 
-    for (i = 0; i < ga_hw_data.num_population; i++)
-    {
-        total_cost_int += ga_hw_data.costs[i];
-    }
+	for (i = 0; i < ga_hw_data.num_population; i++)
+	{
+		total_cost_int += ga_hw_data.costs[i];
+	}
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -115,22 +115,22 @@ void selector_roulette_init_hw(int dummy)
  *-------------------------------------------------------------------------------------------*/
 int selector_roulette_hw()
 {
-    int spin_spot;
-    int incrementing_total = 0;
-    int index;
+	int spin_spot;
+	int incrementing_total = 0;
+	int index;
 
-    /* pick the random spot */
-    spin_spot = rand() % total_cost_int;
+	/* pick the random spot */
+	spin_spot = rand() % total_cost_int;
 
-    index = 0;
-    
-    while (spin_spot > incrementing_total)
-    {
-        incrementing_total += ga_hw_data.costs[index];
-        index ++;
-    }
+	index = 0;
+	
+	while (spin_spot > incrementing_total)
+	{
+		incrementing_total += ga_hw_data.costs[index];
+		index ++;
+	}
 
-    return index % ga_hw_data.num_population;
+	return index % ga_hw_data.num_population;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -147,7 +147,7 @@ void selector_sus_init_hw(int num_selecting)
  *-------------------------------------------------------------------------------------------*/
 int selector_sus_hw()
 {
-    return 0;
+	return 0;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -162,23 +162,23 @@ void selector_tournament_init_hw(int num_selecting)
  *-------------------------------------------------------------------------------------------*/
 int selector_tournament_hw()
 {
-    int random;
-    int leader;
-    int i;
+	int random;
+	int leader;
+	int i;
 
-    leader = rand() % ga_hw_data.num_population;
+	leader = rand() % ga_hw_data.num_population;
 
-    for (i = 0; i < (ga_hw_data.tournament_size - 1); i++)
-    {
-        random = rand() % ga_hw_data.num_population;
+	for (i = 0; i < (ga_hw_data.tournament_size - 1); i++)
+	{
+		random = rand() % ga_hw_data.num_population;
 
-        if (ga_hw_data.costs[random] < ga_hw_data.costs[leader])
-        {
-            leader = random;
-        }
-    }
+		if (ga_hw_data.costs[random] < ga_hw_data.costs[leader])
+		{
+			leader = random;
+		}
+	}
 
-    return leader;
+	return leader;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -193,11 +193,11 @@ void selector_rank_init_hw(int num_selecting)
  * Baker (1985) - Adaptive selection methods for genetic algorithms
  * Linear
  * Exponential
-        pi = (c - 1)/(c^N - 1) * c^(N-i)
+		pi = (c - 1)/(c^N - 1) * c^(N-i)
  *-------------------------------------------------------------------------------------------*/
 int selector_rank_hw()
 {
-    return 0;
+	return 0;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -212,7 +212,7 @@ void selector_random_init_hw(int num_selecting)
  *-------------------------------------------------------------------------------------------*/
 int selector_random_hw()
 {
-    return rand() % ga_hw_data.num_population;
+	return rand() % ga_hw_data.num_population;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -220,18 +220,18 @@ int selector_random_hw()
  *-------------------------------------------------------------------------------------------*/
 void selector_truncate_init_hw(int num_selecting)
 {
-    ga_hw_data.truncate_size = ga_hw_data.idx_end_breed_mutate_from;
+	ga_hw_data.truncate_size = ga_hw_data.idx_end_breed_mutate_from;
 }
 
 /*---------------------------------------------------------------------------------------------
  * (function: selector_truncate)
- *  Crow & Kimura 1979, "Efficiency of truncation selection"
+ *	Crow & Kimura 1979, "Efficiency of truncation selection"
  *-------------------------------------------------------------------------------------------*/
 int selector_truncate_hw()
 {
-    int random;
+	int random;
 
-    random = rand() % ga_hw_data.truncate_size;
+	random = rand() % ga_hw_data.truncate_size;
 
-    return random;
+	return random;
 }

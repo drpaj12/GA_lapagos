@@ -143,7 +143,7 @@ double tsp_cost_function_from_cartesian(void *genome)
 {
 	int i;
 	double cost = 0.0;
-    int *solution = (int*)genome;
+	int *solution = (int*)genome;
 
 	for (i = 1; i < tsp_problem.num_cities; i++)
 	{

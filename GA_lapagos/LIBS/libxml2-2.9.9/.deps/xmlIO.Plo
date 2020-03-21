@@ -75,17 +75,7 @@ xmlIO.lo: xmlIO.c /usr/include/stdc-predef.h libxml.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/posix2_lim.h /usr/include/lzma.h \
- /usr/include/inttypes.h /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h \
- /usr/include/stdint.h /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/lzma/version.h /usr/include/lzma/base.h \
- /usr/include/lzma/vli.h /usr/include/lzma/check.h \
- /usr/include/lzma/filter.h /usr/include/lzma/bcj.h \
- /usr/include/lzma/delta.h /usr/include/lzma/lzma12.h \
- /usr/include/lzma/container.h /usr/include/lzma/stream_flags.h \
- /usr/include/lzma/block.h /usr/include/lzma/index.h \
- /usr/include/lzma/index_hash.h /usr/include/lzma/hardware.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  include/libxml/xmlmemory.h include/libxml/threads.h \
  include/libxml/globals.h include/libxml/parser.h include/libxml/tree.h \
  include/libxml/xmlregexp.h include/libxml/dict.h include/libxml/hash.h \
@@ -95,7 +85,7 @@ xmlIO.lo: xmlIO.c /usr/include/stdc-predef.h libxml.h \
  include/libxml/SAX2.h include/libxml/xlink.h \
  include/libxml/parserInternals.h include/libxml/HTMLparser.h \
  include/libxml/chvalid.h include/libxml/uri.h include/libxml/nanohttp.h \
- include/libxml/nanoftp.h include/libxml/catalog.h buf.h enc.h xzlib.h \
+ include/libxml/nanoftp.h include/libxml/catalog.h buf.h enc.h \
  elfgcchack.h
 
 /usr/include/stdc-predef.h:
@@ -284,46 +274,6 @@ config.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
-/usr/include/lzma.h:
-
-/usr/include/inttypes.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/lzma/version.h:
-
-/usr/include/lzma/base.h:
-
-/usr/include/lzma/vli.h:
-
-/usr/include/lzma/check.h:
-
-/usr/include/lzma/filter.h:
-
-/usr/include/lzma/bcj.h:
-
-/usr/include/lzma/delta.h:
-
-/usr/include/lzma/lzma12.h:
-
-/usr/include/lzma/container.h:
-
-/usr/include/lzma/stream_flags.h:
-
-/usr/include/lzma/block.h:
-
-/usr/include/lzma/index.h:
-
-/usr/include/lzma/index_hash.h:
-
-/usr/include/lzma/hardware.h:
-
 include/libxml/xmlmemory.h:
 
 include/libxml/threads.h:
@@ -377,7 +327,5 @@ include/libxml/catalog.h:
 buf.h:
 
 enc.h:
-
-xzlib.h:
 
 elfgcchack.h:
