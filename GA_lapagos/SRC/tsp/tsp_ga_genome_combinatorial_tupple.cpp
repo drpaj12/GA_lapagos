@@ -77,9 +77,9 @@ void tsp_free_population()
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_cost_function_and_order)
  *-------------------------------------------------------------------------------------------*/
-void tsp_cost_function_and_order(
-		double (*fptr_cost_function)(void *)
-        )
+	void tsp_cost_function_and_order(
+			double (*fptr_cost_function)(void *)
+			)
 {
 	int i, j;
 	int index_of_lowest_cost;
@@ -120,9 +120,9 @@ void tsp_cost_function_and_order(
  * (function: tsp_cost_report_best)
  *-------------------------------------------------------------------------------------------*/
 void tsp_cost_report_best(
-        FILE *fout, 
+		FILE *fout, 
 		double (*fptr_cost_function)(void *)
-        )
+		)
 {
 	float *costs;
 	int i, j;
@@ -198,14 +198,14 @@ void tsp_copy_solution(int *from, int *to)
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_cross_breed)
  *-------------------------------------------------------------------------------------------*/
-void tsp_cross_breed(
-                            void (*fptr_crossover)(void *, void *, void *, void *, int),
-                            int (*fptr_selector)(),
-                            void (*fptr_selector_init)(int),
-                            population_t **from, 
-                            population_t **to, 
-                            int start, 
-                            int end)
+	void tsp_cross_breed(
+			void (*fptr_crossover)(void *, void *, void *, void *, int),
+			int (*fptr_selector)(),
+			void (*fptr_selector_init)(int),
+			population_t **from, 
+			population_t **to, 
+			int start, 
+			int end)
 {
 	int i, j;
 	int parent1;
@@ -219,13 +219,13 @@ void tsp_cross_breed(
 	if (start == end)
 		return;
 
-    /* initialize the selector */
-    (*fptr_selector_init)(end-start);
+	/* initialize the selector */
+	(*fptr_selector_init)(end-start);
 
 	int temp_end = end-(end - start)%2; // make sure even number
 	for (i = start; i < temp_end; i += 2)
 	{
-        /* pick up 2 parents */
+		/* pick up 2 parents */
 		parent1 = (*fptr_selector)();
 		parent2 = (*fptr_selector)();
 
@@ -235,7 +235,7 @@ void tsp_cross_breed(
 			parent2 = (parent2 != genomes.num_population-1) ? parent2 + 1 : parent2 - 1;
 		}
 
-        /* setup parents and child */
+		/* setup parents and child */
 		genome_p1 = (int*)from[parent1]->genome;
 		genome_p2 = (int*)from[parent2]->genome;
 		genome_c1 = (int*)to[i]->genome;
@@ -243,8 +243,8 @@ void tsp_cross_breed(
 
 		(*fptr_crossover)(genome_p1, genome_p2, genome_c1, genome_c2, tsp_problem.num_cities);
 
-        tsp_check_genome(genome_c1, tsp_problem.num_cities);
-        tsp_check_genome(genome_c2, tsp_problem.num_cities);
+		tsp_check_genome(genome_c1, tsp_problem.num_cities);
+		tsp_check_genome(genome_c2, tsp_problem.num_cities);
 	}
 }
 
@@ -280,14 +280,14 @@ void tsp_mutate(population_t **from, population_t **to, int start, int end, int 
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_breed_and_mutate)
  *-------------------------------------------------------------------------------------------*/
-void tsp_breed_and_mutate(
-                            void (*fptr_crossover)(void *, void *, void *, void *, int),
-                            int (*fptr_selector)(),
-                            void (*fptr_selector_init)(int),
-                            population_t **from, 
-                            population_t **to, 
-                            int start, 
-                            int end)
+	void tsp_breed_and_mutate(
+			void (*fptr_crossover)(void *, void *, void *, void *, int),
+			int (*fptr_selector)(),
+			void (*fptr_selector_init)(int),
+			population_t **from, 
+			population_t **to, 
+			int start, 
+			int end)
 {
 	int i, j;
 	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * tsp_problem.num_cities);
@@ -329,12 +329,12 @@ void tsp_random_new(population_t **to, int start, int end)
 		{
 			int swap1 = rand()%tsp_problem.num_cities;
 			int swap2 = rand()%tsp_problem.num_cities;
-	
+
 			temp = ((int*)(to[i]->genome))[swap1];
 			((int*)(to[i]->genome))[swap1] = ((int*)(to[i]->genome))[swap2];
 			((int*)(to[i]->genome))[swap2] = temp;
 		}
-        tsp_check_genome((int*)to[i]->genome, tsp_problem.num_cities);
+		tsp_check_genome((int*)to[i]->genome, tsp_problem.num_cities);
 	}
 
 }
@@ -426,34 +426,34 @@ int *tsp_create_random_solution()
 void tsp_check_genome(int *test, int test_size)
 {
 	int *p1_lookup;
-    int i;
+	int i;
 
 	p1_lookup = (int*)malloc(sizeof(int) * test_size);
 
-    for (i = 0; i < test_size; i++)
+	for (i = 0; i < test_size; i++)
 	{
 		p1_lookup[i] = -1;
-    }
+	}
 	for (i = 0; i < test_size; i++)
 	{
-        if (p1_lookup[test[i]] != -1)
-        {
-            printf("Gene %d already present %d iteration\n", test[i], i);
-            fflush(stdout);
-            oassert(FALSE);
-        }
+		if (p1_lookup[test[i]] != -1)
+		{
+			printf("Gene %d already present %d iteration\n", test[i], i);
+			fflush(stdout);
+			oassert(FALSE);
+		}
 		p1_lookup[test[i]] = i;
-    }
+	}
 	for (i = 0; i < test_size; i++)
 	{
-        if (p1_lookup[test[i]] == -1)
-        {
-            printf("Gene %d not present\n", i);
-            fflush(stdout);
-            oassert(FALSE);
-        }
-    }
+		if (p1_lookup[test[i]] == -1)
+		{
+			printf("Gene %d not present\n", i);
+			fflush(stdout);
+			oassert(FALSE);
+		}
+	}
 
-    free(p1_lookup);
+	free(p1_lookup);
 }
-	
+
