@@ -123,7 +123,7 @@ int main(int argc, char **argv)
 		tsp_setup_problem();
 
 		/* create the double population to make easy copy to and from */
-		ga_init(tsp_create_population);
+		tsp_do_in_ga_init();
 
 		/* time analysis */
 		start_wall_time = get_wall_time();
@@ -137,7 +137,7 @@ int main(int argc, char **argv)
 		end_cpu_time = get_cpu_time();
 
 		/* clean the data structures up */
-		ga_clean(tsp_free_population);
+		tsp_do_in_ga_clean();
 		tsp_free_problem();
 	}
 	else if (configuration.ga_type == MKP_GA)
@@ -209,7 +209,7 @@ int main(int argc, char **argv)
 		tsp_setup_problem();
 
 		/* create the double population to make easy copy to and from */
-		ga_init(tsp_create_population);
+		ga_init(tsp_create_population_permutation);
 
 		/* time analysis */
 		start_wall_time = get_wall_time();
@@ -252,7 +252,7 @@ int main(int argc, char **argv)
 		tsp_setup_problem();
 
 		/* create the double population to make easy copy to and from */
-		ga_init(tsp_create_population);
+		ga_init(tsp_create_population_permutation);
 
 		/* generate the base variables */
 		/* generate the memory initialization for the genomes for this problem */
@@ -277,7 +277,7 @@ int main(int argc, char **argv)
 		tsp_setup_problem();
 
 		/* create the double population to make easy copy to and from */
-		ga_init(tsp_create_population);
+		ga_init(tsp_create_population_permutation);
 
 		/* generate the base variables */
 		/* generate the memory initialization for the genomes for this problem */

@@ -99,7 +99,6 @@ void psns_do_in_ga_init()
 		case PSNS_DAT_FORMAT_GRAY_CODE:
 			ga_init(psns_create_population_bits);
 			break;
-			break;
 		default:
 			printf("Not recognized psns problem type!!!\n");
 	}

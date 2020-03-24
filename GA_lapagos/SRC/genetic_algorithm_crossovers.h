@@ -21,13 +21,6 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
-*/
+*/ 
 
-#include "types.h"
-#include "tsp_types.h"
-
-extern void tsp_setup_problem();
-extern void tsp_free_problem();
-extern void tsp_do_in_ga_init();
-extern void tsp_do_in_ga_clean();
-extern void tsp_run_ga();
+extern void* setup_crossover_function();

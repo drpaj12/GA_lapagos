@@ -38,44 +38,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 /* globals */
 
 /*---------------------------------------------------------------------------------------------
- * (function: setup_crossover_funcion)
- * Returns void*, and that's an easy way to pass a function 
-* 
- * A comprehensive listing and taxonomy of crossover operators.	 We implement a small section of these
- *
- * A Survey on Crossover Operators
- * G. PAVAI and T. V. GEETHA, Anna University
- *-------------------------------------------------------------------------------------------*/
-void* setup_crossover_function()
-{
-	switch(configuration.crossover_type)
-	{
-		case PMX:
-			return (void*)xover_pmx;
-		case POSITION:
-			return (void*)xover_position;
-		case CX:
-			return (void*)xover_cx;
-		case CX2:
-			return (void*)xover_cx2;
-		case OX:
-			return (void*)xover_ox;
-		case CSR:
-			return (void*)confined_swap_recombination;
-		case SINGLE_POINT:
-			return (void*)xover_single_point;
-		case TWO_POINT:
-			return (void*)xover_two_point;
-		case UNIFORM:
-			return (void*)xover_uniform;
-		default:
-			printf("Not recognized crossover\n");
-			return NULL;
-	}
-}
-
-
-/*---------------------------------------------------------------------------------------------
  * (function: xover_pmx)
  * Goldberg 1985 "Alleles, loci, and the Travelling saleman problem"
  *-------------------------------------------------------------------------------------------*/
@@ -578,5 +540,4 @@ void confined_swap_recombination(void *gp1, void *gp2, void *gc1, void *gc2, int
 	free(p3_lookup);
 	free(p4_lookup);
 }
-
 

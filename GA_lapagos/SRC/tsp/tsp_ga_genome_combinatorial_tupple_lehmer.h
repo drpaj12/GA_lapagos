@@ -23,11 +23,18 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "types.h"
 #include "tsp_types.h"
+#include "types.h"
 
-extern void tsp_setup_problem();
-extern void tsp_free_problem();
-extern void tsp_do_in_ga_init();
-extern void tsp_do_in_ga_clean();
-extern void tsp_run_ga();
+extern population_t **tsp_create_population_lehmer();
+extern void tsp_mutate_lehmer(population_t **from, population_t **to, int start, int end, int from_best);
+extern void tsp_breed_and_mutate_lehmer(
+			void (*fptr_crossover)(void *, void *, void *, void *, int),
+			int (*fptr_selector)(),
+			void (*fptr_selector_init)(int),
+			population_t **from, 
+			population_t **to, 
+			int start, 
+			int end);
+extern void tsp_random_new_lehmer(population_t **to, int start, int end);
+extern int *tsp_create_random_solution_lehmer();

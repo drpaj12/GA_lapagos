@@ -55,8 +55,8 @@ void *tsp_run_ga_threaded(void *thread_structure)
 	   
 	switch(tsp_problem.problem_type)
 	{
-		case ADJACENCY:
-			fptr_cost_function = tsp_cost_function_from_adjacency;
+		case ADJACENCY_PERMUTATION:
+			fptr_cost_function = tsp_cost_function_from_adjacency_permutation;
 			break;
 		case CARTESIAN:
 			fptr_cost_function = tsp_cost_function_from_cartesian;

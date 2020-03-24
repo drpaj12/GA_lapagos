@@ -29,4 +29,5 @@ OTHER DEALINGS IN THE SOFTWARE.
 extern void read_tsp_problem_adjacency(char *benchmark_name, tsp_problem_adjacency_t **tsp_problem_adjacency);
 extern void free_tsp_problem_adjacency(tsp_problem_adjacency_t *tsp_problem_adjacency);
 
-extern double tsp_cost_function_from_adjacency(void *genome);
+extern double tsp_cost_function_from_adjacency_permutation(void *genome);
+extern double tsp_cost_function_from_adjacency_lehmer(void *genome);

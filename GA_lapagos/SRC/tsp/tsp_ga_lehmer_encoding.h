@@ -26,8 +26,5 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "types.h"
 #include "tsp_types.h"
 
-extern void tsp_setup_problem();
-extern void tsp_free_problem();
-extern void tsp_do_in_ga_init();
-extern void tsp_do_in_ga_clean();
-extern void tsp_run_ga();
+extern int *lehmer_encode(int *permutation, int size);
+extern int *lehmer_decode(int *code, int size);

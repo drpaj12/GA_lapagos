@@ -41,7 +41,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_create_population)
  *-------------------------------------------------------------------------------------------*/
-population_t **tsp_create_population()
+population_t **tsp_create_population_permutation()
 {
 	population_t **population;
 	int i;
@@ -50,7 +50,7 @@ population_t **tsp_create_population()
 	for (i = 0; i < genomes.num_population; i++)
 	{
 		population[i] = (population_t *)malloc(sizeof(population_t));
-		population[i]->genome = (void*)tsp_create_random_solution();
+		population[i]->genome = (void*)tsp_create_random_solution_permutation();
 	}
 
 	return population;
@@ -77,9 +77,9 @@ void tsp_free_population()
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_cost_function_and_order)
  *-------------------------------------------------------------------------------------------*/
-	void tsp_cost_function_and_order(
+void tsp_cost_function_and_order(
 			double (*fptr_cost_function)(void *)
-			)
+)
 {
 	int i, j;
 	int index_of_lowest_cost;
@@ -198,7 +198,7 @@ void tsp_copy_solution(int *from, int *to)
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_cross_breed)
  *-------------------------------------------------------------------------------------------*/
-	void tsp_cross_breed(
+void tsp_cross_breed(
 			void (*fptr_crossover)(void *, void *, void *, void *, int),
 			int (*fptr_selector)(),
 			void (*fptr_selector_init)(int),
@@ -243,8 +243,8 @@ void tsp_copy_solution(int *from, int *to)
 
 		(*fptr_crossover)(genome_p1, genome_p2, genome_c1, genome_c2, tsp_problem.num_cities);
 
-		tsp_check_genome(genome_c1, tsp_problem.num_cities);
-		tsp_check_genome(genome_c2, tsp_problem.num_cities);
+		//tsp_check_genome(genome_c1, tsp_problem.num_cities);
+		//tsp_check_genome(genome_c2, tsp_problem.num_cities);
 	}
 }
 
@@ -280,7 +280,7 @@ void tsp_mutate(population_t **from, population_t **to, int start, int end, int 
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_breed_and_mutate)
  *-------------------------------------------------------------------------------------------*/
-	void tsp_breed_and_mutate(
+void tsp_breed_and_mutate(
 			void (*fptr_crossover)(void *, void *, void *, void *, int),
 			int (*fptr_selector)(),
 			void (*fptr_selector_init)(int),
@@ -334,7 +334,7 @@ void tsp_random_new(population_t **to, int start, int end)
 			((int*)(to[i]->genome))[swap1] = ((int*)(to[i]->genome))[swap2];
 			((int*)(to[i]->genome))[swap2] = temp;
 		}
-		tsp_check_genome((int*)to[i]->genome, tsp_problem.num_cities);
+		//tsp_check_genome((int*)to[i]->genome, tsp_problem.num_cities);
 	}
 
 }
@@ -391,7 +391,7 @@ short tsp_exit_condition()
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_create_random_solution)
  *-------------------------------------------------------------------------------------------*/
-int *tsp_create_random_solution()
+int *tsp_create_random_solution_permutation()
 {
 	int *return_tour;
 	int i;

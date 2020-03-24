@@ -39,14 +39,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "tsp_types.h"
 
 #include "tsp_ga_genome_combinatorial_tupple.h"
+#include "tsp_ga_genome_combinatorial_tupple_lehmer.h"
 #include "tsp_adjacency.h"
 #include "tsp_cartesian.h"
 
 /* Prototypes */
 
 tsp_problem_t tsp_problem;
-const char *tsp_problem_types_name[] = { "ADJACENCY", 
-										"CARTESIAN" };
+const char *tsp_problem_types_name[] = { "ADJACENCY_PERMUTATION", 
+					"ADJACENCY_LEHMER", 
+					"CARTESIAN" };
 
 /*-------------------------------------------------------------------------
  * (function: tsp_setup_problem)
@@ -58,7 +60,8 @@ void tsp_setup_problem()
 
 	switch(tsp_problem.problem_type)
 	{
-		case ADJACENCY:
+		case ADJACENCY_PERMUTATION:
+		case ADJACENCY_LEHMER:
 			/* read the benchmark xml in */
 			read_tsp_problem_adjacency(configuration.benchmark_file_name, &tsp_problem_adjacency);
 			break;
@@ -78,7 +81,8 @@ void tsp_free_problem()
 {
 	switch(tsp_problem.problem_type)
 	{
-		case ADJACENCY:
+		case ADJACENCY_PERMUTATION:
+		case ADJACENCY_LEHMER:
 			/* free data structures */
 			free_tsp_problem_adjacency(tsp_problem_adjacency);
 			break;
@@ -92,19 +96,83 @@ void tsp_free_problem()
 }
 
 /*-------------------------------------------------------------------------
+ * (function: tsp_do_in_ga_init)
+ *-----------------------------------------------------------------------*/
+void tsp_do_in_ga_init()
+{
+	switch(tsp_problem.problem_type)
+	{
+		case ADJACENCY_LEHMER:
+			ga_init(tsp_create_population_lehmer);
+			break;
+		case ADJACENCY_PERMUTATION:
+		case CARTESIAN:
+			ga_init(tsp_create_population_permutation);
+			break;
+		default:
+			printf("Not recognized tsp problem type!!!\n");
+			return;
+	}
+}
+
+/*-------------------------------------------------------------------------
+ * (function: psns_do_in_ga_clean)
+ *-----------------------------------------------------------------------*/
+void tsp_do_in_ga_clean()
+{
+	switch(tsp_problem.problem_type)
+	{
+		case ADJACENCY_LEHMER:
+			ga_clean(tsp_free_population);
+			break;
+		case ADJACENCY_PERMUTATION:
+		case CARTESIAN:
+			ga_clean(tsp_free_population);
+			break;
+		default:
+			printf("Not recognized tsp problem type!!!\n");
+			return;
+	}
+}
+
+
+/*-------------------------------------------------------------------------
  * (function: tsp_run_ga)
  *-----------------------------------------------------------------------*/
 void tsp_run_ga()
 {
 	double (*fptr_cost_function)(void *);
-	   
+	void (*fptr_random_new)(population_t **, int , int );
+	void (*fptr_mutate)(population_t **, population_t **, int , int , int );
+	void (*fptr_breed_and_mutate)(
+			void (*fptr_crossover)(void *, void *, void *, void *, int),
+			int (*fptr_selector)(),
+			void (*fptr_selector_init)(int),
+			population_t **from, 
+			population_t **to, 
+			int start, 
+			int end);
+
+
 	switch(tsp_problem.problem_type)
 	{
-		case ADJACENCY:
-			fptr_cost_function = tsp_cost_function_from_adjacency;
+		case ADJACENCY_PERMUTATION:
+			fptr_cost_function = tsp_cost_function_from_adjacency_permutation;
+			fptr_random_new = tsp_random_new;
+			fptr_mutate = tsp_mutate;
+			fptr_breed_and_mutate = tsp_breed_and_mutate;
 			break;
 		case CARTESIAN:
 			fptr_cost_function = tsp_cost_function_from_cartesian;
+			fptr_random_new = tsp_random_new;
+			fptr_mutate = tsp_mutate;
+			fptr_breed_and_mutate = tsp_breed_and_mutate;
+			break;
+		case ADJACENCY_LEHMER:
+			fptr_cost_function = tsp_cost_function_from_adjacency_lehmer;
+			fptr_random_new = tsp_random_new_lehmer;
+			fptr_mutate = tsp_mutate_lehmer;
+			fptr_breed_and_mutate = tsp_breed_and_mutate_lehmer;
 			break;
 		default:
 			printf("Not recognized tsp problem type!!!\n");
@@ -112,23 +180,19 @@ void tsp_run_ga()
 	}
 
 	run_base_ga(
-		(int (*)())setup_selector_function(),
-		(void (*)(int))setup_selector_init_function(),
-		tsp_cost_function_and_order,
-		fptr_cost_function,
-		tsp_copy_old_genomes,
-		tsp_cross_breed,
-		tsp_mutate,
-		tsp_breed_and_mutate,
-		tsp_random_new,
-		tsp_cost_report_best,
-		(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
-		tsp_exit_condition);
+			(int (*)())setup_selector_function(),
+			(void (*)(int))setup_selector_init_function(),
+			tsp_cost_function_and_order,
+			fptr_cost_function,
+			tsp_copy_old_genomes,
+			tsp_cross_breed,
+			fptr_mutate,
+			fptr_breed_and_mutate,
+			fptr_random_new,
+			tsp_cost_report_best,
+			(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+			tsp_exit_condition);
 
 	/* TEST OUT REPORT */
 	output_test_details((*fptr_cost_function)(genomes.population[global_index][0]->genome));
 }
-
-
-
-

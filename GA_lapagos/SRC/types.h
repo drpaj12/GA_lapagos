@@ -73,7 +73,7 @@ enum MODES {
                 };
 
 
-#define NUM_CROSSOVER_TYPES 9
+#define NUM_CROSSOVER_TYPES 12
 enum CROSSOVER_TYPE {
                         PMX, 
                         POSITION,
@@ -81,6 +81,9 @@ enum CROSSOVER_TYPE {
                         CX2,
                         OX,
                         CSR,
+			SPLX,
+			TPLX,
+			UPLX,
                         SINGLE_POINT,
                         TWO_POINT,
                         UNIFORM

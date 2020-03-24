@@ -26,14 +26,14 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "tsp_types.h"
 #include "types.h"
 
-extern population_t **tsp_create_population();
+extern population_t **tsp_create_population_permutation();
 extern void tsp_free_population();
 extern void tsp_cost_function_and_order(
         double (*fptr_cost_function)(void *)
         );
 void tsp_cost_report_best(
         FILE *fout, 
-		double (*fptr_cost_function)(void *)
+	double (*fptr_cost_function)(void *)
         );
 extern void tsp_copy_old_genomes(population_t **from, population_t **to, int start, int end);
 extern void tsp_cross_breed(
@@ -56,5 +56,5 @@ extern void tsp_mutate(population_t **from, population_t **to, int start, int en
 extern void tsp_random_new(population_t **to, int start, int end);
 extern short tsp_exit_condition();
 extern void tsp_copy_solution(int *from, int *to);
-extern int *tsp_create_random_solution();
+extern int *tsp_create_random_solution_permutation();
 void tsp_check_genome(int *test, int test_size);

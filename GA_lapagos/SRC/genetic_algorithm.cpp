@@ -31,8 +31,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "types.h"
 
 #include "genetic_algorithm.h"
-#include "genetic_algorithm_combinational_crossovers.h"
-#include "genetic_algorithm_bit_crossovers.h"
+#include "genetic_algorithm_crossovers.h"
 
 /* Prototypes */
 
@@ -46,6 +45,9 @@ const char *crossover_types_name[] = {
 					"CX2",
 					"OX",
 					"CSR",
+					"SPLX",
+					"TPLX",
+					"UPLX",
 					"SINGLE_POINT",
 					"TWO_POINT",
 					"UNIFORM"
