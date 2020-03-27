@@ -26,5 +26,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "types.h"
 #include "tsp_types.h"
 
+extern void lehmer_initialize_pop_list(int size);
+extern void lehmer_clean(int size);
 extern int *lehmer_encode(int *permutation, int size);
 extern int *lehmer_decode(int *code, int size);
+extern int *lehmer_decode_faster(int *code, int size);
+
+#ifndef LEHMER
+#define LEHMER
+
+typedef struct linked_list_with_simple_repair_t_t linked_list_with_simple_repair_t;
+struct linked_list_with_simple_repair_t_t
+{
+	int id;
+	linked_list_with_simple_repair_t *next;
+	linked_list_with_simple_repair_t *repair_next;
+};
+
+#endif
+

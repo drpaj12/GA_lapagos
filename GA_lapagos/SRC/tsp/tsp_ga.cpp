@@ -40,14 +40,18 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include "tsp_ga_genome_combinatorial_tupple.h"
 #include "tsp_ga_genome_combinatorial_tupple_lehmer.h"
+#include "tsp_ga_genome_combinatorial_tupple_random_keys.h"
 #include "tsp_adjacency.h"
 #include "tsp_cartesian.h"
+#include "tsp_ga_lehmer_encoding.h"
+#include "tsp_ga_random_key_encoding.h"
 
 /* Prototypes */
 
 tsp_problem_t tsp_problem;
 const char *tsp_problem_types_name[] = { "ADJACENCY_PERMUTATION", 
 					"ADJACENCY_LEHMER", 
+					"ADJACENCY_RANDOM_KEYS", 
 					"CARTESIAN" };
 
 /*-------------------------------------------------------------------------
@@ -61,9 +65,18 @@ void tsp_setup_problem()
 	switch(tsp_problem.problem_type)
 	{
 		case ADJACENCY_PERMUTATION:
+			/* read the benchmark xml in */
+			read_tsp_problem_adjacency(configuration.benchmark_file_name, &tsp_problem_adjacency);
+			break;
 		case ADJACENCY_LEHMER:
 			/* read the benchmark xml in */
 			read_tsp_problem_adjacency(configuration.benchmark_file_name, &tsp_problem_adjacency);
+			lehmer_initialize_pop_list(tsp_problem.num_cities);
+			break;
+		case ADJACENCY_RANDOM_KEYS:
+			/* read the benchmark xml in */
+			read_tsp_problem_adjacency(configuration.benchmark_file_name, &tsp_problem_adjacency);
+			random_key_quick_sort_init_list(tsp_problem.num_cities);
 			break;
 		case CARTESIAN:
 			/* initialize a random city */
@@ -82,9 +95,18 @@ void tsp_free_problem()
 	switch(tsp_problem.problem_type)
 	{
 		case ADJACENCY_PERMUTATION:
+			/* free data structures */
+			free_tsp_problem_adjacency(tsp_problem_adjacency);
+			break;
 		case ADJACENCY_LEHMER:
 			/* free data structures */
 			free_tsp_problem_adjacency(tsp_problem_adjacency);
+			lehmer_clean(tsp_problem.num_cities);
+			break;
+		case ADJACENCY_RANDOM_KEYS:
+			/* free data structures */
+			free_tsp_problem_adjacency(tsp_problem_adjacency);
+			random_key_quick_sort_clean_list();
 			break;
 		case CARTESIAN:
 			/* initialize a random city */
@@ -105,6 +127,9 @@ void tsp_do_in_ga_init()
 		case ADJACENCY_LEHMER:
 			ga_init(tsp_create_population_lehmer);
 			break;
+		case ADJACENCY_RANDOM_KEYS:
+			ga_init(tsp_create_population_random_keys);
+			break;
 		case ADJACENCY_PERMUTATION:
 		case CARTESIAN:
 			ga_init(tsp_create_population_permutation);
@@ -123,6 +148,9 @@ void tsp_do_in_ga_clean()
 	switch(tsp_problem.problem_type)
 	{
 		case ADJACENCY_LEHMER:
+			ga_clean(tsp_free_population);
+			break;
+		case ADJACENCY_RANDOM_KEYS:
 			ga_clean(tsp_free_population);
 			break;
 		case ADJACENCY_PERMUTATION:
@@ -174,6 +202,13 @@ void tsp_run_ga()
 			fptr_mutate = tsp_mutate_lehmer;
 			fptr_breed_and_mutate = tsp_breed_and_mutate_lehmer;
 			break;
+		case ADJACENCY_RANDOM_KEYS:
+			fptr_cost_function = tsp_cost_function_from_adjacency_random_keys;
+			fptr_random_new = tsp_random_new_random_keys;
+			fptr_mutate = tsp_mutate_random_keys;
+			fptr_breed_and_mutate = tsp_breed_and_mutate_random_keys;
+			break;
+
 		default:
 			printf("Not recognized tsp problem type!!!\n");
 			return;

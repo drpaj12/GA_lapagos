@@ -37,11 +37,11 @@ OTHER DEALINGS IN THE SOFTWARE.
 #ifndef TYPES_H
 #define TYPES_H
 
-typedef struct global_args_t_t global_args_t;
 
 //#define oassert(x) {if(!(x)){exit(-1);}} // causes an interrupt in GDB
 #define oassert(x) {if(!(x)){__asm("int3");}} // causes an interrupt in GDB
 
+typedef struct global_args_t_t global_args_t;
 /* the global arguments of the software */
 struct global_args_t_t
 {

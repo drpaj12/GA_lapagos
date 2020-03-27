@@ -246,6 +246,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "globals.h"
 #include "types.h"
 
+#include "tsp_ga_lehmer_encoding.h"
+
 /* Prototypes */
 
 /*-------------------------------------------------------------------------
@@ -310,6 +312,135 @@ int *lehmer_decode(int *code, int size)
 	}
 
 	free(position);
+
+	return permutation;
+}
+
+linked_list_with_simple_repair_t *list_head;
+/*-------------------------------------------------------------------------
+ * (function: initialize_pop_list)
+ *-----------------------------------------------------------------------*/
+void lehmer_initialize_pop_list(int size)
+{
+	int i;
+
+	linked_list_with_simple_repair_t_t *allocated_next;
+	linked_list_with_simple_repair_t_t *last;
+
+	/* create the head */
+	allocated_next = (linked_list_with_simple_repair_t *)malloc(sizeof(linked_list_with_simple_repair_t));
+	allocated_next->id = 0;
+
+	last = allocated_next;
+	list_head = allocated_next;
+
+	/* create the pop list */
+	for (i = 1; i < size; i++)
+	{
+		/* make next */
+		allocated_next = (linked_list_with_simple_repair_t *)malloc(sizeof(linked_list_with_simple_repair_t));
+		allocated_next->id = i;
+		/* attach to the last */
+		last->next = allocated_next;
+		last->repair_next = allocated_next;
+
+		last = allocated_next;
+	}
+
+	/* terminate the list */
+	last->next = NULL;
+	last->repair_next = NULL;
+}
+
+/*-------------------------------------------------------------------------
+ * (function: repair_list)
+ * Fixes all the links as we popped out before
+ *-----------------------------------------------------------------------*/
+void repair_list(int size)
+{
+	linked_list_with_simple_repair_t *traverse;
+
+	for (traverse = list_head; traverse->repair_next != NULL; traverse = traverse->repair_next)
+	{
+		traverse->next = traverse->repair_next;
+	}
+}
+
+/*-------------------------------------------------------------------------
+ * (function: pop_eleement_X_from_list)
+ * Take out the Xth element
+ *-----------------------------------------------------------------------*/
+int pop_element_X_from_list(int X)
+{
+	int count = 0;
+
+	linked_list_with_simple_repair_t_t *traverse;
+	linked_list_with_simple_repair_t_t *previous = NULL;
+
+	for (traverse = list_head; traverse != NULL; traverse = traverse->next)
+	{
+		/* when found */
+		if (count == X)
+		{
+			/* if head then pop out */
+			if (list_head == traverse)
+				list_head == traverse->next;
+			else
+				previous->next = traverse->next;
+
+			/* return the item */
+			return traverse->id;
+		}
+
+		/* count and record where we are */
+		count ++;
+		previous = traverse;
+	}
+
+	return -1;
+}
+
+/*-------------------------------------------------------------------------
+ * (function: lehmer_clean)
+ *-----------------------------------------------------------------------*/
+void lehmer_clean(int size)
+{
+	int i;
+
+	linked_list_with_simple_repair_t_t *traverse;
+	linked_list_with_simple_repair_t_t *to_free;
+
+	traverse = list_head;
+
+	/* create the pop list */
+	for (i = 0; i < size; i++)
+	{
+		to_free = traverse;
+		traverse = traverse->repair_next;
+		free(to_free);
+	}
+}
+
+/*-------------------------------------------------------------------------
+ * (function: lehmer_decode_fast)
+ * Uses https://en.wikipedia.org/wiki/Lehmer_code second suggestion
+ * for decoding b popping elements off a list
+ *-----------------------------------------------------------------------*/
+int *lehmer_decode_faster(int *code, int size)
+{
+	int *permutation;
+	int i, j;
+
+	/* we reuse a list, so repair it from last popping actions */
+	repair_list(size);
+
+	permutation = (int*)malloc(sizeof(int) * size);
+
+	/* pop the i from the code next into permutation and do until list all codes moved */
+	for (i = 0; i < size; i++)
+	{
+		permutation[i] = pop_element_X_from_list(code[i]);
+	}
 
 	return permutation;
 }

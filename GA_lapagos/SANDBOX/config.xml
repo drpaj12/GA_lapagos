@@ -1,10 +1,10 @@
 <ga_config>
 	<ga_type>TSP_GA</ga_type>
-    <crossover_type>OX</crossover_type>
+    <crossover_type>SPLX</crossover_type>
     <selector_type>RANDOM</selector_type>
 	<rand_seed>1</rand_seed>
 	<num_threads>4</num_threads>
-    <problem_type>ADJACENCY_PERMUTATION</problem_type>
+    <problem_type>ADJACENCY_RANDOM_KEYS</problem_type>
 	<benchmark_file_name>../../TSP_BENCHMARKS/a280.xml</benchmark_file_name>
 <!--	<benchmark_file_name>../../TSP_BENCHMARKS/d198.xml</benchmark_file_name>-->
 <!--	<benchmark_file_name>../../TSP_BENCHMARKS/a280.xml</benchmark_file_name>-->

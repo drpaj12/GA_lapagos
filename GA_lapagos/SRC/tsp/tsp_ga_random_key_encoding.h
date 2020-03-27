@@ -26,9 +26,21 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "types.h"
 #include "tsp_types.h"
 
-extern void read_tsp_problem_adjacency(char *benchmark_name, tsp_problem_adjacency_t **tsp_problem_adjacency);
-extern void free_tsp_problem_adjacency(tsp_problem_adjacency_t *tsp_problem_adjacency);
+extern int *random_key_decode(int *code, int size);
+extern void random_key_quick_sort_clean_list();
+extern void random_key_quick_sort_init_list(int size);
 
-extern double tsp_cost_function_from_adjacency_permutation(void *genome);
-extern double tsp_cost_function_from_adjacency_lehmer(void *genome);
-extern double tsp_cost_function_from_adjacency_random_keys(void *genome);
+#ifndef RANDOM_KEYS
+#define RANDOM_KEYS
+
+typedef struct double_linked_list_with_quicksort_t_t double_linked_list_with_quick_sort_t;
+struct double_linked_list_with_quicksort_t_t
+{ 
+	int data; 
+	int location_idx;
+	double_linked_list_with_quick_sort_t *next; 
+	double_linked_list_with_quick_sort_t *prev; 
+}; 
+ 
+#endif
+

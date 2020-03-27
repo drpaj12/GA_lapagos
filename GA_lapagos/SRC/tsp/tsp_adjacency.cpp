@@ -34,6 +34,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "tsp_types.h"
 #include "tsp_adjacency.h"
 #include "tsp_ga_lehmer_encoding.h"
+#include "tsp_ga_random_key_encoding.h"
 
 /* Prototypes */
 
@@ -226,7 +227,8 @@ double tsp_cost_function_from_adjacency_lehmer(void *genome)
 	int *solution;
 
 	/* decode lehmer encoding */
-	solution = lehmer_decode((int*)genome, tsp_problem.num_cities);
+//	solution = lehmer_decode((int*)genome, tsp_problem.num_cities);
+	solution = lehmer_decode_faster((int*)genome, tsp_problem.num_cities);
 
 	for (i = 1; i < tsp_problem.num_cities; i++)
 	{
@@ -238,4 +240,24 @@ double tsp_cost_function_from_adjacency_lehmer(void *genome)
 	return cost;
 }
 
+/*---------------------------------------------------------------------------------------------
+ * (function: tsp_cost_function)
+ *-------------------------------------------------------------------------------------------*/
+double tsp_cost_function_from_adjacency_random_keys(void *genome)
+{
+	int i;
+	double cost = 0.0;
+	int *solution;
 
+	/* decode lehmer encoding */
+	solution = random_key_decode((int*)genome, tsp_problem.num_cities);
+
+	for (i = 1; i < tsp_problem.num_cities; i++)
+	{
+		cost += tsp_problem_adjacency->adjacency_matrix[solution[i]][solution[i-1]];
+	}
+
+	free(solution);
+
+	return cost;
+}

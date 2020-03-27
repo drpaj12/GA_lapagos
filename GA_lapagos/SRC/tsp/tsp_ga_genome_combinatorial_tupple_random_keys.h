@@ -23,12 +23,18 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "types.h"
 #include "tsp_types.h"
+#include "types.h"
 
-extern void read_tsp_problem_adjacency(char *benchmark_name, tsp_problem_adjacency_t **tsp_problem_adjacency);
-extern void free_tsp_problem_adjacency(tsp_problem_adjacency_t *tsp_problem_adjacency);
-
-extern double tsp_cost_function_from_adjacency_permutation(void *genome);
-extern double tsp_cost_function_from_adjacency_lehmer(void *genome);
-extern double tsp_cost_function_from_adjacency_random_keys(void *genome);
+extern population_t **tsp_create_population_random_keys();
+extern void tsp_mutate_random_keys(population_t **from, population_t **to, int start, int end, int from_best);
+extern void tsp_breed_and_mutate_random_keys(
+			void (*fptr_crossover)(void *, void *, void *, void *, int),
+			int (*fptr_selector)(),
+			void (*fptr_selector_init)(int),
+			population_t **from, 
+			population_t **to, 
+			int start, 
+			int end);
+extern void tsp_random_new_random_keys(population_t **to, int start, int end);
+extern int *tsp_create_random_solution_random_keys();
