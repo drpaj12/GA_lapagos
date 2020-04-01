@@ -278,6 +278,30 @@ void tsp_mutate(population_t **from, population_t **to, int start, int end, int 
 }
 
 /*---------------------------------------------------------------------------------------------
+ * (function: tsp_mutate_no_copy)
+ *-------------------------------------------------------------------------------------------*/
+void tsp_mutate_no_copy(population_t **from, population_t **to, int start, int end, int from_best)
+{
+	int i, j;
+	int who;
+	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * tsp_problem.num_cities);
+	int swap_g1, swap_g2;
+	int temp;
+
+	for (i = start; i < end; i++)
+	{
+		/* mutate the copied genome */ 
+		for (j = 0; j < num_mutations; j++)
+		{
+			swap_g1 = rand() % tsp_problem.num_cities;
+			swap_g2 = rand() % tsp_problem.num_cities;
+			temp = ((int*)(to[i]->genome))[swap_g1];
+			((int*)(to[i]->genome))[swap_g1] = ((int*)(to[i]->genome))[swap_g2];
+			((int*)(to[i]->genome))[swap_g2] = temp;
+		}
+	}
+}
+/*---------------------------------------------------------------------------------------------
  * (function: tsp_breed_and_mutate)
  *-------------------------------------------------------------------------------------------*/
 void tsp_breed_and_mutate(
@@ -347,45 +371,70 @@ short tsp_exit_condition()
 	static int breeding_cycles = 0;
 	static int count = 0;
 	static float recuring_best = 0;
+	static int new_best = 0;
 
 	breeding_cycles ++;
 	printf("breed cycle: %d\n", breeding_cycles);
 	fprintf(fresult_out, "%d", breeding_cycles);
 	fflush(stdout);
 
-#if 1
-	if (breeding_cycles == 1000)
-	{
-		breeding_cycles = 0;
-		return TRUE; // exit
-	}
-	else
-	{
-		return FALSE;
-	}
-#endif 
-#if 0
-	if (global_best <= recuring_best)
+	if (recuring_best == 0)
 	{
 		recuring_best = global_best;
+	}
+	else if (global_best < recuring_best)
+	{
+		recuring_best = global_best;
+		new_best ++;
+		fprintf(ftest_out, "%s, generation, %d, count, %d, current_best, %f\n", (char*)global_args.config_file, breeding_cycles, new_best, global_best);
 		count = 0;
 	}
 	else
 	{
 		count ++;
 	}
-
-	if (count > 500)
+	
+	if (configuration.exit_type == GENERATIONS)
 	{
-		count = 0;
-		breeding_cycles = 0;
-		return TRUE; // exit
+		if (breeding_cycles == 1000)
+		{
+			breeding_cycles = 0;
+			return TRUE; // exit
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
-	else
+	else if (configuration.exit_type == TWO_HUNDRED_NO_BETTER)
 	{
-		return FALSE;
+		if (count > 200)
+		{
+			fprintf(ftest_out, "%s, Exiting_generation, %d\n", (char*)global_args.config_file, breeding_cycles);
+			count = 0;
+			breeding_cycles = 0;
+			return TRUE; // exit
+		}
+		else
+		{
+			return FALSE;
+		}
+	
 	}
-#endif
+	else if (configuration.exit_type == FIVE_HUNDRED_NO_BETTER)
+	{
+		if (count > 500)
+		{
+			fprintf(ftest_out, "%s, Exiting_generation, %d\n", (char*)global_args.config_file, breeding_cycles);
+			count = 0;
+			breeding_cycles = 0;
+			return TRUE; // exit
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
 }
 
 /*---------------------------------------------------------------------------------------------

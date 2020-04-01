@@ -53,6 +53,7 @@ extern void mkp_breed_and_mutate(
                             int start, 
                             int end);
 extern void mkp_mutate(population_t **from, population_t **to, int start, int end, int from_best);
+extern void mkp_mutate_no_copy(population_t **from, population_t **to, int start, int end, int from_best);
 extern short mkp_exit_condition();
 extern void mkp_copy_solution(bstr from, bstr to);
 void mkp_random_new(population_t **to, int start, int end);

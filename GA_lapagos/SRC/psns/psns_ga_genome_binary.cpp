@@ -171,6 +171,25 @@ void psns_mutate_bits(population_t **from, population_t **to, int start, int end
 		}
 	}
 }
+/*---------------------------------------------------------------------------------------------
+ * (function: psns_mutate)
+ *-------------------------------------------------------------------------------------------*/
+void psns_mutate_bits_no_copy(population_t **from, population_t **to, int start, int end, int from_best)
+{
+	int i, j;
+	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * psns_genome_bits.num_bits);
+	int idx_to_mutate;
+
+	for (i = start; i < end; i++)
+	{
+		/* mutate the copied genome */ 
+		for (j = 0; j < num_mutations; j++)
+		{
+			idx_to_mutate = rand() % psns_genome_bits.num_bits;
+			bitstr_flip((bstr)to[i]->genome, idx_to_mutate);
+		}
+	}
+}
 
 /*---------------------------------------------------------------------------------------------
  * (function: psns_breed_and_mutate)

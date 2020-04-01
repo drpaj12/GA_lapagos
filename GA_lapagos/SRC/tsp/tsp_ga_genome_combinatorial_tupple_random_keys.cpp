@@ -82,6 +82,27 @@ void tsp_mutate_random_keys(population_t **from, population_t **to, int start, i
 		}
 	}
 }
+/*---------------------------------------------------------------------------------------------
+ * (function: tsp_mutate_random_keys)
+ * These are uniform mutations - meaning this is a random number in range
+ *-------------------------------------------------------------------------------------------*/
+void tsp_mutate_no_copy_random_keys(population_t **from, population_t **to, int start, int end, int from_best)
+{
+	int i, j;
+	int who;
+	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * tsp_problem.num_cities);
+	int location_idx;
+
+	for (i = start; i < end; i++)
+	{
+		/* mutate the copied genome */ 
+		for (j = 0; j < num_mutations; j++)
+		{
+			location_idx = rand() % tsp_problem.num_cities;
+			((int*)(to[i]->genome))[location_idx] = rand();
+		}
+	}
+}
 
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_breed_and_mutate_random_keys)

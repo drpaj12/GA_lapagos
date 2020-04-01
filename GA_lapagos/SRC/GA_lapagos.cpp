@@ -66,11 +66,17 @@ FILE *static_memory_out;
 double global_best;
 
 const char *ga_types_name[] = { 
-								"TSP_GA", 
-								"CONWAY_GA", 
-								"PSNS_GA",
-								"MKP_GA"
-								};
+				"TSP_GA", 
+				"CONWAY_GA", 
+				"PSNS_GA",
+				"MKP_GA"
+};
+const char *exit_types_name[] = { 
+				"GENERATIONS",
+				"FIVE_HUNDRED_NO_BETTER",
+				"TWO_HUNDRED_NO_BETTER"
+};
+
 int main(int argc, char **argv)
 {
 	int final_pop_idx; 

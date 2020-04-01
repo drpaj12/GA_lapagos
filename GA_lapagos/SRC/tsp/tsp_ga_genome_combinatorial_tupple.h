@@ -53,6 +53,7 @@ extern void tsp_breed_and_mutate(
                             int start, 
                             int end);
 extern void tsp_mutate(population_t **from, population_t **to, int start, int end, int from_best);
+extern void tsp_mutate_no_copy(population_t **from, population_t **to, int start, int end, int from_best);
 extern void tsp_random_new(population_t **to, int start, int end);
 extern short tsp_exit_condition();
 extern void tsp_copy_solution(int *from, int *to);

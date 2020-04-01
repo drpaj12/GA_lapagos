@@ -186,6 +186,32 @@ void tsp_mutate_threaded(thread_t *thread_struct, population_t **from, populatio
 		}
 	}
 }
+/*---------------------------------------------------------------------------------------------
+ * (function: tsp_mutate)
+ *-------------------------------------------------------------------------------------------*/
+void tsp_mutate_no_copy_threaded(thread_t *thread_struct, population_t **from, population_t **to, int start, int end, int from_best)
+{
+	int i, j;
+	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * tsp_problem.num_cities);
+	int swap_g1, swap_g2;
+	int temp;
+
+	for (i = start; i < end; i++)
+	{
+		if (i % configuration.num_threads == thread_struct->id)
+		{
+			/* mutate the copied genome */ 
+			for (j = 0; j < num_mutations; j++)
+			{
+				swap_g1 = rand() % tsp_problem.num_cities;
+				swap_g2 = rand() % tsp_problem.num_cities;
+				temp = ((int*)(to[i]->genome))[swap_g1];
+				((int*)(to[i]->genome))[swap_g1] = ((int*)(to[i]->genome))[swap_g2];
+				((int*)(to[i]->genome))[swap_g2] = temp;
+			}
+		}
+	}
+}
 
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_breed_and_mutate)

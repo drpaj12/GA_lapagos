@@ -33,6 +33,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "genetic_algorithm.h"
 #include "genetic_algorithm_crossovers.h"
 
+#include "utils.h"
+
 /* Prototypes */
 
 /* globals */
@@ -88,6 +90,7 @@ int run_base_ga(
 					void (*)(int),
 					population_t**, population_t**, int, int),
 		void (*fptr_mutate)(population_t**, population_t**, int, int, int),
+		void (*fptr_mutate_no_copy)(population_t**, population_t**, int, int, int),
 		void (*fptr_cross_and_mutate)(
 						void (*)(void *, void *, void *, void *, int), 
 						int (*)(),
@@ -101,6 +104,33 @@ int run_base_ga(
 {
 	short exit = FALSE;
 	short to_pop_idx;
+
+	double time_start_wall = 0;
+	double time_end_wall = 0;
+
+	double time_start_mutation = 0;
+	double time_end_mutation = 0;
+	double time_total_mutation = 0;
+
+	double time_start_crossbreed = 0;
+	double time_end_crossbreed = 0;
+	double time_total_crossbreed = 0;
+
+	double time_start_cost_function = 0;
+	double time_end_cost_function = 0;
+	double time_total_cost_function = 0;
+
+	double time_start_random_new = 0;
+	double time_end_random_new = 0;
+	double time_total_random_new = 0;
+
+	double time_start_crossbreed_mutation = 0;
+	double time_end_crossbreed_mutation = 0;
+	double time_total_crossbreed_mutation = 0;
+
+	double time_start_keep = 0;
+	double time_end_keep = 0;
+	double time_total_keep = 0;
 
 	global_index = 0;
 
@@ -134,17 +164,29 @@ int run_base_ga(
 	printf("idx_end_mutate_from = %d\n", idx_end_mutate_from);
 	printf("idx_end_breed_mutate_from = %d\n", idx_end_breed_mutate_from);
 
+	time_start_wall = get_wall_time();
+
 	while (exit == FALSE)
 	{
 		to_pop_idx = (global_index+1)%2;
 
+		/* TIMER */
+		time_start_cost_function = get_wall_time();
 		/* EVALUATE POPULATION AND ORDER */
 		(*fptr_cost_function_order)(
 									(*fptr_cost_function));
+		time_end_cost_function = get_wall_time();
+		time_total_cost_function += time_end_cost_function - time_start_cost_function;
 
+		/* TIMER */
+		time_start_keep = get_wall_time();
 		/* KEEP OLD */
 		(*fptr_copy_old_over)(genomes.population[global_index], genomes.population[to_pop_idx], idx_start_keep, idx_end_keep);
+		time_end_keep = get_wall_time();
+		time_total_keep += time_end_keep - time_start_keep;
 
+		/* TIMER */
+		time_start_crossbreed = get_wall_time();
 		/* CROSSBREED NEW */
 		(*fptr_cross_breed)(
 				(*fptr_crossover),
@@ -154,11 +196,21 @@ int run_base_ga(
 				genomes.population[to_pop_idx], 
 				idx_start_breed, 
 				idx_end_breed);
+		time_end_crossbreed = get_wall_time();
+		time_total_crossbreed += time_end_crossbreed - time_start_crossbreed;
 
+		/* TIMER */
+		time_start_mutation = get_wall_time();
 		/* MUTATE NEW */
 		(*fptr_mutate)(genomes.population[global_index], genomes.population[to_pop_idx], idx_start_mutate, idx_end_mutate, idx_end_mutate_from);
+		time_end_mutation = get_wall_time();
+		time_total_mutation += time_end_mutation - time_start_mutation;
 
+		/* TIMER */
+		time_start_crossbreed_mutation = get_wall_time();
 		/* CROSSBREED & MUTATE NEW */
+#if 0 
+		/* OLD way of doing both...rewrote with no_copy mutation */
 		(*fptr_cross_and_mutate)(
 				(*fptr_crossover),
 				(*fptr_selector),
@@ -167,20 +219,59 @@ int run_base_ga(
 				genomes.population[to_pop_idx], 
 				idx_start_breed_and_mutate, 
 				idx_end_breed_and_mutate);
+#endif
+#if 1
+		/* TIMER */
+		time_start_crossbreed = get_wall_time();
+		(*fptr_cross_breed)(
+				(*fptr_crossover),
+				(*fptr_selector),
+				(*fptr_selector_init),
+				genomes.population[global_index], 
+				genomes.population[to_pop_idx], 
+				idx_start_breed_and_mutate, 
+				idx_end_breed_and_mutate);
+		time_end_crossbreed = get_wall_time();
+		time_total_crossbreed += time_end_crossbreed - time_start_crossbreed;
 
+		/* TIMER */
+		time_start_mutation = get_wall_time();
+		/* MUTATE NEW */
+		(*fptr_mutate_no_copy)(genomes.population[global_index], genomes.population[to_pop_idx], idx_start_breed_and_mutate, idx_end_breed_and_mutate, idx_end_mutate_from);
+		time_end_mutation = get_wall_time();
+		time_total_mutation += time_end_mutation - time_start_mutation;
+#endif
+		time_end_crossbreed_mutation = get_wall_time();
+		time_total_crossbreed_mutation += time_end_crossbreed_mutation - time_start_crossbreed_mutation;
+
+		/* TIMER */
+		time_start_random_new = get_wall_time();
 		/* CREATE RANDOM NEW */
 		(*fptr_random_new)(genomes.population[to_pop_idx], idx_start_random, idx_end_random);
+		time_end_random_new = get_wall_time();
+		time_total_random_new += time_end_random_new - time_start_random_new;
 
 		/* CHECK EXIT CONDITION */
 		exit = (*fptr_exit_condition)();
 
+#if 0
 		(*fptr_cost_report_best)(
 				fresult_out, 
 				(*fptr_cost_function));
+#endif
 
 		/* swap to the new population */
 		global_index = to_pop_idx;
 	}
+
+	time_end_wall = get_wall_time();
+	fprintf(ftest_out, "%s, Wall_clock_time , %lf\n", (char*)global_args.config_file, time_end_wall - time_start_wall);
+	fprintf(ftest_out, "%s, Wall_clock_time_mutation , %lf\n", (char*)global_args.config_file, time_total_mutation);
+	fprintf(ftest_out, "%s, Wall_clock_time_crossbreed , %lf\n", (char*)global_args.config_file, time_total_crossbreed);
+	fprintf(ftest_out, "%s, Wall_clock_time_crossbreed+mutation , %lf\n", (char*)global_args.config_file, time_total_crossbreed_mutation);
+	fprintf(ftest_out, "%s, Wall_clock_time_random_new , %lf\n", (char*)global_args.config_file, time_total_random_new);
+	fprintf(ftest_out, "%s, Wall_clock_time_cost_function , %lf\n", (char*)global_args.config_file, time_total_cost_function);
+	fprintf(ftest_out, "%s, Wall_clock_time_keep , %lf\n", (char*)global_args.config_file, time_total_keep);
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -188,8 +279,5 @@ int run_base_ga(
  *-------------------------------------------------------------------------------------------*/
 void output_test_details(double final_cost)
 {
-	fprintf(ftest_out, "-----------------------------------------------------------\n");
-	fprintf(ftest_out, "Output from: %s\n", (char*)global_args.config_file);
-	fprintf(ftest_out, "Final result: %f\n", final_cost);
-	fprintf(ftest_out, "-----------------------------------------------------------\n");
+	fprintf(ftest_out, "%s, Best_cost, %f\n", (char*)global_args.config_file, final_cost);
 }

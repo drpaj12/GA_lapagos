@@ -118,7 +118,12 @@ void read_config_file(char *config_file_name)
 			configuration.num_threads = atoi((char*)string_data);
 			xmlFree(string_data);
 		}
-
+		else if ((!xmlStrcmp(cur->name, (const xmlChar *)"exit_type")))
+		{
+			string_data = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
+			configuration.exit_type = (enum EXIT_TYPE)return_string_in_list((char*)string_data, (char**)exit_types_name, NUM_EXIT_TYPES);
+			xmlFree(string_data);
+		}
 		else if ((!xmlStrcmp(cur->name, (const xmlChar *)"ga_params")))
 		{
 			xmlNodePtr ga_params = cur->xmlChildrenNode;

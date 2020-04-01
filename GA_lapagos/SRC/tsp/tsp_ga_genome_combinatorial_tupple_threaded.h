@@ -50,5 +50,6 @@ extern void tsp_breed_and_mutate_threaded(
                             int start, 
                             int end);
 extern void tsp_mutate_threaded(thread_t *thread_struct, population_t **from, population_t **to, int start, int end, int from_best);
-void tsp_random_new_threaded(thread_t *thread_struct, population_t **to, int start, int end);
-void tsp_copy_old_genomes_threaded(thread_t *thread_struct, population_t **from, population_t **to, int start, int end);
+extern void tsp_mutate_no_copy_threaded(thread_t *thread_struct, population_t **from, population_t **to, int start, int end, int from_best);
+extern void tsp_random_new_threaded(thread_t *thread_struct, population_t **to, int start, int end);
+extern void tsp_copy_old_genomes_threaded(thread_t *thread_struct, population_t **from, population_t **to, int start, int end);

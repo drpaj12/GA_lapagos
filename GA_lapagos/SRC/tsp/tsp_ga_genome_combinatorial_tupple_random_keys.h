@@ -28,6 +28,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 extern population_t **tsp_create_population_random_keys();
 extern void tsp_mutate_random_keys(population_t **from, population_t **to, int start, int end, int from_best);
+extern void tsp_mutate_no_copy_random_keys(population_t **from, population_t **to, int start, int end, int from_best);
 extern void tsp_breed_and_mutate_random_keys(
 			void (*fptr_crossover)(void *, void *, void *, void *, int),
 			int (*fptr_selector)(),

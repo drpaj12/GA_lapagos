@@ -114,6 +114,7 @@ void mkp_run_ga()
 		mkp_copy_old_genomes,
 		mkp_cross_breed,
 		mkp_mutate,
+		mkp_mutate_no_copy,
 		mkp_breed_and_mutate,
 		mkp_random_new,
 		mkp_cost_report_best,

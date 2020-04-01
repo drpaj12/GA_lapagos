@@ -38,6 +38,7 @@ int run_base_ga(
                                         void (*)(int),
                                         population_t**, population_t**, int, int),
 		void (*fptr_mutate)(population_t**, population_t**, int, int, int),
+		void (*fptr_mutate_no_copy)(population_t**, population_t**, int, int, int),
 		void (*fptr_cross_and_mutate)(
                                         void (*)(void *, void *, void *, void *, int), 
                                         int (*)(),

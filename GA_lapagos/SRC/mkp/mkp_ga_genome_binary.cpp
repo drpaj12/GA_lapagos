@@ -269,6 +269,25 @@ void mkp_mutate(population_t **from, population_t **to, int start, int end, int 
 		}
 	}
 }
+/*---------------------------------------------------------------------------------------------
+ * (function: mkp_mutate)
+ *-------------------------------------------------------------------------------------------*/
+void mkp_mutate_no_copy(population_t **from, population_t **to, int start, int end, int from_best)
+{
+	int i, j;
+	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * mkp_problem.num_variables);
+	int idx_to_mutate;
+
+	for (i = start; i < end; i++)
+	{
+		/* mutate the copied genome */ 
+		for (j = 0; j < num_mutations; j++)
+		{
+			idx_to_mutate = rand() % mkp_problem.num_variables;
+			bitstr_flip((bstr)to[i]->genome, idx_to_mutate);
+		}
+	}
+}
 
 /*---------------------------------------------------------------------------------------------
  * (function: mkp_breed_and_mutate)

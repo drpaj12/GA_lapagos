@@ -31,7 +31,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "globals.h"
 #include "types.h"
 
-#include "tsp_ga_random_key_encoding.h"
+#include "random_key_encoding.h"
 
 /* Prototypes */
 

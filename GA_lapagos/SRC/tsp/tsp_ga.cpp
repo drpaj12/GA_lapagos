@@ -43,8 +43,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "tsp_ga_genome_combinatorial_tupple_random_keys.h"
 #include "tsp_adjacency.h"
 #include "tsp_cartesian.h"
-#include "tsp_ga_lehmer_encoding.h"
-#include "tsp_ga_random_key_encoding.h"
+#include "lehmer_encoding.h"
+#include "random_key_encoding.h"
 
 /* Prototypes */
 
@@ -172,6 +172,7 @@ void tsp_run_ga()
 	double (*fptr_cost_function)(void *);
 	void (*fptr_random_new)(population_t **, int , int );
 	void (*fptr_mutate)(population_t **, population_t **, int , int , int );
+	void (*fptr_mutate_no_copy)(population_t **, population_t **, int , int , int );
 	void (*fptr_breed_and_mutate)(
 			void (*fptr_crossover)(void *, void *, void *, void *, int),
 			int (*fptr_selector)(),
@@ -188,24 +189,28 @@ void tsp_run_ga()
 			fptr_cost_function = tsp_cost_function_from_adjacency_permutation;
 			fptr_random_new = tsp_random_new;
 			fptr_mutate = tsp_mutate;
+			fptr_mutate_no_copy = tsp_mutate_no_copy;
 			fptr_breed_and_mutate = tsp_breed_and_mutate;
 			break;
 		case CARTESIAN:
 			fptr_cost_function = tsp_cost_function_from_cartesian;
 			fptr_random_new = tsp_random_new;
 			fptr_mutate = tsp_mutate;
+			fptr_mutate = tsp_mutate_no_copy;
 			fptr_breed_and_mutate = tsp_breed_and_mutate;
 			break;
 		case ADJACENCY_LEHMER:
 			fptr_cost_function = tsp_cost_function_from_adjacency_lehmer;
 			fptr_random_new = tsp_random_new_lehmer;
 			fptr_mutate = tsp_mutate_lehmer;
+			fptr_mutate_no_copy = tsp_mutate_no_copy_lehmer;
 			fptr_breed_and_mutate = tsp_breed_and_mutate_lehmer;
 			break;
 		case ADJACENCY_RANDOM_KEYS:
 			fptr_cost_function = tsp_cost_function_from_adjacency_random_keys;
 			fptr_random_new = tsp_random_new_random_keys;
 			fptr_mutate = tsp_mutate_random_keys;
+			fptr_mutate_no_copy = tsp_mutate_no_copy_random_keys;
 			fptr_breed_and_mutate = tsp_breed_and_mutate_random_keys;
 			break;
 
@@ -222,6 +227,7 @@ void tsp_run_ga()
 			tsp_copy_old_genomes,
 			tsp_cross_breed,
 			fptr_mutate,
+			fptr_mutate_no_copy,
 			fptr_breed_and_mutate,
 			fptr_random_new,
 			tsp_cost_report_best,

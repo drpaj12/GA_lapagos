@@ -1,0 +1,34 @@
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 2, count, 1, current_best, 164442.359985
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 6, count, 2, current_best, 164327.486795
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 7, count, 3, current_best, 162580.699378
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 11, count, 4, current_best, 161960.827638
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 25, count, 5, current_best, 159686.979591
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 44, count, 6, current_best, 158953.074510
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 69, count, 7, current_best, 158805.311605
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 70, count, 8, current_best, 157282.626643
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 97, count, 9, current_best, 156785.382963
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 112, count, 10, current_best, 156033.432872
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 113, count, 11, current_best, 151474.978543
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 164, count, 12, current_best, 150012.563917
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 175, count, 13, current_best, 149124.952077
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 212, count, 14, current_best, 148617.659816
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 240, count, 15, current_best, 147907.639408
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 272, count, 16, current_best, 147142.933672
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 280, count, 17, current_best, 147000.804665
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 297, count, 18, current_best, 146834.087026
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 310, count, 19, current_best, 144305.796136
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 400, count, 20, current_best, 143938.393701
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 421, count, 21, current_best, 142187.785251
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 474, count, 22, current_best, 141824.493000
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 517, count, 23, current_best, 139925.718976
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 689, count, 24, current_best, 138632.667892
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 808, count, 25, current_best, 135086.751925
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, generation, 866, count, 26, current_best, 133282.700569
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, Wall_clock_time , 2.338713
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, Wall_clock_time_mutation , 0.127789
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, Wall_clock_time_crossbreed , 1.343234
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, Wall_clock_time_crossbreed+mutation , 1.471076
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, Wall_clock_time_random_new , 0.051233
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, Wall_clock_time_cost_function , 0.809909
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, Wall_clock_time_keep , 0.002762
+./tsp_CX2_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench0.xml, Best_cost, 133282.700569

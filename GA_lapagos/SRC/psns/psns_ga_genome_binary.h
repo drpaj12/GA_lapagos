@@ -46,6 +46,7 @@ extern void psns_breed_and_mutate_bits(
                             int start, 
                             int end);
 extern void psns_mutate_bits(population_t **from, population_t **to, int start, int end, int from_best);
+extern void psns_mutate_bits_no_copy(population_t **from, population_t **to, int start, int end, int from_best);
 extern void psns_copy_solution_bits(bstr from, bstr to);
 void psns_random_new_bits(population_t **to, int start, int end);
 extern void *psns_create_random_solution_bits();

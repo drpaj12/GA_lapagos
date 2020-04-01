@@ -99,6 +99,13 @@ enum SELECTOR_TYPE {
                         RANDOM
                     };
 
+#define NUM_EXIT_TYPES 3
+enum EXIT_TYPE {
+			GENERATIONS, 
+                        FIVE_HUNDRED_NO_BETTER,
+                        TWO_HUNDRED_NO_BETTER
+                    };
+
 
 /* the configuration file */
 typedef struct config_t_t config_t;
@@ -107,11 +114,12 @@ struct config_t_t
 	enum GA_TYPE ga_type;
 	enum CROSSOVER_TYPE crossover_type;
 	enum SELECTOR_TYPE selector_type;
+	enum EXIT_TYPE exit_type;
 
 	char *benchmark_file_name;
-    char *problem_type;
+	char *problem_type;
 
-    int num_threads;
+	int num_threads;
 
 	int rand_seed;
 };
@@ -140,8 +148,8 @@ struct ga_pop_t_t
 
 	float percent_of_genome_mutations;
 
-    int tournament_size;
-    int truncate_size;
+	int tournament_size;
+	int truncate_size;
 	
 	int max_generations;
 	int num_parents;
@@ -153,8 +161,8 @@ struct population_t_t
 };
 
 typedef struct str_t {
-    int len, alloc;
-    unsigned char *s;
+	int len, alloc;
+	unsigned char *s;
 } bstr_t, *bstr;
 #define str_len(s) ((s)->len)
  
@@ -170,11 +178,11 @@ struct ga_hw_t_t
 	int rand_seed;
 
 	int num_population;
-    short population[2][POPULATION_SIZE_HW][GENOME_SIZE_HW];
+	short population[2][POPULATION_SIZE_HW][GENOME_SIZE_HW];
 
 	int costs[POPULATION_SIZE_HW];
 
-    int idx_start_keep;
+	int idx_start_keep;
 	int idx_end_keep;
 	int idx_start_mutate;
 	int idx_end_mutate;
@@ -189,10 +197,10 @@ struct ga_hw_t_t
 	int idx_end_mutate_from;
 	int idx_end_breed_mutate_from;
 
-    int num_mutations;
+	int num_mutations;
 
-    int tournament_size;
-    int truncate_size;
+	int tournament_size;
+	int truncate_size;
 	
 	int max_generations;
 	int num_parents;
@@ -208,11 +216,11 @@ struct ga_gpu_t_t
 	int rand_seed;
 
 	int num_population;
-    int population[2][POPULATION_SIZE_HW*GENOME_SIZE_HW];
+	int population[2][POPULATION_SIZE_HW*GENOME_SIZE_HW];
 
 	int costs[POPULATION_SIZE_HW];
 
-    int idx_start_keep;
+	int idx_start_keep;
 	int idx_end_keep;
 	int idx_start_mutate;
 	int idx_end_mutate;
@@ -227,14 +235,13 @@ struct ga_gpu_t_t
 	int idx_end_mutate_from;
 	int idx_end_breed_mutate_from;
 
-    int num_mutations;
+	int num_mutations;
 
-    int tournament_size;
-    int truncate_size;
+	int tournament_size;
+	int truncate_size;
 	
 	int max_generations;
 	int num_parents;
 };
-
 
 #endif // TYPES_H

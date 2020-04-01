@@ -26,13 +26,13 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 // in GA_lapagos.cpp
 extern const char *ga_types_name[];
+extern const char *exit_types_name[];
 extern config_t configuration;
 extern global_args_t global_args;
 extern ga_pop_t genomes;
 extern FILE *fresult_out;
 extern FILE *ftest_out;
 extern double global_best;
-extern const char *ga_types_name[];
 extern int global_index_hw;
 
 // generator_static_memory.cpp
