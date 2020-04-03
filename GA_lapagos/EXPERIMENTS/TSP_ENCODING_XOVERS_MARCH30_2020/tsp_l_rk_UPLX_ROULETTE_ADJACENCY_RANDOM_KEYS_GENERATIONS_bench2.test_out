@@ -1,0 +1,19 @@
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 2, count, 1, current_best, 4835497.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 8, count, 2, current_best, 4830874.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 9, count, 3, current_best, 4808512.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 13, count, 4, current_best, 4788542.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 16, count, 5, current_best, 4764717.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 21, count, 6, current_best, 4757695.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 22, count, 7, current_best, 4754068.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 25, count, 8, current_best, 4740331.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 69, count, 9, current_best, 4679238.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 288, count, 10, current_best, 4676845.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, generation, 308, count, 11, current_best, 4669072.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, Wall_clock_time , 53.071706
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, Wall_clock_time_mutation , 0.337169
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, Wall_clock_time_crossbreed , 3.039719
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, Wall_clock_time_crossbreed+mutation , 3.376932
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, Wall_clock_time_random_new , 0.031754
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, Wall_clock_time_cost_function , 49.648234
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, Wall_clock_time_keep , 0.009037
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench2.xml, Best_cost, 4669072.000000

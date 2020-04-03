@@ -8,11 +8,11 @@
 ./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, generation, 407, count, 8, current_best, 4615868.000000
 ./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, generation, 649, count, 9, current_best, 4593306.000000
 ./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, generation, 781, count, 10, current_best, 4567900.000000
-./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time , 6.596183
-./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_mutation , 0.444126
-./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_crossbreed , 3.734105
-./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_crossbreed+mutation , 4.178245
-./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_random_new , 0.172373
-./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_cost_function , 2.231251
-./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_keep , 0.008970
+./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time , 6.618185
+./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_mutation , 0.443613
+./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_crossbreed , 3.743840
+./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_crossbreed+mutation , 4.187504
+./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_random_new , 0.173383
+./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_cost_function , 2.242415
+./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Wall_clock_time_keep , 0.009122
 ./tsp_OX_ROULETTE_ADJACENCY_PERMUTATION_GENERATIONS_bench2.xml, Best_cost, 4567900.000000

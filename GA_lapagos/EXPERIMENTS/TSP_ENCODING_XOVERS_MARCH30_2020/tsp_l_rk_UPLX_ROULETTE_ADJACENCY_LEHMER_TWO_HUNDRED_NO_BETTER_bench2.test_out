@@ -1,0 +1,13 @@
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, generation, 2, count, 1, current_best, 4777117.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, generation, 6, count, 2, current_best, 4719359.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, generation, 25, count, 3, current_best, 4691955.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, generation, 55, count, 4, current_best, 4659141.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Exiting_generation, 256
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Wall_clock_time , 52.012828
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Wall_clock_time_mutation , 0.097748
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Wall_clock_time_crossbreed , 0.772697
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Wall_clock_time_crossbreed+mutation , 0.870429
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Wall_clock_time_random_new , 0.010440
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Wall_clock_time_cost_function , 51.127140
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Wall_clock_time_keep , 0.002516
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench2.xml, Best_cost, 4659141.000000

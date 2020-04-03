@@ -2,12 +2,13 @@
 .
 tsp
 TSP_GA
-5
+6
 PMX
 POSITION
 CX
 CX2
 OX
+CSR
 1
 ROULETTE
 1

@@ -1,0 +1,29 @@
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 6, count, 1, current_best, 162107.067758
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 7, count, 2, current_best, 158431.860199
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 44, count, 3, current_best, 158057.888927
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 48, count, 4, current_best, 153387.009999
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 51, count, 5, current_best, 153150.349155
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 59, count, 6, current_best, 150243.637204
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 78, count, 7, current_best, 148322.239624
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 95, count, 8, current_best, 147619.274698
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 104, count, 9, current_best, 146764.074836
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 114, count, 10, current_best, 144926.265834
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 120, count, 11, current_best, 144599.142040
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 137, count, 12, current_best, 144025.645297
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 140, count, 13, current_best, 140618.973696
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 151, count, 14, current_best, 137145.019531
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 157, count, 15, current_best, 135527.442807
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 169, count, 16, current_best, 131690.369021
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 173, count, 17, current_best, 130961.997086
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 199, count, 18, current_best, 130220.125747
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 227, count, 19, current_best, 128364.727244
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, generation, 304, count, 20, current_best, 126957.753126
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Exiting_generation, 505
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Wall_clock_time , 9.095753
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Wall_clock_time_mutation , 0.054593
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Wall_clock_time_crossbreed , 0.381141
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Wall_clock_time_crossbreed+mutation , 0.435740
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Wall_clock_time_random_new , 0.006072
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Wall_clock_time_cost_function , 8.650264
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Wall_clock_time_keep , 0.001415
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_LEHMER_TWO_HUNDRED_NO_BETTER_bench0.xml, Best_cost, 126957.753126

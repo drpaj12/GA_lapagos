@@ -1,0 +1,27 @@
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 2, count, 1, current_best, 1663586.227550
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 3, count, 2, current_best, 1659792.115247
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 7, count, 3, current_best, 1655415.128626
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 11, count, 4, current_best, 1649232.375524
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 12, count, 5, current_best, 1646169.486994
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 29, count, 6, current_best, 1642205.419847
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 37, count, 7, current_best, 1636688.481342
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 122, count, 8, current_best, 1633888.195171
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 188, count, 9, current_best, 1632806.077651
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 200, count, 10, current_best, 1624960.695259
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 240, count, 11, current_best, 1624573.038800
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 274, count, 12, current_best, 1623121.180898
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 275, count, 13, current_best, 1620052.638482
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 346, count, 14, current_best, 1617343.011787
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 360, count, 15, current_best, 1616212.471834
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 371, count, 16, current_best, 1614138.169466
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 497, count, 17, current_best, 1612618.717217
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, generation, 695, count, 18, current_best, 1604407.996978
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Exiting_generation, 896
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Wall_clock_time , 105.555179
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Wall_clock_time_mutation , 0.580605
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Wall_clock_time_crossbreed , 1.511708
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Wall_clock_time_crossbreed+mutation , 2.092055
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Wall_clock_time_random_new , 0.054941
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Wall_clock_time_cost_function , 103.371596
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Wall_clock_time_keep , 0.020702
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_TWO_HUNDRED_NO_BETTER_bench5.xml, Best_cost, 1604407.996978

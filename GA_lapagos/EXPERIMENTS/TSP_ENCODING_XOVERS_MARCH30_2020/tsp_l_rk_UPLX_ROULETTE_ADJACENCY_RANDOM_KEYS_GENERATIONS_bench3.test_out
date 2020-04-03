@@ -1,0 +1,16 @@
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 2, count, 1, current_best, 354877.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 13, count, 2, current_best, 354629.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 24, count, 3, current_best, 354453.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 36, count, 4, current_best, 354086.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 48, count, 5, current_best, 351895.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 109, count, 6, current_best, 351118.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 147, count, 7, current_best, 351114.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 536, count, 8, current_best, 350305.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time , 90.386718
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_mutation , 0.525765
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_crossbreed , 4.458796
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_crossbreed+mutation , 4.984320
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_random_new , 0.049508
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_cost_function , 85.324666
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_keep , 0.015812
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Best_cost, 350305.000000

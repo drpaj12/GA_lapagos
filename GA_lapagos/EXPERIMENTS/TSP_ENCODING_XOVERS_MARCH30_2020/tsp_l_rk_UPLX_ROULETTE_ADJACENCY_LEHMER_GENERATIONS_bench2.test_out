@@ -1,0 +1,16 @@
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, generation, 2, count, 1, current_best, 4777117.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, generation, 6, count, 2, current_best, 4719359.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, generation, 25, count, 3, current_best, 4691955.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, generation, 55, count, 4, current_best, 4659141.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, generation, 321, count, 5, current_best, 4648556.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, generation, 572, count, 6, current_best, 4613055.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, generation, 805, count, 7, current_best, 4599736.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, generation, 999, count, 8, current_best, 4597013.000000
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, Wall_clock_time , 203.658439
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, Wall_clock_time_mutation , 0.385083
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, Wall_clock_time_crossbreed , 3.041589
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, Wall_clock_time_crossbreed+mutation , 3.426687
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, Wall_clock_time_random_new , 0.040497
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, Wall_clock_time_cost_function , 200.173994
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, Wall_clock_time_keep , 0.009470
+./tsp_l_rk_UPLX_ROULETTE_ADJACENCY_LEHMER_GENERATIONS_bench2.xml, Best_cost, 4597013.000000

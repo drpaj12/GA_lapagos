@@ -1,0 +1,20 @@
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 2, count, 1, current_best, 356315.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 3, count, 2, current_best, 355153.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 8, count, 3, current_best, 354217.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 10, count, 4, current_best, 353101.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 12, count, 5, current_best, 352605.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 24, count, 6, current_best, 348675.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 62, count, 7, current_best, 347612.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 76, count, 8, current_best, 346770.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 181, count, 9, current_best, 345969.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 187, count, 10, current_best, 343275.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 350, count, 11, current_best, 342813.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, generation, 827, count, 12, current_best, 341494.000000
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time , 88.927925
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_mutation , 0.517821
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_crossbreed , 1.467928
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_crossbreed+mutation , 1.985608
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_random_new , 0.048961
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_cost_function , 86.863140
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Wall_clock_time_keep , 0.016479
+./tsp_l_rk_SPLX_ROULETTE_ADJACENCY_RANDOM_KEYS_GENERATIONS_bench3.xml, Best_cost, 341494.000000
