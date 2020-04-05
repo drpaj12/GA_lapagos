@@ -502,7 +502,7 @@ void confined_swap_recombination(void *gp1, void *gp2, void *gc1, void *gc2, int
 		/* Algorithm inverse lookup B = inverse(P') */
 		p2_lookup[genome_p2[j]] = j;
 		p3_lookup[genome_p1[j]] = j;
-		p3_lookup[genome_p2[j]] = j;
+		p4_lookup[genome_p2[j]] = j;
 	}
 
 	/* now copy do X swaps where we will make X = to size of Genome */

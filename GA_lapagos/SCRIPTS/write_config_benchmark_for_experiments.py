@@ -19,6 +19,9 @@ running_parser += 1
 ga_type = file_details[running_parser]
 running_parser += 1
 
+num_alphabetic = int(file_details[running_parser])
+running_parser += 1
+
 num_crossovers = int(file_details[running_parser])
 index_crossovers = running_parser+1
 running_parser += num_crossovers+1
@@ -83,7 +86,11 @@ for i in range(num_crossovers):
         for k in range(num_file_formats): 
             for l in range(num_benchmarks):
                 for m in range(num_exits):
-                    file_name = bname.rstrip() + "_" + file_details[index_crossovers+i].rstrip() + "_" + file_details[index_selectors+j].rstrip() + "_" + file_details[index_file_formats+k].rstrip() + "_" + file_details[index_exits+m].rstrip() + "_bench" + str(l) + ".xml"
+                    if num_alphabetic < 10:
+                        file_name = "00" + str(num_alphabetic) + "_" + bname.rstrip() + "_XS_" + file_details[index_crossovers+i].rstrip() + "_XE_SS_" + file_details[index_selectors+j].rstrip() + "_SE_PS_" + file_details[index_file_formats+k].rstrip() + "_PE_ES_" + file_details[index_exits+m].rstrip() + "_EE_bench_BS_" + str(l) + "_BE.xml"
+                    else:
+                        file_name = "0" + str(num_alphabetic) + "_" + bname.rstrip() + "_XS_" + file_details[index_crossovers+i].rstrip() + "_XE_SS_" + file_details[index_selectors+j].rstrip() + "_SE_PS_" + file_details[index_file_formats+k].rstrip() + "_PE_ES_" + file_details[index_exits+m].rstrip() + "_EE_bench_BS_" + str(l) + "_BE.xml"
+
                     file_name_w_directory = directory.rstrip() + "/" + file_name
         
                     f3.write("%s\n" % file_name)
@@ -118,5 +125,7 @@ for i in range(num_crossovers):
                     f2.write("</ga_config>\n")
                                 
                     f2.close()
+
+    num_alphabetic = num_alphabetic + 1
         
 f3.close()
