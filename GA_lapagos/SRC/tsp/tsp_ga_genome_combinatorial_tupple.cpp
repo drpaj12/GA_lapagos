@@ -38,6 +38,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 #include "genetic_algorithm_combinational_crossovers.h"
 
+#include "analyze_genomes.h"
+
 /*---------------------------------------------------------------------------------------------
  * (function: tsp_create_population)
  *-------------------------------------------------------------------------------------------*/
@@ -114,6 +116,15 @@ void tsp_cost_function_and_order(
 
 	printf("Best solution costs: %f\n", genomes.costs[0]);
 	global_best = genomes.costs[0];
+
+#ifdef MEASURE_XOVER_RESULTS
+	/* calculate average hamming distance between all pop and the best */
+	float val = (*fptr_hamming_distance)(genomes.population[global_index], genomes.num_population, tsp_problem.num_cities);
+	fprintf(ftest_out, "%s, Hamming Generation, %d, %f\n", (char*)global_args.config_file, breeding_cycles, val);
+
+	/* bin the results depending on a set of bins */
+	print_marks_bin_quality_of_results( genomes.costs, genomes.num_population);
+#endif
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -243,6 +254,11 @@ void tsp_cross_breed(
 
 		(*fptr_crossover)(genome_p1, genome_p2, genome_c1, genome_c2, tsp_problem.num_cities);
 
+#ifdef MEASURE_XOVER_RESULTS
+		EBI_value(genome_p1, genome_p2, genome_c1);
+		EBI_value(genome_p1, genome_p2, genome_c2);
+#endif
+
 		//tsp_check_genome(genome_c1, tsp_problem.num_cities);
 		//tsp_check_genome(genome_c2, tsp_problem.num_cities);
 	}
@@ -368,7 +384,6 @@ void tsp_random_new(population_t **to, int start, int end)
  *-------------------------------------------------------------------------------------------*/
 short tsp_exit_condition()
 {
-	static int breeding_cycles = 0;
 	static int count = 0;
 	static float recuring_best = 0;
 	static int new_best = 0;
@@ -386,7 +401,9 @@ short tsp_exit_condition()
 	{
 		recuring_best = global_best;
 		new_best ++;
+#ifdef CURRENT_BEST_RESULTS
 		fprintf(ftest_out, "%s, generation, %d, count, %d, current_best, %f\n", (char*)global_args.config_file, breeding_cycles, new_best, global_best);
+#endif
 		count = 0;
 	}
 	else
@@ -394,6 +411,14 @@ short tsp_exit_condition()
 		count ++;
 	}
 	
+#ifdef MEASURE_XOVER_RESULTS
+	/* at this point we can cacluate average EBI as all crossovers have been totalled */
+	fprintf(ftest_out, "%s, EBI_avg generation, %d, %f\n", (char*)global_args.config_file, breeding_cycles, EBI_total/EBI_count);
+	/* reset for next cycle */
+	EBI_total = 0;
+	EBI_count = 0;
+#endif
+
 	if (configuration.exit_type == GENERATIONS)
 	{
 		if (breeding_cycles == 1000)

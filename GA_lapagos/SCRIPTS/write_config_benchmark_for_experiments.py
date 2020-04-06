@@ -87,9 +87,9 @@ for i in range(num_crossovers):
             for l in range(num_benchmarks):
                 for m in range(num_exits):
                     if num_alphabetic < 10:
-                        file_name = "00" + str(num_alphabetic) + "_" + bname.rstrip() + "_XS_" + file_details[index_crossovers+i].rstrip() + "_XE_SS_" + file_details[index_selectors+j].rstrip() + "_SE_PS_" + file_details[index_file_formats+k].rstrip() + "_PE_ES_" + file_details[index_exits+m].rstrip() + "_EE_bench_BS_" + str(l) + "_BE.xml"
+                        file_name = "00" + str(num_alphabetic) + "XS" + file_details[index_crossovers+i].rstrip() + "XE_SS" + file_details[index_selectors+j].rstrip() + "SE_PS" + file_details[index_file_formats+k].rstrip() + "PE_ES" + file_details[index_exits+m].rstrip() + "EE_BS" + str(l) + "BE.xml"
                     else:
-                        file_name = "0" + str(num_alphabetic) + "_" + bname.rstrip() + "_XS_" + file_details[index_crossovers+i].rstrip() + "_XE_SS_" + file_details[index_selectors+j].rstrip() + "_SE_PS_" + file_details[index_file_formats+k].rstrip() + "_PE_ES_" + file_details[index_exits+m].rstrip() + "_EE_bench_BS_" + str(l) + "_BE.xml"
+                        file_name = "0" + str(num_alphabetic) + "XS" + file_details[index_crossovers+i].rstrip() + "XE_SS" + file_details[index_selectors+j].rstrip() + "SE_PS" + file_details[index_file_formats+k].rstrip() + "PE_ES" + file_details[index_exits+m].rstrip() + "EE_BS" + str(l) + "BE.xml"
 
                     file_name_w_directory = directory.rstrip() + "/" + file_name
         

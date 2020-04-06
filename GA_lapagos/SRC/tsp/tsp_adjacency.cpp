@@ -213,6 +213,8 @@ double tsp_cost_function_from_adjacency_permutation(void *genome)
 	{
 		cost += tsp_problem_adjacency->adjacency_matrix[solution[i]][solution[i-1]];
 	}
+	/* add the return cost */
+	cost += tsp_problem_adjacency->adjacency_matrix[solution[tsp_problem.num_cities-1]][solution[0]];
 
 	return cost;
 }
@@ -234,6 +236,8 @@ double tsp_cost_function_from_adjacency_lehmer(void *genome)
 	{
 		cost += tsp_problem_adjacency->adjacency_matrix[solution[i]][solution[i-1]];
 	}
+	/* add the return cost */
+	cost += tsp_problem_adjacency->adjacency_matrix[solution[tsp_problem.num_cities-1]][solution[0]];
 
 	free(solution);
 
@@ -256,6 +260,8 @@ double tsp_cost_function_from_adjacency_random_keys(void *genome)
 	{
 		cost += tsp_problem_adjacency->adjacency_matrix[solution[i]][solution[i-1]];
 	}
+	/* add the return cost */
+	cost += tsp_problem_adjacency->adjacency_matrix[solution[tsp_problem.num_cities-1]][solution[0]];
 
 	free(solution);
 

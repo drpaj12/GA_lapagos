@@ -149,6 +149,8 @@ double tsp_cost_function_from_cartesian(void *genome)
 	{
 		cost += cartesian_distance(tsp_problem_cartesian->cities[solution[i]]->x, tsp_problem_cartesian->cities[solution[i]]->y, tsp_problem_cartesian->cities[solution[i-1]]->x, tsp_problem_cartesian->cities[solution[i-1]]->y);
 	}
+	/* add the return cost */
+	cost += cartesian_distance(tsp_problem_cartesian->cities[solution[tsp_problem.num_cities-1]]->x, tsp_problem_cartesian->cities[solution[tsp_problem.num_cities-1]]->y, tsp_problem_cartesian->cities[solution[0]]->x, tsp_problem_cartesian->cities[solution[0]]->y);
 
 	return cost;
 }

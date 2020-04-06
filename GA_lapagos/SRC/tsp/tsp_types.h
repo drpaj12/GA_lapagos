@@ -26,6 +26,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 #ifndef TSP_TYPES_H
 #define TSP_TYPES_H
 
+/* SWITCHES FOR MEASUREMENT AND PERFORMANCE */
+/* switch to turn on data points for hamming distance, marks, and EBI average - analyze_genomes.cpp */
+#define MEASURE_XOVER_RESULTS
+
 #define NUM_TSP_PROBLEM_TYPES 4
 enum TSP_PROBLEM_TYPES {
 			ADJACENCY_PERMUTATION, 

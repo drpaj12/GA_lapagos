@@ -33,3 +33,4 @@ extern tsp_problem_adjacency_t *tsp_problem_adjacency;
 
 // from tsp_ga.cpp
 extern tsp_problem_t tsp_problem;
+extern float (*fptr_hamming_distance)(population_t **, int , int );

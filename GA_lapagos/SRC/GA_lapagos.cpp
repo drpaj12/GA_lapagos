@@ -64,6 +64,7 @@ FILE *fresult_out;
 FILE *ftest_out;
 FILE *static_memory_out;
 double global_best;
+int breeding_cycles;
 
 const char *ga_types_name[] = { 
 				"TSP_GA", 
@@ -115,6 +116,7 @@ int main(int argc, char **argv)
 
 	/* This is used in the exit condition...just have to set it to something */
 	global_best = 0;
+	breeding_cycles = 0;
 
 	/* set randomization */
 	srand(configuration.rand_seed);

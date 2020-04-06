@@ -37,6 +37,11 @@ OTHER DEALINGS IN THE SOFTWARE.
 #ifndef TYPES_H
 #define TYPES_H
 
+/* COMPILER SWITCHES */
+/* Creates data points for the run time - genetic_algorithm.cpp */
+//#define TIMING_RESULTS
+/* Creates data point for the generations that improve on the results - tsp_ga_genom... */
+//#define CURRENT_BEST_RESULTS
 
 //#define oassert(x) {if(!(x)){exit(-1);}} // causes an interrupt in GDB
 #define oassert(x) {if(!(x)){__asm("int3");}} // causes an interrupt in GDB

@@ -106,9 +106,9 @@ float hamming_distance_best_versus_all_lehmer( population_t **pop, int populatio
 }
 
 /*---------------------------------------------------------------------------------------------
- * (function: hamming_distance_best_versus_all_random_key)
+ * (function: hamming_distance_best_versus_all_random_keys)
  *-------------------------------------------------------------------------------------------*/
-float hamming_distance_best_versus_all_random_key( population_t **pop, int population_size, int genome_size)
+float hamming_distance_best_versus_all_random_keys( population_t **pop, int population_size, int genome_size)
 { 
 	population_t **temp_pop;
 	float total;
@@ -143,3 +143,58 @@ float hamming_distance_best_versus_all_random_key( population_t **pop, int popul
 
 	return total;
 }
+
+/*---------------------------------------------------------------------------------------------
+ * (function: print_marks_bin_quality_of_results)
+ * Prints out the quality distribution into 5 bins based on BEST and WORST value 5, 4, 3, 2, 1
+ * Basically does (|BEST - WORST| / 5) to find gap.  5 is (BEST to BEST +/ - gap), 4 is (High +/- gap to High +/- 2*gap), etc.
+ * Then printout
+ * Note TSP is a decreasing optimization so BEST is smaller
+ *-------------------------------------------------------------------------------------------*/
+void print_marks_bin_quality_of_results( double *costs, int population_size)
+{
+	int num_bins = 5;
+	int *bins;
+	double best = costs[0];
+	double worst = costs[population_size-1];
+	double gap = (low - high) / num_bins;
+	int i, j;
+
+	bins = (int*)malloc(sizeof(int) * num_bins);
+	for (j = 0; j < num_bins; j++)
+		bins[j] = 0;
+
+	/* count which bin cost function is in */
+	for (i = 0; i < population_size; i++)
+	{
+		for (j = 0; j < num_bins; j++)
+		{
+			if (costs[i] <= best + (gap * (j+1))) 
+			{
+				int bin_num_index = num_bins - j - 1;
+				bins[bin_num_index] ++;
+				break;
+			}
+
+		}
+	}
+
+	/* print out the details of the distribution */
+	fprintf(ftest_out, "%s, Marks Generation (Big to Small), %d, ", (char*)global_args.config_file, breeding_cycles);
+	for (j = 0; j < num_bins; j++)
+	{
+		fprintf(ftest_out, "%d", bins[num_bins - j - 1]);
+	}
+	fprintf(ftest_out, "\n");
+
+	free(bins);
+}
+
+/*---------------------------------------------------------------------------------------------
+ * (function: calculate_EBI_value_permutation)
+ * Returns arithmetic average of hamming distance between all vs the best[0]
+ * Note: assumes genome is an integer permuation - for lehmer or random keys you need to convert
+ *-------------------------------------------------------------------------------------------*/
+void calculate_EBI_value_permutation( population_t **pop, int genome_size)
+{
+

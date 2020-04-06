@@ -33,6 +33,7 @@ extern ga_pop_t genomes;
 extern FILE *fresult_out;
 extern FILE *ftest_out;
 extern double global_best;
+extern int breeding_cycles;
 extern int global_index_hw;
 
 // generator_static_memory.cpp

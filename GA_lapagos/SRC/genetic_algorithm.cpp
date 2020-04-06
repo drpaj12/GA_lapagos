@@ -174,7 +174,8 @@ int run_base_ga(
 		time_start_cost_function = get_wall_time();
 		/* EVALUATE POPULATION AND ORDER */
 		(*fptr_cost_function_order)(
-									(*fptr_cost_function));
+						(*fptr_cost_function));
+
 		time_end_cost_function = get_wall_time();
 		time_total_cost_function += time_end_cost_function - time_start_cost_function;
 
@@ -265,6 +266,7 @@ int run_base_ga(
 	}
 
 	time_end_wall = get_wall_time();
+#ifdef TIMING_RESULTS
 	fprintf(ftest_out, "%s, Wall_clock_time , %lf\n", (char*)global_args.config_file, time_end_wall - time_start_wall);
 	fprintf(ftest_out, "%s, Wall_clock_time_mutation , %lf\n", (char*)global_args.config_file, time_total_mutation);
 	fprintf(ftest_out, "%s, Wall_clock_time_crossbreed , %lf\n", (char*)global_args.config_file, time_total_crossbreed);
@@ -272,6 +274,7 @@ int run_base_ga(
 	fprintf(ftest_out, "%s, Wall_clock_time_random_new , %lf\n", (char*)global_args.config_file, time_total_random_new);
 	fprintf(ftest_out, "%s, Wall_clock_time_cost_function , %lf\n", (char*)global_args.config_file, time_total_cost_function);
 	fprintf(ftest_out, "%s, Wall_clock_time_keep , %lf\n", (char*)global_args.config_file, time_total_keep);
+#ifdef TIMING_RESULTS
 }
 
 /*---------------------------------------------------------------------------------------------

@@ -27,4 +27,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 extern float hamming_distance_best_versus_all_permutation( population_t **pop, int populaion_size, int genome_size);
 extern float hamming_distance_best_versus_all_lehmer( population_t **pop, int populaion_size, int genome_size);
-extern float hamming_distance_best_versus_all_random_key( population_t **pop, int populaion_size, int genome_size);
+extern float hamming_distance_best_versus_all_random_keys( population_t **pop, int populaion_size, int genome_size);
+
+extern void print_marks_bin_quality_of_results( double *costs, int population_size);

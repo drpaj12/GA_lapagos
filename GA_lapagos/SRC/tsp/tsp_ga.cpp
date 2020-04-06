@@ -46,6 +46,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include "lehmer_encoding.h"
 #include "random_key_encoding.h"
 
+#include "analyze_genomes.h"
+
 /* Prototypes */
 
 tsp_problem_t tsp_problem;
@@ -163,7 +165,7 @@ void tsp_do_in_ga_clean()
 	}
 }
 
-
+float (*fptr_hamming_distance)(population_t **, int , int );
 /*-------------------------------------------------------------------------
  * (function: tsp_run_ga)
  *-----------------------------------------------------------------------*/
@@ -191,6 +193,7 @@ void tsp_run_ga()
 			fptr_mutate = tsp_mutate;
 			fptr_mutate_no_copy = tsp_mutate_no_copy;
 			fptr_breed_and_mutate = tsp_breed_and_mutate;
+			fptr_hamming_distance = hamming_distance_best_versus_all_permutation;
 			break;
 		case CARTESIAN:
 			fptr_cost_function = tsp_cost_function_from_cartesian;
@@ -198,6 +201,7 @@ void tsp_run_ga()
 			fptr_mutate = tsp_mutate;
 			fptr_mutate = tsp_mutate_no_copy;
 			fptr_breed_and_mutate = tsp_breed_and_mutate;
+			fptr_hamming_distance = hamming_distance_best_versus_all_permutation;
 			break;
 		case ADJACENCY_LEHMER:
 			fptr_cost_function = tsp_cost_function_from_adjacency_lehmer;
@@ -205,6 +209,7 @@ void tsp_run_ga()
 			fptr_mutate = tsp_mutate_lehmer;
 			fptr_mutate_no_copy = tsp_mutate_no_copy_lehmer;
 			fptr_breed_and_mutate = tsp_breed_and_mutate_lehmer;
+			fptr_hamming_distance = hamming_distance_best_versus_all_lehmer;
 			break;
 		case ADJACENCY_RANDOM_KEYS:
 			fptr_cost_function = tsp_cost_function_from_adjacency_random_keys;
@@ -212,6 +217,7 @@ void tsp_run_ga()
 			fptr_mutate = tsp_mutate_random_keys;
 			fptr_mutate_no_copy = tsp_mutate_no_copy_random_keys;
 			fptr_breed_and_mutate = tsp_breed_and_mutate_random_keys;
+			fptr_hamming_distance = hamming_distance_best_versus_all_random_keys;
 			break;
 
 		default:
