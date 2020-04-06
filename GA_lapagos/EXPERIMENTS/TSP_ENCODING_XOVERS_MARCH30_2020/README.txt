@@ -4,6 +4,8 @@ Steps to create EXPERIMENTS
 	python3 ../../SCRIPTS/write_config_benchmark_for_experiments.py experiments_tsp_permutation.dat
 	python3 ../../SCRIPTS/write_config_benchmark_for_experiments.py experiments_tsp_lehmer.dat
 	python3 ../../SCRIPTS/write_config_benchmark_for_experiments.py experiments_tsp_random_keys.dat
+
+- one line - python3 ../../SCRIPTS/write_config_benchmark_for_experiments.py experiments_tsp_permutation.dat && python3 ../../SCRIPTS/write_config_benchmark_for_experiments.py experiments_tsp_lehmer.dat && python3 ../../SCRIPTS/write_config_benchmark_for_experiments.py experiments_tsp_random_keys.dat
 2. to execute
     i.e. 
     - python3 execute_benchmarks.py tsp_list_config_files.txt ./ ../../GA_lapagos ./
