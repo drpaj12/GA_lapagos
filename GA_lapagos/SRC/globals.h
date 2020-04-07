@@ -50,4 +50,4 @@ extern const char *selector_types_name[];
 
 // analyze_genomes.cpp
 extern int EBI_count;
-extern int EBI_total;
+extern float EBI_total;

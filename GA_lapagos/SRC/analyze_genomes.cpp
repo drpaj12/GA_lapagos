@@ -190,7 +190,7 @@ void print_marks_bin_quality_of_results( double *costs, int population_size)
 	free(bins);
 }
 
-short find_if_adjacent(int a, int b, int *list, int list_size)
+short find_if_symmetric_adjacent(int a, int b, int *list, int list_size)
 {
 	int i;
 
@@ -250,17 +250,53 @@ short find_if_adjacent(int a, int b, int *list, int list_size)
 		}
 	}
 }
+/* looks for a then b */
+short find_if_adjacent(int a, int b, int *list, int list_size)
+{
+	int i;
+
+	for (i = 0; i < list_size; i++)
+	{
+		if (list[i] == a)
+		{
+			if (i == list_size-1)
+			{
+				if (list[0] == b)
+				{
+					return TRUE;
+				}
+				else 
+				{
+					return FALSE;
+				}
+			}
+			else if (list[i+1] == b)
+			{
+				return TRUE;
+			}
+			else
+			{
+				return FALSE;
+			}
+		}
+	}
+}
 
 
 int EBI_count;
-int EBI_total;
+float EBI_total;
 /*---------------------------------------------------------------------------------------------
  * (function: calculate_EBI_value_permutation)
+ * 2 if (v1,v2) in both parents
+ * 1 if (v1,v2) in a parent
+ * 0 else
+ *
+ * Total and then (Total*100)/(2n) where n is the number of elements
  *-------------------------------------------------------------------------------------------*/
 void calculate_EBI_value_permutation( int *p1, int *p2, int *c, int genome_size)
 {
-	int i;
-	int EBI_value_calc = 0;
+	int i;	
+	float EBI_value_calc = 0;
 
 	for (i = 0; i < genome_size-1; i++)
 	{
@@ -276,7 +312,7 @@ void calculate_EBI_value_permutation( int *p1, int *p2, int *c, int genome_size)
 			EBI_value_calc ++;
 	}
 
-	EBI_total += EBI_value_calc;
+	EBI_total += (EBI_value_calc*100)/(2*genome_size);
 	EBI_count ++;
 }
 
@@ -306,7 +342,7 @@ void calculate_EBI_value_lehmer( int *p1, int *p2, int *c, int genome_size)
 			EBI_value_calc ++;
 	}
 
-	EBI_total += EBI_value_calc;
+	EBI_total += (EBI_value_calc*100)/(2*genome_size);
 	EBI_count ++;
 
 	free(p1_dec);
@@ -340,7 +376,7 @@ void calculate_EBI_value_random_keys( int *p1, int *p2, int *c, int genome_size)
 			EBI_value_calc ++;
 	}
 
-	EBI_total += EBI_value_calc;
+	EBI_total += (EBI_value_calc*100)/(2*genome_size);
 	EBI_count ++;
 
 	free(p1_dec);
