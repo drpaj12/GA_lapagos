@@ -255,8 +255,24 @@ void tsp_cross_breed(
 		(*fptr_crossover)(genome_p1, genome_p2, genome_c1, genome_c2, tsp_problem.num_cities);
 
 #ifdef MEASURE_XOVER_RESULTS
-		EBI_value(genome_p1, genome_p2, genome_c1);
-		EBI_value(genome_p1, genome_p2, genome_c2);
+		switch(tsp_problem.problem_type)
+		{
+			case ADJACENCY_PERMUTATION:
+				calculate_EBI_value_permutation(genome_p1, genome_p2, genome_c1, tsp_problem.num_cities);
+				calculate_EBI_value_permutation(genome_p1, genome_p2, genome_c2, tsp_problem.num_cities);
+				break;
+			case ADJACENCY_LEHMER:
+				calculate_EBI_value_lehmer(genome_p1, genome_p2, genome_c1, tsp_problem.num_cities);
+				calculate_EBI_value_lehmer(genome_p1, genome_p2, genome_c2, tsp_problem.num_cities);
+				break;
+			case ADJACENCY_RANDOM_KEYS:
+				calculate_EBI_value_random_keys(genome_p1, genome_p2, genome_c1, tsp_problem.num_cities);
+				calculate_EBI_value_random_keys(genome_p1, genome_p2, genome_c2, tsp_problem.num_cities);
+				break;
+			default:
+				printf("Not recognized tsp problem type!!!\n");
+				return;
+	}
 #endif
 
 		//tsp_check_genome(genome_c1, tsp_problem.num_cities);
@@ -413,7 +429,7 @@ short tsp_exit_condition()
 	
 #ifdef MEASURE_XOVER_RESULTS
 	/* at this point we can cacluate average EBI as all crossovers have been totalled */
-	fprintf(ftest_out, "%s, EBI_avg generation, %d, %f\n", (char*)global_args.config_file, breeding_cycles, EBI_total/EBI_count);
+	fprintf(ftest_out, "%s, EBI_avg generation, %d, %f\n", (char*)global_args.config_file, breeding_cycles, ((float)EBI_total)/((float)EBI_count));
 	/* reset for next cycle */
 	EBI_total = 0;
 	EBI_count = 0;

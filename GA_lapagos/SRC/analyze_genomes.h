@@ -30,3 +30,7 @@ extern float hamming_distance_best_versus_all_lehmer( population_t **pop, int po
 extern float hamming_distance_best_versus_all_random_keys( population_t **pop, int populaion_size, int genome_size);
 
 extern void print_marks_bin_quality_of_results( double *costs, int population_size);
+
+extern void calculate_EBI_value_permutation( int *p1, int *p2, int *c, int genome_size);
+extern void calculate_EBI_value_lehmer( int *p1, int *p2, int *c, int genome_size);
+extern void calculate_EBI_value_random_keys( int *p1, int *p2, int *c, int genome_size);

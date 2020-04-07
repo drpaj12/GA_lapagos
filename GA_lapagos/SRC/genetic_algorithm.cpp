@@ -274,7 +274,7 @@ int run_base_ga(
 	fprintf(ftest_out, "%s, Wall_clock_time_random_new , %lf\n", (char*)global_args.config_file, time_total_random_new);
 	fprintf(ftest_out, "%s, Wall_clock_time_cost_function , %lf\n", (char*)global_args.config_file, time_total_cost_function);
 	fprintf(ftest_out, "%s, Wall_clock_time_keep , %lf\n", (char*)global_args.config_file, time_total_keep);
-#ifdef TIMING_RESULTS
+#endif
 }
 
 /*---------------------------------------------------------------------------------------------

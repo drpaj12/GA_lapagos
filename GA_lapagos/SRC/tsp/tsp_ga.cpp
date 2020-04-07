@@ -184,6 +184,11 @@ void tsp_run_ga()
 			int start, 
 			int end);
 
+#ifdef MEASURE_XOVER_RESULTS
+	/* reset for proper measurement */
+	EBI_total = 0;
+	EBI_count = 0;
+#endif
 
 	switch(tsp_problem.problem_type)
 	{
