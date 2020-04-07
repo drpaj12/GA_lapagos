@@ -13,8 +13,8 @@
 		<percent_to_keep>0.01</percent_to_keep>
 		<percent_from_mutate>0.00</percent_from_mutate>
 		<percent_from_breed>0.00</percent_from_breed>
-		<percent_from_breed_and_mutate>0.98</percent_from_breed_and_mutate>
-		<percent_to_random>0.01</percent_to_random>
+		<percent_from_breed_and_mutate>0.99</percent_from_breed_and_mutate>
+		<percent_to_random>0.00</percent_to_random>
 		<!-- the above parameters must add to 1.0 -->
 		<top_percent_to_breed_from>0.10</top_percent_to_breed_from>
 		<top_percent_to_mutate_from>0.10</top_percent_to_mutate_from>

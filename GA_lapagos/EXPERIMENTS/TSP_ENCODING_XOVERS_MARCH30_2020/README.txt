@@ -14,6 +14,7 @@ i.e.
 	- python3 execute_benchmarks.py tsp_rk_list_config_files.txt ./ ../../GA_lapagos ./
 
 	-one line -  python3 execute_benchmarks.py tsp_list_config_files.txt ./ ../../GA_lapagos ./ && python3 execute_benchmarks.py tsp_l_list_config_files.txt ./ ../../GA_lapagos ./ && python3 execute_benchmarks.py tsp_rk_list_config_files.txt ./ ../../GA_lapagos ./
+	-one line -  python3 execute_benchmarks.py tsp_list_config_files.txt ./ ../../GA_lapagos_timing ./ && python3 execute_benchmarks.py tsp_l_list_config_files.txt ./ ../../GA_lapagos_timing ./ && python3 execute_benchmarks.py tsp_rk_list_config_files.txt ./ ../../GA_lapagos_timing ./
 
 3. data for bar plots
         - Sample: python3 create_data_for_quality_runtime_bar_plot.py 'FIVE*bench*0*test_out' 7 config.dat results.out
