@@ -429,7 +429,7 @@ short tsp_exit_condition()
 	
 #ifdef MEASURE_XOVER_RESULTS
 	/* at this point we can cacluate average EBI as all crossovers have been totalled */
-	fprintf(ftest_out, "%s, EBI_avg generation, %d, %f\n", (char*)global_args.config_file, breeding_cycles, ((float)EBI_total)/((float)EBI_count));
+	fprintf(ftest_out, "%s, EBI_avg generation, %d, %f\n", (char*)global_args.config_file, breeding_cycles, EBI_total/((float)EBI_count));
 	/* reset for next cycle */
 	EBI_total = 0;
 	EBI_count = 0;

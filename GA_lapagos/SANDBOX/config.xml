@@ -1,7 +1,7 @@
 <ga_config>
 	<ga_type>TSP_GA</ga_type>
-    <crossover_type>CSR</crossover_type>
-    <selector_type>RANDOM</selector_type>
+    <crossover_type>PMX</crossover_type>
+    <selector_type>ROULETTE</selector_type>
 	<rand_seed>1</rand_seed>
 	<num_threads>4</num_threads>
     <problem_type>ADJACENCY_PERMUTATION</problem_type>
@@ -12,10 +12,10 @@
     <ga_params>
         <num_population>100</num_population>
         <!-- following parameters must add to 1.0 -->
-        <percent_to_keep>0.01</percent_to_keep>
+        <percent_to_keep>0.10</percent_to_keep>
         <percent_from_mutate>0.00</percent_from_mutate>
-        <percent_from_breed>0.79</percent_from_breed>
-        <percent_from_breed_and_mutate>0.19</percent_from_breed_and_mutate>
+        <percent_from_breed>0.00</percent_from_breed>
+        <percent_from_breed_and_mutate>0.89</percent_from_breed_and_mutate>
         <percent_to_random>0.01</percent_to_random>
         <!-- the above parameters must add to 1.0 -->
         <top_percent_to_breed_from>0.25</top_percent_to_breed_from>

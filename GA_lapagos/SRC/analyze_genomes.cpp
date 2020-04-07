@@ -183,7 +183,7 @@ void print_marks_bin_quality_of_results( double *costs, int population_size)
 	fprintf(ftest_out, "%s, Marks Generation (Big to Small), %d, ", (char*)global_args.config_file, breeding_cycles);
 	for (j = 0; j < num_bins; j++)
 	{
-		fprintf(ftest_out, "%d", bins[num_bins - j - 1]);
+		fprintf(ftest_out, "%d,", bins[num_bins - j - 1]);
 	}
 	fprintf(ftest_out, "\n");
 
