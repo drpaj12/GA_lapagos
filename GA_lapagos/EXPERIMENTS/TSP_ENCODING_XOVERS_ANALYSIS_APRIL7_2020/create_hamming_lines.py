@@ -51,19 +51,22 @@ for log_file in file_list:
     count = count + 1
     frame = pd.read_csv(log_file, names=column_header_list)
     # extract details
-    cross_name = re.search('XS_(.+?)_XE', log_file).group(1)
-    problem_type_name = re.search('PS_ADJACENCY_(.+?)_PE', log_file).group(1)
+    cross_name = re.search('XS(.+?)XE', log_file).group(1)
+    problem_type_name = re.search('PSADJACENCY_(.+?)PE', log_file).group(1)
+    exit_name = re.search('_ES(.+?)EE', log_file).group(1)
+    bench_name = re.search('_BS(.+?)BE', log_file).group(1)
     # add to the list that will be the legend
     list_legend.append(cross_name + ' ' + problem_type_name)
 
     # do a step plot and set to x = 0 as start
-    ax.step(frame.loc[frame['1'].str.contains('generation')]['2'],
-            frame.loc[frame['1'].str.contains('generation')]['6'],
+    ax.step(frame.loc[frame['1'].str.contains('Hamming Generation')]['2'],
+            frame.loc[frame['1'].str.contains('Hamming Generation')]['3'],
             linestyle=line_style[count % 4])
     ax.set_xlim(0)
 
 plt.legend(list_legend)
 
 plt.xlabel('Generations')
-plt.ylabel('Quality')
-plt.savefig('bmark_quality_vs_generation_bm.png', dpi=400)
+plt.ylabel('Hamming Distance')
+plt.tight_layout()
+plt.savefig('bmark_hamming_'+exit_name+'_'+bench_name+'.png', dpi=400)

@@ -49,10 +49,12 @@ for log_file in file_list:
     frame = pd.read_csv(log_file, names=column_header_list)
     #print(frame)
     # make a list of each frame
+    exit_name = re.search('_ES(.+?)EE', log_file).group(1)
+    bench_name = re.search('_BS(.+?)BE', log_file).group(1)
     list_of_dfs.append(frame)
-    name = re.search('XS_(.+?)_XE', log_file).group(1)
+    name = re.search('XS(.+?)XE', log_file).group(1)
     list_of_crossover_bm.append(name)
-    problem_type_name = re.search('PS_ADJACENCY_(.+?)_PE', log_file).group(1)
+    problem_type_name = re.search('PSADJACENCY_(.+?)PE', log_file).group(1)
 
     if problem_type_name == "PERMUTATION":
         list_of_crossover_bm_permutation.append(name)
@@ -201,8 +203,28 @@ ax.set_ylabel('time(s)',fontsize=14)
 ax.set_xlabel('crossover',fontsize=14)
 ax.set_xticks(ind)
 ax.set_xticklabels((list_of_crossover_bm_permutation + list_of_crossover_bm_lehmer + list_of_crossover_bm_random_keys), fontsize=7)
+plt.legend(loc='center left')
 plt.tight_layout()
-plt.savefig('group_time_bm.png', dpi=400)
+plt.savefig('group_times_exit'+exit_name+'_bm'+bench_name+'.png', dpi=400)
+
+# PLOTS BAR plot with three groupings for time
+width = 1
+groupgap=1
+y1=list_of_time_wall_permutation
+y2=list_of_time_wall_random_keys
+x1 = np.arange(len(y1))
+x2 = np.arange(len(y2))+groupgap+len(y1)
+ind = np.concatenate((x1,x2))
+fig, ax = plt.subplots()
+rects1 = ax.bar(x1, y1, width, color='r',  edgecolor= "black",label="Permuatation")
+rects3 = ax.bar(x2, y2, width, color='g',  edgecolor= "black",label="Random Keys")
+ax.set_ylabel('time(s)',fontsize=14)
+ax.set_xlabel('crossover',fontsize=14)
+ax.set_xticks(ind)
+ax.set_xticklabels((list_of_crossover_bm_permutation + list_of_crossover_bm_random_keys), fontsize=7)
+plt.legend(loc='center left')
+plt.tight_layout()
+plt.savefig('group_times_only_perm_and_rand_keys_exit'+exit_name+'_bm'+bench_name+'.png', dpi=400)
 
 # PLOTS BAR plot with three groupings for time
 width = 1
@@ -218,9 +240,10 @@ fig, ax = plt.subplots()
 rects1 = ax.bar(x1, y1, width, color='r',  edgecolor= "black",label="Permuatation")
 rects2 = ax.bar(x2, y2, width, color='b',  edgecolor= "black",label="Lehmer")
 rects3 = ax.bar(x3, y3, width, color='g',  edgecolor= "black",label="Random Keys")
-ax.set_ylabel('time(s)',fontsize=14)
+ax.set_ylabel('quality',fontsize=14)
 ax.set_xlabel('crossover',fontsize=14)
 ax.set_xticks(ind)
 ax.set_xticklabels((list_of_crossover_bm_permutation + list_of_crossover_bm_lehmer + list_of_crossover_bm_random_keys), fontsize=7)
+plt.legend(loc='center left')
 plt.tight_layout()
-plt.savefig('group_quality_bm.png', dpi=400)
+plt.savefig('group_quality_exit'+exit_name+'_bm'+bench_name+'.png', dpi=400)

@@ -27,24 +27,18 @@ import matplotlib.pyplot as plt
 print ("Number of arguments: %d" %  len(sys.argv))
 print ("Argument List: %s" % str(sys.argv))
 
-NUM_COLORS = int(sys.argv[3])
-line_style=['-','--','-.',':']
 # start the plot
 f, ax = plt.subplots()
-# set up a color cylcle based on NUM_COLORS
-cm = plt.get_cmap('gist_rainbow')
-ax.set_prop_cycle(color=[cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
 
 # argument 1 is max number of columns which we use
 column_header_list =  [str(x) for x in range(int(sys.argv[1]))]
-
-list_legend = []
 
 # get all the files to analyze
 file_list = glob.glob('*'+sys.argv[2].rstrip()+'*')
 
 print (file_list)
 
+list_legend = ['bin 1', 'bin 2', 'bin 3', 'bin 4', 'bin 5']
 count = 0
 # read through the file and create a data frame for each benchmark
 for log_file in file_list:
@@ -56,18 +50,22 @@ for log_file in file_list:
     exit_name = re.search('_ES(.+?)EE', log_file).group(1)
     bench_name = re.search('_BS(.+?)BE', log_file).group(1)
     # add to the list that will be the legend
-    list_legend.append(cross_name + ' ' + problem_type_name)
 
+    y = np.vstack([ frame.loc[frame['1'].str.contains('Marks Generation')]['7'],
+                    frame.loc[frame['1'].str.contains('Marks Generation')]['6'],
+                    frame.loc[frame['1'].str.contains('Marks Generation')]['5'],
+                    frame.loc[frame['1'].str.contains('Marks Generation')]['4'],
+                    frame.loc[frame['1'].str.contains('Marks Generation')]['3']])
     # do a step plot and set to x = 0 as start
-    ax.step(frame.loc[frame['1'].str.contains('generation')]['2'],
-            frame.loc[frame['1'].str.contains('generation')]['6'],
-            linestyle=line_style[count % 4])
-    ax.set_xlim(0)
+    ax.stackplot(frame.loc[frame['1'].str.contains('Marks Generation')]['2'],
+            y,
+            labels=list_legend)
+    ax.set_xlim(0,1000)
+    ax.set_ylim(0,500)
 
-if bench_name == '0':
-    plt.legend(list_legend, loc='lower left', framealpha=0.5)
+plt.legend(list_legend)
 
 plt.xlabel('Generations')
-plt.ylabel('Quality')
+plt.ylabel('Population')
 plt.tight_layout()
-plt.savefig('bmark_quality_vs_generation_'+exit_name+'_'+bench_name+'.png', dpi=400)
+plt.savefig('bmark_marks_'+cross_name+'_'+exit_name+'_'+bench_name+'.png', dpi=400)

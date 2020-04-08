@@ -15,4 +15,11 @@ i.e.
 
 	-one line -  python3 execute_benchmarks.py tsp_list_config_files.txt ./ ../../GA_lapagos ./ && python3 execute_benchmarks.py tsp_l_list_config_files.txt ./ ../../GA_lapagos ./ && python3 execute_benchmarks.py tsp_rk_list_config_files.txt ./ ../../GA_lapagos ./
 
-
+3. Make Hamming Graphs:
+	- sample: python3 create_hamming_lines.py 10 'GENERATIONS*0*test_out' 12
+	- one line - python3 create_hamming_lines.py 10 'GENERATIONS*0*test_out' 12 && python3 create_hamming_lines.py 10 'GENERATIONS*1*test_out' 12 && python3 create_hamming_lines.py 10 'GENERATIONS*2*test_out' 12 && python3 create_hamming_lines.py 10 'GENERATIONS*3*test_out' 12 && python3 create_hamming_lines.py 10 'GENERATIONS*4*test_out' 12 && python3 create_hamming_lines.py 10 'GENERATIONS*5*test_out' 12
+4. Make EBI Graphs
+	- samble: python3 create_EBI_lines.py 10 'GENERATIONS*0*test_out' 12
+	- one line - python3 create_EBI_lines.py 10 'GENERATIONS*0*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*1*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*2*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*3*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*4*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*5*test_out' 12
+5. Make bin graphs
+	- sample: python3 create_bin_graph_per_bmark.py 10 000XSPMXXE_SSROULETTESE_PSADJACENCY_PERMUTATIONPE_ESGENERATIONSEE_BS0BE.test_out

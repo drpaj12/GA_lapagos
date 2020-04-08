@@ -59,15 +59,14 @@ for log_file in file_list:
     list_legend.append(cross_name + ' ' + problem_type_name)
 
     # do a step plot and set to x = 0 as start
-    ax.step(frame.loc[frame['1'].str.contains('generation')]['2'],
-            frame.loc[frame['1'].str.contains('generation')]['6'],
+    ax.step(frame.loc[frame['1'].str.contains('EBI_avg generation')]['2'],
+            frame.loc[frame['1'].str.contains('EBI_avg generation')]['3'],
             linestyle=line_style[count % 4])
     ax.set_xlim(0)
 
-if bench_name == '0':
-    plt.legend(list_legend, loc='lower left', framealpha=0.5)
+plt.legend(list_legend)
 
 plt.xlabel('Generations')
-plt.ylabel('Quality')
+plt.ylabel('EBI_avg')
 plt.tight_layout()
-plt.savefig('bmark_quality_vs_generation_'+exit_name+'_'+bench_name+'.png', dpi=400)
+plt.savefig('bmark_EBI_'+exit_name+'_'+bench_name+'.png', dpi=400)
