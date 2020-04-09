@@ -87,8 +87,8 @@ float hamming_distance_best_versus_all_lehmer( population_t **pop, int populatio
 		for (j = 0; j < genome_size; j++)
 		{
 			((int*)temp_pop[i]->genome)[j] = decoded[j];
-			free(decoded);
 		}
+		free(decoded);
 	}
 
 	/* calculate after decoding */
@@ -126,8 +126,8 @@ float hamming_distance_best_versus_all_random_keys( population_t **pop, int popu
 		for (j = 0; j < genome_size; j++)
 		{
 			((int*)temp_pop[i]->genome)[j] = decoded[j];
-			free(decoded);
 		}
+		free(decoded);
 	}
 
 	/* calculate after decoding */
