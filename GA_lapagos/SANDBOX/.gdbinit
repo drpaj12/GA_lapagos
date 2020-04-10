@@ -1,5 +1,6 @@
 file ../GA_lapagos 
-set args -c ./config.xml -t ./test_out.test -m 0 
+set args -c ./008XSUPLXXE_SSROULETTESE_PSADJACENCY_LEHMERPE_ESGENERATIONSEE_BS0BE.xml -t ./test_out.test -m 0 
+#set args -c ./config.xml -t ./test_out.test -m 0 
 #set args -c ./config.xml -t ./test_out.test -m 2 -g hardware_out.txt
 #set args -c ./config.xml -t ./test_out.test -m 3 -g gpu_out.txt
 #set args -c ./config.xml -t ./test_out.test

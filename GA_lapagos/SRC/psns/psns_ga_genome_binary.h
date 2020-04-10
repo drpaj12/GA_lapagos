@@ -30,15 +30,7 @@ extern population_t **psns_create_population_bits();
 extern void psns_free_population_bits();
 extern void psns_copy_old_genomes_bits(population_t **from, population_t **to, int start, int end);
 extern void psns_cross_breed_bits(
-                            void (*fptr_crossover)(void *, void *, void *, void *, int),
-                            int (*fptr_selector)(),
-                            void (*fptr_selector_init)(int),
-                            population_t **from, 
-                            population_t **to, 
-                            int start, 
-                            int end);
-extern void psns_breed_and_mutate_bits(
-                            void (*fptr_crossover)(void *, void *, void *, void *, int),
+                            void (*fptr_crossover)(void *, void *, void *, int),
                             int (*fptr_selector)(),
                             void (*fptr_selector_init)(int),
                             population_t **from, 

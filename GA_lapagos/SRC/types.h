@@ -86,6 +86,8 @@ enum CROSSOVER_TYPE {
                         CX2,
                         OX,
                         CSR,
+			OP_P,
+			TP_P,
 			SPLX,
 			TPLX,
 			UPLX,

@@ -24,9 +24,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 */ 
 
 extern void* setup_crossover_function();
-extern void xover_pmx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
-extern void xover_position(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
-extern void xover_cx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
-extern void xover_cx2(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
-extern void xover_ox(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
-extern void confined_swap_recombination(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
+extern void xover_pmx(void *gp1, void *gp2, void *gc1, int genome_size);
+extern void xover_position(void *gp1, void *gp2, void *gc1, int genome_size);
+extern void xover_cx(void *gp1, void *gp2, void *gc1, int genome_size);
+extern void xover_cx2(void *gp1, void *gp2, void *gc1, int genome_size);
+extern void xover_ox(void *gp1, void *gp2, void *gc1, int genome_size);
+extern void confined_swap_recombination(void *gp1, void *gp2, void *gc1, int genome_size);
+
+extern void single_point_permutation(void *gp1, void *gp2, void *gc1, int genome_size);
+extern void two_point_permutation(void *gp1, void *gp2, void *gc1, int genome_size);

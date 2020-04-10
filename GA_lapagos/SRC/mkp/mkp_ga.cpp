@@ -115,10 +115,9 @@ void mkp_run_ga()
 		mkp_cross_breed,
 		mkp_mutate,
 		mkp_mutate_no_copy,
-		mkp_breed_and_mutate,
 		mkp_random_new,
 		mkp_cost_report_best,
-		(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+		(void (*)(void*,void*,void*,int))setup_crossover_function(),
 		mkp_exit_condition);
 
 	/* TEST OUT REPORT */

@@ -41,7 +41,7 @@ OTHER DEALINGS IN THE SOFTWARE.
  * (function: xover_pmx)
  * Goldberg 1985 "Alleles, loci, and the Travelling saleman problem"
  *-------------------------------------------------------------------------------------------*/
-void xover_pmx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void xover_pmx(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i, j;
 	short *list_of_idx_to_gene_spots_to_keep;
@@ -51,11 +51,12 @@ void xover_pmx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	/* cut point 1 needs to be in the first half */
-	int cut_point1 = rand() % (genome_size/2);
-	int cut_point2 = cut_point1 + (genome_size/2);
+	int rand_1 = rand() % genome_size;
+	int rand_2 = rand() % genome_size;
+	int cut_point1 = (rand_1 >= rand_2) ? rand_2 : rand_1;
+	int cut_point2 = (rand_1 >= rand_2) ? rand_1 : rand_2;
 
 	list_of_idx_to_gene_spots_to_keep = (short*)malloc(sizeof(short) * genome_size);
 	p1_lookup = (int*)malloc(sizeof(int) * genome_size);
@@ -66,7 +67,6 @@ void xover_pmx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 		{
 			list_of_idx_to_gene_spots_to_keep[i] = TRUE;
 			genome_c1[i] = genome_p1[i];
-			genome_c2[i] = genome_p2[i];
 		}
 		else
 			list_of_idx_to_gene_spots_to_keep[i] = FALSE;
@@ -93,18 +93,6 @@ void xover_pmx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 			}
 			genome_c1[j] = genome_id_for_here;
 		}
-
-		/* copy c2 from p1 */
-		if (list_of_idx_to_gene_spots_to_keep[j] == FALSE)
-		{
-			int genome_id_for_here = genome_p1[j];
-			/* If this is not true then get from parent2 */
-			while (list_of_idx_to_gene_spots_to_keep[p2_lookup[genome_id_for_here]] == TRUE)
-			{
-				genome_id_for_here = genome_p1[p2_lookup[genome_id_for_here]];
-			}
-			genome_c2[j] = genome_id_for_here;
-		}
 	}
 
 	/* cleanup */
@@ -118,7 +106,7 @@ void xover_pmx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
  * Syswerda 1990 "Schedule Optimization Using Genetic Algorithms"
  * PMX like but random set is chosen and then mapping done after
  *-------------------------------------------------------------------------------------------*/
-void xover_position(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void xover_position(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i, j;
 	short *list_of_idx_to_gene_spots_to_keep;
@@ -130,7 +118,6 @@ void xover_position(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	list_of_idx_to_gene_spots_to_keep = (short*)malloc(sizeof(short) * genome_size);
 	p1_lookup = (int*)malloc(sizeof(int) * genome_size);
@@ -177,22 +164,6 @@ void xover_position(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 		{
 			genome_c1[j] = genome_p1[j];
 		}	
-
-		/* copy c2 from p1 */
-		if (list_of_idx_to_gene_spots_to_keep[j] == FALSE)
-		{
-			int genome_id_for_here = genome_p1[j];
-			/* If this is not true then get from parent2 */
-			while (list_of_idx_to_gene_spots_to_keep[p2_lookup[genome_id_for_here]] == TRUE)
-			{
-				genome_id_for_here = genome_p1[p2_lookup[genome_id_for_here]];
-			}
-			genome_c2[j] = genome_id_for_here;
-		}
-		else
-		{
-			genome_c2[j] = genome_p2[j];
-		}	
 	}
 
 	/* cleanup */
@@ -209,7 +180,7 @@ void xover_position(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
  * comes from one of the parents
  * Note: One cycle is made, and then all the other data is copied from the opposite parent.	 
  *-------------------------------------------------------------------------------------------*/
-void xover_cx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void xover_cx(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i;
 	short *list_of_idx_to_gene_spots_to_keep;
@@ -220,7 +191,6 @@ void xover_cx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	int tour_index;
 	int start_tour_index;
@@ -245,8 +215,6 @@ void xover_cx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 	genome_c1[tour_index] = genome_p1[tour_index];
 	/* find the new spot in parent2 */
 	tour2_idx = p2_lookup[genome_p1[tour_index]];
-	/* copy in parent 2 since eventually this spot will be on tour */
-	genome_c2[tour2_idx] = genome_p2[tour2_idx];
 	/* update next tour spot */
 	tour_index = tour2_idx;
 
@@ -258,8 +226,6 @@ void xover_cx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 		genome_c1[tour_index] = genome_p1[tour_index];
 		/* find the new spot in parent2 */
 		tour2_idx = p2_lookup[genome_p1[tour_index]];
-		/* copy in parent 2 since eventually this spot will be on tour */
-		genome_c2[tour2_idx] = genome_p2[tour2_idx];
 		/* update next tour spot */
 		tour_index = tour2_idx;
 	}
@@ -272,9 +238,6 @@ void xover_cx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 		{
 			/* If this is not true then get from parent2 */
 			genome_c1[i] = genome_p2[i];
-			
-			/* If this is not true then get from parent1 */
-			genome_c2[i] = genome_p1[i];
 		}
 	}
 
@@ -288,7 +251,7 @@ void xover_cx(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
  * Extension of cx to make all cycles
  * Hussain 2017 Genetic Algorithm for Traveling Salesman Problem with Modified Cycle Crossover Operator
  *-------------------------------------------------------------------------------------------*/
-void xover_cx2(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void xover_cx2(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i;
 	int *p2_lookup;
@@ -300,7 +263,6 @@ void xover_cx2(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	int tour_index;
 	int start_tour_index;
@@ -344,11 +306,7 @@ void xover_cx2(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 
 		/* find the new spot in parent2 */
 		tour2_idx = p2_lookup[genome_p1[tour_index]];
-		/* copy in parent 2 since eventually this spot will be on tour */
-		if (swap == 0)
-			genome_c2[tour2_idx] = genome_p2[tour2_idx];
-		else
-			genome_c2[tour2_idx] = genome_p1[tour2_idx];
+
 		/* update next tour spot */
 		tour_index = tour2_idx;
 	
@@ -365,11 +323,6 @@ void xover_cx2(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 				genome_c1[tour_index] = genome_p2[tour_index];
 			/* find the new spot in parent2 */
 			tour2_idx = p2_lookup[genome_p1[tour_index]];
-			/* copy in parent 2 since eventually this spot will be on tour */
-			if (swap == 0)
-				genome_c2[tour2_idx] = genome_p2[tour2_idx];
-			else
-				genome_c2[tour2_idx] = genome_p1[tour2_idx];
 			/* update next tour spot */
 			tour_index = tour2_idx;
 		}
@@ -393,36 +346,30 @@ void xover_cx2(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
  * c1 = 4, 0, 2, 3, 1
  * c1 = 2, 3, 4, 0, 1
  *-------------------------------------------------------------------------------------------*/
-void xover_ox(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void xover_ox(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i;
 	short *list_of_idx_to_gene_spots_to_not_copy1;
-	short *list_of_idx_to_gene_spots_to_not_copy2;
-	int temp;
-	int swap_idx;
 
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	/* cut point 1 needs to be in the first half */
-	int cut_point1 = rand() % (genome_size/2);
-	int cut_point2 = cut_point1 + (genome_size/2);
+	int rand_1 = rand() % genome_size;
+	int rand_2 = rand() % genome_size;
+	int cut_point1 = (rand_1 >= rand_2) ? rand_2 : rand_1;
+	int cut_point2 = (rand_1 >= rand_2) ? rand_1 : rand_2;
 
 	list_of_idx_to_gene_spots_to_not_copy1 = (short*)calloc(genome_size, sizeof(short));
-	list_of_idx_to_gene_spots_to_not_copy2 = (short*)calloc(genome_size, sizeof(short));
 
 	for (i = cut_point1; i < cut_point2; i++)
 	{
 		genome_c1[i] = genome_p1[i];
 		list_of_idx_to_gene_spots_to_not_copy1[genome_p1[i]] = TRUE;
-		genome_c2[i] = genome_p2[i];
-		list_of_idx_to_gene_spots_to_not_copy2[genome_p2[i]] = TRUE;
 	}
 
 	int idx1 = 0;
-	int idx2 = 0;
 
 	/* Note start after the cut with other parents nodes in order */
 	for (i = cut_point2; i < genome_size; i++)
@@ -433,13 +380,6 @@ void xover_ox(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 		}
 		genome_c1[i] = genome_p2[idx1];
 		idx1 ++;
-
-		while (list_of_idx_to_gene_spots_to_not_copy2[genome_p1[idx2]] == TRUE)
-		{
-			idx2 ++;
-		}
-		genome_c2[i] = genome_p1[idx2];
-		idx2 ++;
 	}
 
 	/* finish up the 0 to cut_point1 of the child */
@@ -451,36 +391,25 @@ void xover_ox(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
 		}
 		genome_c1[i] = genome_p2[idx1];
 		idx1 ++;
-
-		while (list_of_idx_to_gene_spots_to_not_copy2[genome_p1[idx2]] == TRUE)
-		{
-			idx2 ++;
-		}
-		genome_c2[i] = genome_p1[idx2];
-		idx2 ++;
 	}
 
 	/* cleanup */
 	free(list_of_idx_to_gene_spots_to_not_copy1);
-	free(list_of_idx_to_gene_spots_to_not_copy2);
 }
 
 /*---------------------------------------------------------------------------------------------
- * (function: xover_pmx)
+ * (function: confined_swap_recombination)
  * Advancing genetic algorithm approaches to field programmable gate array placement with enhanced recombination operators Robert Collier, Christian Fobel, Ryan Pattison, Gary Grewal, Shawki Areibi, and Peter Jamieson. Journal of Evolutionary Intelligence. October 2014. 
  *-------------------------------------------------------------------------------------------*/
-void confined_swap_recombination(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void confined_swap_recombination(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i, j;
 	int *p1_lookup; // Algorithmically A
 	int *p2_lookup; // Algorithmically B
-	int *p3_lookup; // Algorithmically A2 so I can make 2 children
-	int *p4_lookup; // Algorithmically B2 so I can make 2 children
 
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	int x1, x2, y1, y2;
 	int rand_int1;
@@ -489,55 +418,123 @@ void confined_swap_recombination(void *gp1, void *gp2, void *gc1, void *gc2, int
 
 	p1_lookup = (int*)malloc(sizeof(int) * genome_size);
 	p2_lookup = (int*)malloc(sizeof(int) * genome_size);
-	p3_lookup = (int*)malloc(sizeof(int) * genome_size);
-	p4_lookup = (int*)malloc(sizeof(int) * genome_size);
 
 	/* create the reverse lookup...as in if i want to know where city 3 is in genome p1 I can write p1_lookup[3] */
 	for (j = 0; j < genome_size; j++)
 	{
 		genome_c1[j] = genome_p1[j];
-		genome_c2[j] = genome_p2[j];
 		/* Algorithm inverse lookup A = inverse(Q) */
 		p1_lookup[genome_p1[j]] = j;
 		/* Algorithm inverse lookup B = inverse(P') */
 		p2_lookup[genome_p2[j]] = j;
-		p3_lookup[genome_p1[j]] = j;
-		p4_lookup[genome_p2[j]] = j;
 	}
 
 	/* now copy do X swaps where we will make X = to size of Genome */
 	for (j = 0; j < genome_size; j++)
 	{
 		rand_int1 = rand() % genome_size;
-		rand_int2 = rand() % genome_size;
 
 		/* ALgorithm x = A[rand_int] y = B[rand_int] */
 		x1 = p1_lookup[rand_int1];
 		y1 = p2_lookup[rand_int1];
-		x2 = p3_lookup[rand_int2];
-		y2 = p4_lookup[rand_int2];
 
 		/* Algorithm swap Q[x] with Q[y] */
 		temp_idx1 = genome_c1[x1];
-		temp_idx2 = genome_c2[x2];
 
 		genome_c1[x1] = genome_c1[y1];
-		genome_c2[x2] = genome_c2[y2];
 
 		genome_c1[y1] = temp_idx1;
-		genome_c2[y2] = temp_idx2;
 
 		/* algorithm update A; A[Q[x]] = x */
 		p1_lookup[genome_c1[x1]] = x1;
 		p1_lookup[genome_c1[y1]] = y1;
-		p2_lookup[genome_c2[x2]] = x2;
-		p1_lookup[genome_c2[y2]] = y2;
 	}
 
 	/* cleanup */
 	free(p1_lookup);
 	free(p2_lookup);
-	free(p3_lookup);
-	free(p4_lookup);
+}
+
+/*---------------------------------------------------------------------------------------------
+ * (function: single_point_permutation)
+ *-------------------------------------------------------------------------------------------*/
+void single_point_permutation(void *gp1, void *gp2, void *gc1, int genome_size)
+{
+	int i;
+
+	int *genome_p1 = (int*)gp1;
+	int *genome_p2 = (int*)gp2;
+	int *genome_c1 = (int*)gc1;
+
+	/* cut point 1 needs to be in the first half */
+	int cut_point1 = rand() % (genome_size);
+
+	short *list_of_idx_to_gene_spots_to_keep;
+	list_of_idx_to_gene_spots_to_keep = (short*)calloc(genome_size, sizeof(short)); // sets to FALSE
+
+	for (i = 0; i < cut_point1; i++)
+	{
+		genome_c1[i] = genome_p1[i];
+		list_of_idx_to_gene_spots_to_keep[genome_p1[i]] = TRUE;
+	}
+
+	int idx = 0;
+	for (i = 0; i < genome_size; i++)
+	{
+		if (list_of_idx_to_gene_spots_to_keep[genome_p2[i]] == FALSE)	
+		{
+			genome_c1[idx] = genome_p2[i];
+			idx++;
+		}
+	}
+	free(list_of_idx_to_gene_spots_to_keep);
+}
+
+/*---------------------------------------------------------------------------------------------
+ * (function: two_point_permutationlehmer_xover)
+ *-------------------------------------------------------------------------------------------*/
+void two_point_permutation(void *gp1, void *gp2, void *gc1, int genome_size)
+{
+	int i;
+
+	int *genome_p1 = (int*)gp1;
+	int *genome_p2 = (int*)gp2;
+	int *genome_c1 = (int*)gc1;
+
+	int cut_point1 = rand() % (genome_size);
+	int cut_point2 = rand() % (genome_size);
+	int temp;
+
+	short *list_of_idx_to_gene_spots_to_keep;
+	list_of_idx_to_gene_spots_to_keep = (short*)calloc(genome_size, sizeof(short)); // sets to FALSE
+
+	if (cut_point2 > cut_point1)
+	{
+		temp = cut_point1;
+		cut_point1 = cut_point2;
+		cut_point2 = temp;
+	}
+
+	for (i = 0; i < cut_point1; i++)
+	{
+		genome_c1[i] = genome_p1[i];
+		list_of_idx_to_gene_spots_to_keep[genome_p1[i]] = TRUE;
+	}
+	for (i = cut_point2; i < genome_size; i++)
+	{
+		genome_c1[i] = genome_p1[i];
+		list_of_idx_to_gene_spots_to_keep[genome_p1[i]] = TRUE;
+	}
+
+	int idx = 0;
+	for (i = 0; i < genome_size; i++)
+	{
+		if (list_of_idx_to_gene_spots_to_keep[genome_p2[i]] == FALSE)	
+		{
+			genome_c1[idx] = genome_p2[i];
+			idx++;
+		}
+	}
+	free(list_of_idx_to_gene_spots_to_keep);
 }
 

@@ -200,7 +200,7 @@ void mkp_copy_solution(bstr from, bstr to)
  * (function: mkp_cross_breed)
  *-------------------------------------------------------------------------------------------*/
 void mkp_cross_breed(
-							void (*fptr_crossover)(void *, void *, void *, void *, int),
+							void (*fptr_crossover)(void *, void *, void *, int),
 							int (*fptr_selector)(),
 							void (*fptr_selector_init)(int),
 							population_t **from, 
@@ -222,8 +222,7 @@ void mkp_cross_breed(
 	/* initialize the selector */
 	(*fptr_selector_init)(end-start);
 
-	int temp_end = end-(end - start)%2; // make sure even number
-	for (i = start; i < temp_end; i += 2)
+	for (i = start; i < end; i ++)
 	{
 		/* pick up 2 parents */
 		parent1 = (*fptr_selector)();
@@ -239,9 +238,8 @@ void mkp_cross_breed(
 		genome_p1 = (int*)from[parent1]->genome;
 		genome_p2 = (int*)from[parent2]->genome;
 		genome_c1 = (int*)to[i]->genome;
-		genome_c2 = (int*)to[i+1]->genome;
 
-		(*fptr_crossover)(genome_p1, genome_p2, genome_c1, genome_c2, mkp_problem.num_variables);
+		(*fptr_crossover)(genome_p1, genome_p2, genome_c1, mkp_problem.num_variables);
 	}
 }
 
@@ -278,37 +276,6 @@ void mkp_mutate_no_copy(population_t **from, population_t **to, int start, int e
 	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * mkp_problem.num_variables);
 	int idx_to_mutate;
 
-	for (i = start; i < end; i++)
-	{
-		/* mutate the copied genome */ 
-		for (j = 0; j < num_mutations; j++)
-		{
-			idx_to_mutate = rand() % mkp_problem.num_variables;
-			bitstr_flip((bstr)to[i]->genome, idx_to_mutate);
-		}
-	}
-}
-
-/*---------------------------------------------------------------------------------------------
- * (function: mkp_breed_and_mutate)
- *-------------------------------------------------------------------------------------------*/
-void mkp_breed_and_mutate(
-							void (*fptr_crossover)(void *, void *, void *, void *, int),
-							int (*fptr_selector)(),
-							void (*fptr_selector_init)(int),
-							population_t **from, 
-							population_t **to, 
-							int start, 
-							int end)
-{
-	int i, j;
-	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * mkp_problem.num_variables);
-	int idx_to_mutate;
-
-	/* do the cross breeding */
-	mkp_cross_breed(fptr_crossover, fptr_selector, fptr_selector_init, from, to, start, end);
-
-	/* mutate */
 	for (i = start; i < end; i++)
 	{
 		/* mutate the copied genome */ 

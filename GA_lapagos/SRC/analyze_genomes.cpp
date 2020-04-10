@@ -43,7 +43,7 @@ OTHER DEALINGS IN THE SOFTWARE.
  *-------------------------------------------------------------------------------------------*/
 float hamming_distance_best_versus_all_permutation( population_t **pop, int population_size, int genome_size)
 {
-	float total;
+	float total = 0;
 	int i, j;
 	int hamming_count;
 

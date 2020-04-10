@@ -210,7 +210,7 @@ void tsp_copy_solution(int *from, int *to)
  * (function: tsp_cross_breed)
  *-------------------------------------------------------------------------------------------*/
 void tsp_cross_breed(
-			void (*fptr_crossover)(void *, void *, void *, void *, int),
+			void (*fptr_crossover)(void *, void *, void *, int),
 			int (*fptr_selector)(),
 			void (*fptr_selector_init)(int),
 			population_t **from, 
@@ -233,8 +233,7 @@ void tsp_cross_breed(
 	/* initialize the selector */
 	(*fptr_selector_init)(end-start);
 
-	int temp_end = end-(end - start)%2; // make sure even number
-	for (i = start; i < temp_end; i += 2)
+	for (i = start; i < end; i++)
 	{
 		/* pick up 2 parents */
 		parent1 = (*fptr_selector)();
@@ -250,33 +249,28 @@ void tsp_cross_breed(
 		genome_p1 = (int*)from[parent1]->genome;
 		genome_p2 = (int*)from[parent2]->genome;
 		genome_c1 = (int*)to[i]->genome;
-		genome_c2 = (int*)to[i+1]->genome;
 
-		(*fptr_crossover)(genome_p1, genome_p2, genome_c1, genome_c2, tsp_problem.num_cities);
+		(*fptr_crossover)(genome_p1, genome_p2, genome_c1, tsp_problem.num_cities);
 
 #ifdef MEASURE_XOVER_RESULTS
 		switch(tsp_problem.problem_type)
 		{
 			case ADJACENCY_PERMUTATION:
 				calculate_EBI_value_permutation(genome_p1, genome_p2, genome_c1, tsp_problem.num_cities);
-				calculate_EBI_value_permutation(genome_p1, genome_p2, genome_c2, tsp_problem.num_cities);
 				break;
 			case ADJACENCY_LEHMER:
 				calculate_EBI_value_lehmer(genome_p1, genome_p2, genome_c1, tsp_problem.num_cities);
-				calculate_EBI_value_lehmer(genome_p1, genome_p2, genome_c2, tsp_problem.num_cities);
 				break;
 			case ADJACENCY_RANDOM_KEYS:
 				calculate_EBI_value_random_keys(genome_p1, genome_p2, genome_c1, tsp_problem.num_cities);
-				calculate_EBI_value_random_keys(genome_p1, genome_p2, genome_c2, tsp_problem.num_cities);
 				break;
 			default:
 				printf("Not recognized tsp problem type!!!\n");
 				return;
-	}
+		}
 #endif
 
 		//tsp_check_genome(genome_c1, tsp_problem.num_cities);
-		//tsp_check_genome(genome_c2, tsp_problem.num_cities);
 	}
 }
 
@@ -320,40 +314,6 @@ void tsp_mutate_no_copy(population_t **from, population_t **to, int start, int e
 	int swap_g1, swap_g2;
 	int temp;
 
-	for (i = start; i < end; i++)
-	{
-		/* mutate the copied genome */ 
-		for (j = 0; j < num_mutations; j++)
-		{
-			swap_g1 = rand() % tsp_problem.num_cities;
-			swap_g2 = rand() % tsp_problem.num_cities;
-			temp = ((int*)(to[i]->genome))[swap_g1];
-			((int*)(to[i]->genome))[swap_g1] = ((int*)(to[i]->genome))[swap_g2];
-			((int*)(to[i]->genome))[swap_g2] = temp;
-		}
-	}
-}
-/*---------------------------------------------------------------------------------------------
- * (function: tsp_breed_and_mutate)
- *-------------------------------------------------------------------------------------------*/
-void tsp_breed_and_mutate(
-			void (*fptr_crossover)(void *, void *, void *, void *, int),
-			int (*fptr_selector)(),
-			void (*fptr_selector_init)(int),
-			population_t **from, 
-			population_t **to, 
-			int start, 
-			int end)
-{
-	int i, j;
-	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * tsp_problem.num_cities);
-	int swap_g1, swap_g2;
-	int temp;
-
-	/* do the cross breeding */
-	tsp_cross_breed(fptr_crossover, fptr_selector, fptr_selector_init, from, to, start, end);
-
-	/* mutate */
 	for (i = start; i < end; i++)
 	{
 		/* mutate the copied genome */ 

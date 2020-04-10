@@ -40,21 +40,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 /* globals */
 short global_index;
 
-const char *crossover_types_name[] = { 
-					"PMX", 
-					"POSITION",
-					"CX",
-					"CX2",
-					"OX",
-					"CSR",
-					"SPLX",
-					"TPLX",
-					"UPLX",
-					"SINGLE_POINT",
-					"TWO_POINT",
-					"UNIFORM"
-					};
-
 /*---------------------------------------------------------------------------------------------
  * (function: ga_init)
  *-------------------------------------------------------------------------------------------*/
@@ -85,20 +70,15 @@ int run_base_ga(
 		double (*fptr_cost_function)(void *),
 		void (*fptr_copy_old_over)(population_t**, population_t**, int, int),
 		void (*fptr_cross_breed)(
-					void (*)(void *, void *, void *, void *, int), 
+					void (*)(void *, void *, void *, int), 
 					int (*)(),
 					void (*)(int),
 					population_t**, population_t**, int, int),
 		void (*fptr_mutate)(population_t**, population_t**, int, int, int),
 		void (*fptr_mutate_no_copy)(population_t**, population_t**, int, int, int),
-		void (*fptr_cross_and_mutate)(
-						void (*)(void *, void *, void *, void *, int), 
-						int (*)(),
-						void (*)(int),
-						population_t**, population_t**, int, int),
 		void (*fptr_random_new)(population_t**, int, int),
 		void (*fptr_cost_report_best)(FILE *, double (*)(void *)),
-		void (*fptr_crossover)(void *, void *, void *, void *, int),
+		void (*fptr_crossover)(void *, void *, void *, int),
 		short (*fptr_exit_condition)(void)
 		)
 {
@@ -210,18 +190,6 @@ int run_base_ga(
 		/* TIMER */
 		time_start_crossbreed_mutation = get_wall_time();
 		/* CROSSBREED & MUTATE NEW */
-#if 0 
-		/* OLD way of doing both...rewrote with no_copy mutation */
-		(*fptr_cross_and_mutate)(
-				(*fptr_crossover),
-				(*fptr_selector),
-				(*fptr_selector_init),
-				genomes.population[global_index], 
-				genomes.population[to_pop_idx], 
-				idx_start_breed_and_mutate, 
-				idx_end_breed_and_mutate);
-#endif
-#if 1
 		/* TIMER */
 		time_start_crossbreed = get_wall_time();
 		(*fptr_cross_breed)(
@@ -241,7 +209,6 @@ int run_base_ga(
 		(*fptr_mutate_no_copy)(genomes.population[global_index], genomes.population[to_pop_idx], idx_start_breed_and_mutate, idx_end_breed_and_mutate, idx_end_mutate_from);
 		time_end_mutation = get_wall_time();
 		time_total_mutation += time_end_mutation - time_start_mutation;
-#endif
 		time_end_crossbreed_mutation = get_wall_time();
 		time_total_crossbreed_mutation += time_end_crossbreed_mutation - time_start_crossbreed_mutation;
 

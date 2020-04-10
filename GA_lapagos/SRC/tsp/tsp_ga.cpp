@@ -175,14 +175,6 @@ void tsp_run_ga()
 	void (*fptr_random_new)(population_t **, int , int );
 	void (*fptr_mutate)(population_t **, population_t **, int , int , int );
 	void (*fptr_mutate_no_copy)(population_t **, population_t **, int , int , int );
-	void (*fptr_breed_and_mutate)(
-			void (*fptr_crossover)(void *, void *, void *, void *, int),
-			int (*fptr_selector)(),
-			void (*fptr_selector_init)(int),
-			population_t **from, 
-			population_t **to, 
-			int start, 
-			int end);
 
 #ifdef MEASURE_XOVER_RESULTS
 	/* reset for proper measurement */
@@ -197,7 +189,6 @@ void tsp_run_ga()
 			fptr_random_new = tsp_random_new;
 			fptr_mutate = tsp_mutate;
 			fptr_mutate_no_copy = tsp_mutate_no_copy;
-			fptr_breed_and_mutate = tsp_breed_and_mutate;
 			fptr_hamming_distance = hamming_distance_best_versus_all_permutation;
 			break;
 		case CARTESIAN:
@@ -205,7 +196,6 @@ void tsp_run_ga()
 			fptr_random_new = tsp_random_new;
 			fptr_mutate = tsp_mutate;
 			fptr_mutate = tsp_mutate_no_copy;
-			fptr_breed_and_mutate = tsp_breed_and_mutate;
 			fptr_hamming_distance = hamming_distance_best_versus_all_permutation;
 			break;
 		case ADJACENCY_LEHMER:
@@ -213,7 +203,6 @@ void tsp_run_ga()
 			fptr_random_new = tsp_random_new_lehmer;
 			fptr_mutate = tsp_mutate_lehmer;
 			fptr_mutate_no_copy = tsp_mutate_no_copy_lehmer;
-			fptr_breed_and_mutate = tsp_breed_and_mutate_lehmer;
 			fptr_hamming_distance = hamming_distance_best_versus_all_lehmer;
 			break;
 		case ADJACENCY_RANDOM_KEYS:
@@ -221,7 +210,6 @@ void tsp_run_ga()
 			fptr_random_new = tsp_random_new_random_keys;
 			fptr_mutate = tsp_mutate_random_keys;
 			fptr_mutate_no_copy = tsp_mutate_no_copy_random_keys;
-			fptr_breed_and_mutate = tsp_breed_and_mutate_random_keys;
 			fptr_hamming_distance = hamming_distance_best_versus_all_random_keys;
 			break;
 
@@ -239,10 +227,9 @@ void tsp_run_ga()
 			tsp_cross_breed,
 			fptr_mutate,
 			fptr_mutate_no_copy,
-			fptr_breed_and_mutate,
 			fptr_random_new,
 			tsp_cost_report_best,
-			(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+			(void (*)(void*,void*,void*,int))setup_crossover_function(),
 			tsp_exit_condition);
 
 	/* TEST OUT REPORT */

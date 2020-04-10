@@ -29,13 +29,5 @@ OTHER DEALINGS IN THE SOFTWARE.
 extern population_t **tsp_create_population_lehmer();
 extern void tsp_mutate_lehmer(population_t **from, population_t **to, int start, int end, int from_best);
 extern void tsp_mutate_no_copy_lehmer(population_t **from, population_t **to, int start, int end, int from_best);
-extern void tsp_breed_and_mutate_lehmer(
-			void (*fptr_crossover)(void *, void *, void *, void *, int),
-			int (*fptr_selector)(),
-			void (*fptr_selector_init)(int),
-			population_t **from, 
-			population_t **to, 
-			int start, 
-			int end);
 extern void tsp_random_new_lehmer(population_t **to, int start, int end);
 extern int *tsp_create_random_solution_lehmer();

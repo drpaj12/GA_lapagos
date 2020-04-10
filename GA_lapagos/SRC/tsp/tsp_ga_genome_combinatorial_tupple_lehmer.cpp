@@ -105,39 +105,6 @@ void tsp_mutate_no_copy_lehmer(population_t **from, population_t **to, int start
 }
 
 /*---------------------------------------------------------------------------------------------
- * (function: tsp_breed_and_mutate_lehmer)
- * These are uniform mutations
- *-------------------------------------------------------------------------------------------*/
-void tsp_breed_and_mutate_lehmer(
-			void (*fptr_crossover)(void *, void *, void *, void *, int),
-			int (*fptr_selector)(),
-			void (*fptr_selector_init)(int),
-			population_t **from, 
-			population_t **to, 
-			int start, 
-			int end)
-{
-	int i, j;
-	int who;
-	int num_mutations = (int)floor(genomes.percent_of_genome_mutations * tsp_problem.num_cities);
-	int location_idx;
-
-	/* do the cross breeding */
-	tsp_cross_breed(fptr_crossover, fptr_selector, fptr_selector_init, from, to, start, end);
-
-	/* mutate */
-	for (i = start; i < end; i++)
-	{
-		/* mutate the copied genome */ 
-		for (j = 0; j < num_mutations; j++)
-		{
-			location_idx = rand() % tsp_problem.num_cities;
-			((int*)(to[i]->genome))[location_idx] = rand() % (tsp_problem.num_cities - location_idx);
-		}
-	}
-}
-
-/*---------------------------------------------------------------------------------------------
  * (function: tsp_random_new_lehmer)
  * A lehmer code is [0..num_cities-1, 0..num_cities-1, ..., 1, 0]
  *-------------------------------------------------------------------------------------------*/

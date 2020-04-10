@@ -109,7 +109,7 @@ void tsp_mutate_no_copy_random_keys(population_t **from, population_t **to, int 
  * These are uniform mutations
  *-------------------------------------------------------------------------------------------*/
 void tsp_breed_and_mutate_random_keys(
-			void (*fptr_crossover)(void *, void *, void *, void *, int),
+			void (*fptr_crossover)(void *, void *, void *, int),
 			int (*fptr_selector)(),
 			void (*fptr_selector_init)(int),
 			population_t **from, 

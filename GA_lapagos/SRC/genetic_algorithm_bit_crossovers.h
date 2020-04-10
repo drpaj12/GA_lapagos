@@ -23,6 +23,6 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */ 
 
-extern void xover_single_point(void *genome_p1, void *genome_p2, void *genome_c1, void *genome_c2, int genome_size);
-extern void xover_two_point(void *genome_p1, void *genome_p2, void *genome_c1, void *genome_c2, int genome_size);
-extern void xover_uniform(void *genome_p1, void *genome_p2, void *genome_c1, void *genome_c2, int genome_size);
+extern void xover_single_point(void *genome_p1, void *genome_p2, void *genome_c1, int genome_size);
+extern void xover_two_point(void *genome_p1, void *genome_p2, void *genome_c1, int genome_size);
+extern void xover_uniform(void *genome_p1, void *genome_p2, void *genome_c1, int genome_size);

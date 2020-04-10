@@ -23,6 +23,6 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */ 
 
-extern void single_point_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
-extern void two_point_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
-extern void uniform_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size);
+extern void single_point_lehmer_xover(void *gp1, void *gp2, void *gc1, int genome_size);
+extern void two_point_lehmer_xover(void *gp1, void *gp2, void *gc1, int genome_size);
+extern void uniform_lehmer_xover(void *gp1, void *gp2, void *gc1, int genome_size);

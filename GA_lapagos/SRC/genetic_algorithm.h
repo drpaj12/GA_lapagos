@@ -33,20 +33,15 @@ int run_base_ga(
 		double (*fptr_cost_function)(void *),
 		void (*fptr_copy_old_over)(population_t**, population_t**, int, int),
 		void (*fptr_cross_breed)(
-                                        void (*)(void *, void *, void *, void *, int), 
+                                        void (*)(void *, void *, void *, int), 
                                         int (*)(),
                                         void (*)(int),
                                         population_t**, population_t**, int, int),
 		void (*fptr_mutate)(population_t**, population_t**, int, int, int),
 		void (*fptr_mutate_no_copy)(population_t**, population_t**, int, int, int),
-		void (*fptr_cross_and_mutate)(
-                                        void (*)(void *, void *, void *, void *, int), 
-                                        int (*)(),
-                                        void (*)(int),
-                                        population_t**, population_t**, int, int),
 		void (*fptr_random_new)(population_t**, int, int),
 		void (*fptr_cost_report_best)(FILE *, double (*)(void *)),
-        void (*fptr_crossover)(void *, void *, void *, void *, int),
+		void (*fptr_crossover)(void *, void *, void *, int),
 		short (*fptr_exit_condition)(void)
 		);
 

@@ -141,10 +141,9 @@ void psns_run_ga()
 				psns_cross_breed_bits,
 				psns_mutate_bits,
 				psns_mutate_bits_no_copy,
-				psns_breed_and_mutate_bits,
 				psns_random_new_bits,
 				psns_cost_report_best,
-				(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+				(void (*)(void*,void*,void*,int))setup_crossover_function(),
 				psns_exit_condition);
 			break;
 		case PSNS_DAT_FORMAT_GRAY_CODE:
@@ -159,10 +158,9 @@ void psns_run_ga()
 				psns_cross_breed_bits,
 				psns_mutate_bits,
 				psns_mutate_bits_no_copy,
-				psns_breed_and_mutate_bits,
 				psns_random_new_bits,
 				psns_cost_report_best,
-				(void (*)(void*,void*,void*,void*,int))setup_crossover_function(),
+				(void (*)(void*,void*,void*,int))setup_crossover_function(),
 				psns_exit_condition);
 			break;
 		default:

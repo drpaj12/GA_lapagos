@@ -47,7 +47,6 @@ extern const char *crossover_types_name[];
 // from genetic_algorith_selector.cpp
 extern double total_cost;
 extern const char *selector_types_name[]; 
-
 // analyze_genomes.cpp
 extern int EBI_count;
 extern float EBI_total;

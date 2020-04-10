@@ -37,7 +37,7 @@ void tsp_cost_report_best(
         );
 extern void tsp_copy_old_genomes(population_t **from, population_t **to, int start, int end);
 extern void tsp_cross_breed(
-                            void (*fptr_crossover)(void *, void *, void *, void *, int),
+                            void (*fptr_crossover)(void *, void *, void *, int),
                             int (*fptr_selector)(),
                             void (*fptr_selector_init)(int),
                             population_t **from, 

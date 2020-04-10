@@ -42,14 +42,13 @@ OTHER DEALINGS IN THE SOFTWARE.
  * Ucoluk, Gokturk - Genetic Algorithm Solution of the TSP Avoiding Special Crossover Mutation
  * - Did only one point
  *-------------------------------------------------------------------------------------------*/
-void single_point_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void single_point_lehmer_xover(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i;
 
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	/* cut point 1 needs to be in the first half */
 	int cut_point1 = rand() % (genome_size);
@@ -59,11 +58,9 @@ void single_point_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int g
 		if (i < cut_point1)
 		{
 			genome_c1[i] = genome_p1[i];
-			genome_c2[i] = genome_p2[i];
 		}
 		else
 		{
-			genome_c2[i] = genome_p1[i];
 			genome_c1[i] = genome_p2[i];
 		}
 	}
@@ -74,14 +71,13 @@ void single_point_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int g
  * Ucoluk, Gokturk - Genetic Algorithm Solution of the TSP Avoiding Special Crossover Mutation
  * - Did only one point, so this is new
  *-------------------------------------------------------------------------------------------*/
-void two_point_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void two_point_lehmer_xover(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i;
 
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	int cut_point1 = rand() % (genome_size);
 	int cut_point2 = rand() % (genome_size);
@@ -99,11 +95,9 @@ void two_point_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int geno
 		if (i < cut_point1 || i > cut_point2)
 		{
 			genome_c1[i] = genome_p1[i];
-			genome_c2[i] = genome_p2[i];
 		}
 		else
 		{
-			genome_c2[i] = genome_p1[i];
 			genome_c1[i] = genome_p2[i];
 		}
 	}
@@ -114,25 +108,22 @@ void two_point_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int geno
  * Ucoluk, Gokturk - Genetic Algorithm Solution of the TSP Avoiding Special Crossover Mutation
  * - Did only one point, so this is new
  *-------------------------------------------------------------------------------------------*/
-void uniform_lehmer_xover(void *gp1, void *gp2, void *gc1, void *gc2, int genome_size)
+void uniform_lehmer_xover(void *gp1, void *gp2, void *gc1, int genome_size)
 {
 	int i;
 
 	int *genome_p1 = (int*)gp1;
 	int *genome_p2 = (int*)gp2;
 	int *genome_c1 = (int*)gc1;
-	int *genome_c2 = (int*)gc2;
 
 	for (i = 0; i < genome_size; i++)
 	{
 		if (rand() % 2 == 0)
 		{
 			genome_c1[i] = genome_p1[i];
-			genome_c2[i] = genome_p2[i];
 		}
 		else
 		{
-			genome_c2[i] = genome_p1[i];
 			genome_c1[i] = genome_p2[i];
 		}
 	}

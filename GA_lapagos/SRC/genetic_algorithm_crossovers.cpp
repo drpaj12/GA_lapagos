@@ -37,6 +37,23 @@ OTHER DEALINGS IN THE SOFTWARE.
 /* Prototypes */
 
 /* globals */
+const char *crossover_types_name[] = { 
+					"PMX", 
+					"POSITION",
+					"CX",
+					"CX2",
+					"OX",
+					"CSR",
+					"OP_P",
+					"TP_P",
+					"SPLX",
+					"TPLX",
+					"UPLX",
+					"SINGLE_POINT",
+					"TWO_POINT",
+					"UNIFORM"
+					};
+
 
 /*---------------------------------------------------------------------------------------------
  * (function: setup_crossover_funcion)
@@ -64,7 +81,11 @@ void* setup_crossover_function()
 			return (void*)xover_ox;
 		case CSR:
 			return (void*)confined_swap_recombination;
-		/* LEHMER ENCODINGS */
+		case OP_P:
+			return (void*)single_point_permutation;
+		case TP_P:
+			return (void*)two_point_permutation;
+		/* LEHMER AND RANDOM_KEYS ENCODINGS */
 		case SPLX:
 			return (void*)single_point_lehmer_xover;
 		case TPLX:
