@@ -276,18 +276,18 @@ for tdf in list_of_dfs_random_keys:
 # PLOTS BAR plot with three groupings for time
 width = 1
 groupgap=1
-y1a=list_of_time_mutation_permutation
-y1b=list_of_time_crossbreed_permutation
-y1c=list_of_time_cost_function_permutation
-y1d=list_of_time_other_permutation
-y2a=list_of_time_mutation_lehmer
-y2b=list_of_time_crossbreed_lehmer
-y2c=list_of_time_cost_function_lehmer
-y2d=list_of_time_other_lehmer
-y3a=list_of_time_mutation_random_keys
-y3b=list_of_time_crossbreed_random_keys
-y3c=list_of_time_cost_function_random_keys
-y3d=list_of_time_other_random_keys
+y1a=np.array(list_of_time_mutation_permutation)
+y1b=np.array(list_of_time_crossbreed_permutation)
+y1c=np.array(list_of_time_cost_function_permutation)
+y1d=np.array(list_of_time_other_permutation)
+y2a=np.array(list_of_time_mutation_lehmer)
+y2b=np.array(list_of_time_crossbreed_lehmer)
+y2c=np.array(list_of_time_cost_function_lehmer)
+y2d=np.array(list_of_time_other_lehmer)
+y3a=np.array(list_of_time_mutation_random_keys)
+y3b=np.array(list_of_time_crossbreed_random_keys)
+y3c=np.array(list_of_time_cost_function_random_keys)
+y3d=np.array(list_of_time_other_random_keys)
 x1 = np.arange(len(y1a))
 x2 = np.arange(len(y2a))+groupgap+len(y1a)
 x3 = np.arange(len(y3a))+groupgap+len(y2a)+groupgap+len(y1a)
@@ -295,16 +295,16 @@ ind = np.concatenate((x1,x2,x3))
 fig, ax = plt.subplots()
 rects1a = ax.bar(x1, y1b, width, color='w',  edgecolor= "r",label="Crossbreed")
 rects1b = ax.bar(x1, y1a, width, bottom=y1b, color='purple',  edgecolor= "r",label="Mutation")
-rects1c = ax.bar(x1, y1c, width, bottom=y1a, color='black',  edgecolor= "r",label="Cost Function")
-rects1d = ax.bar(x1, y1d, width, bottom=y1c, color='orange',  edgecolor= "r",label="Other")
+rects1c = ax.bar(x1, y1c, width, bottom=y1a+y1b, color='black',  edgecolor= "r",label="Cost Function")
+rects1d = ax.bar(x1, y1d, width, bottom=y1c+y1a+y1b, color='orange',  edgecolor= "r",label="Other")
 rects2a = ax.bar(x2, y2b, width, color='w',  edgecolor= "g",label="Lehmer Crossbreed")
 rects2b = ax.bar(x2, y2a, width, bottom=y2b, color='purple',  edgecolor= "g",label="Lehmer Mutation")
-rects2c = ax.bar(x2, y2c, width, bottom=y2a, color='black',  edgecolor= "g",label="Lehmer Cost Function")
-rects2d = ax.bar(x2, y2d, width, bottom=y2c, color='orange',  edgecolor= "g",label="Lehmer Other")
+rects2c = ax.bar(x2, y2c, width, bottom=y2a+y2b, color='black',  edgecolor= "g",label="Lehmer Cost Function")
+rects2d = ax.bar(x2, y2d, width, bottom=y2c+y2a+y2b, color='orange',  edgecolor= "g",label="Lehmer Other")
 rects3a = ax.bar(x3, y3b, width, color='w',  edgecolor= "b",label="RanKeys Crossbreed")
 rects3b = ax.bar(x3, y3a, width, bottom=y3b, color='purple',  edgecolor= "b",label="RanKeys Mutation")
-rects3c = ax.bar(x3, y3c, width, bottom=y3a, color='black',  edgecolor= "b",label="RanKeys Cost Function")
-rects3d = ax.bar(x3, y3d, width, bottom=y3c, color='orange',  edgecolor= "b",label="RanKeys Other")
+rects3c = ax.bar(x3, y3c, width, bottom=y3a+y3b, color='black',  edgecolor= "b",label="RanKeys Cost Function")
+rects3d = ax.bar(x3, y3d, width, bottom=y3c+y3a+y3b, color='orange',  edgecolor= "b",label="RanKeys Other")
 ax.set_ylabel('time(s)',fontsize=14)
 ax.set_xlabel('crossover',fontsize=14)
 ax.set_xticks(ind)
@@ -313,8 +313,27 @@ plt.legend(loc='center left')
 plt.tight_layout()
 plt.savefig('group_times_exit'+exit_name+'_bm'+bench_name+'.png', dpi=400)
 
+width = 1
+groupgap=1
+y1a=np.array(list_of_time_mutation_permutation)
+y1b=np.array(list_of_time_crossbreed_permutation)
+y1c=np.array(list_of_time_cost_function_permutation)
+y1d=list_of_time_other_permutation
+x1 = np.arange(len(y1a))
+fig, ax = plt.subplots()
+rects1a = ax.bar(x1, y1b, width, color='w',  edgecolor= "r",label="Crossbreed")
+rects1b = ax.bar(x1, y1a, width, bottom=y1b, color='purple',  edgecolor= "g",label="Mutation")
+rects1c = ax.bar(x1, y1c, width, bottom=y1a+y1b, color='black',  edgecolor= "b",label="Cost Function")
+rects1d = ax.bar(x1, y1d, width, bottom=y1a+y1b+y1c, color='orange',  edgecolor= "w",label="Other")
+ax.set_ylabel('time(s)',fontsize=14)
+ax.set_xlabel('crossover',fontsize=14)
+ax.set_xticks(x1)
+ax.set_xticklabels((list_of_crossover_bm_permutation), fontsize=7)
+plt.legend(loc='upper left')
+plt.tight_layout()
+plt.savefig('PE_times_exit'+exit_name+'_bm'+bench_name+'.png', dpi=400)
 
-# PLOTS BAR plot with three groupings for time
+# PLOTS BAR plot with PE groupings for time
 width = 1
 groupgap=1
 y1=list_of_time_wall_permutation
