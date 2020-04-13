@@ -27,23 +27,24 @@ import matplotlib.pyplot as plt
 print ("Number of arguments: %d" %  len(sys.argv))
 print ("Argument List: %s" % str(sys.argv))
 
-# start the plot
-f, ax = plt.subplots()
-
-# argument 1 is max number of columns which we use
-column_header_list =  [str(x) for x in range(int(sys.argv[1]))]
-
 # get all the files to analyze
 file_list = glob.glob('*'+sys.argv[2].rstrip()+'*')
 
 print (file_list)
 
+# argument 1 is max number of columns which we use
+column_header_list =  [str(x) for x in range(int(sys.argv[1]))]
 list_legend = ['bin 1', 'bin 2', 'bin 3', 'bin 4', 'bin 5']
+
 count = 0
 # read through the file and create a data frame for each benchmark
 for log_file in file_list:
     count = count + 1
     frame = pd.read_csv(log_file, names=column_header_list)
+
+    # start the plot
+    f, ax = plt.subplots()
+
     # extract details
     cross_name = re.search('XS(.+?)XE', log_file).group(1)
     problem_type_name = re.search('PSADJACENCY_(.+?)PE', log_file).group(1)
@@ -63,9 +64,11 @@ for log_file in file_list:
     ax.set_xlim(0,1000)
     ax.set_ylim(0,500)
 
-plt.legend(list_legend)
+    plt.legend(list_legend)
 
-plt.xlabel('Generations')
-plt.ylabel('Population')
-plt.tight_layout()
-plt.savefig('bmark_marks_'+cross_name+'_'+exit_name+'_'+bench_name+'.png', dpi=400)
+    plt.xlabel('Generations')
+    plt.ylabel('Population')
+    plt.tight_layout()
+    plt.savefig('bmark_marks_'+cross_name+'_'+problem_type_name+'_'+exit_name+'_'+bench_name+'.png', dpi=400)
+
+
