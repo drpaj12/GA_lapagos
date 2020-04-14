@@ -21,6 +21,8 @@ i.e.
 4. Make EBI Graphs
 	- samble: python3 create_EBI_lines.py 10 'GENERATIONS*0*test_out' 12
 	- one line - python3 create_EBI_lines.py 10 'GENERATIONS*0*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*1*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*2*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*3*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*4*test_out' 12 && python3 create_EBI_lines.py 10 'GENERATIONS*5*test_out' 12
+4.b. Make EBI Latex Table
+	- samble: python3 create_EBI_latex_graphs.py 10 'GENERATIONS*0*test_out' 12
 5. Make bin graphs
 	- sample per benchmark for all xovers: python3 create_bin_graph_per_bmark.py 10 "*GENERATIONS*0*test_out" 12
 	- one file - python3 create_bin_graph_per_bmark.py 10 "*GENERATIONS*0*test_out" 12 && python3 create_bin_graph_per_bmark.py 10 "*GENERATIONS*1*test_out" 12 && python3 create_bin_graph_per_bmark.py 10 "*GENERATIONS*2*test_out" 12 && python3 create_bin_graph_per_bmark.py 10 "*GENERATIONS*3*test_out" 12 && python3 create_bin_graph_per_bmark.py 10 "*GENERATIONS*4*test_out" 12 && python3 create_bin_graph_per_bmark.py 10 "*GENERATIONS*5*test_out" 12

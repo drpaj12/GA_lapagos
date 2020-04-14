@@ -27,18 +27,12 @@ import matplotlib.pyplot as plt
 print ("Number of arguments: %d" %  len(sys.argv))
 print ("Argument List: %s" % str(sys.argv))
 
-NUM_COLORS = int(sys.argv[3])
-line_style=['-','--','-.',':']
-# start the plot
-f, ax = plt.subplots()
-# set up a color cylcle based on NUM_COLORS
-cm = plt.get_cmap('gist_rainbow')
-ax.set_prop_cycle(color=[cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
-
 # argument 1 is max number of columns which we use
 column_header_list =  [str(x) for x in range(int(sys.argv[1]))]
 
 list_legend = []
+list_means = []
+list_std = []
 
 # get all the files to analyze
 file_list = glob.glob('*'+sys.argv[2].rstrip()+'*')
@@ -55,19 +49,14 @@ for log_file in file_list:
     problem_type_name = re.search('PSADJACENCY_(.+?)PE', log_file).group(1)
     exit_name = re.search('_ES(.+?)EE', log_file).group(1)
     bench_name = re.search('_BS(.+?)BE', log_file).group(1)
-    # add to the list that will be the legend
-    list_legend.append(cross_name + ' ' + problem_type_name)
+    # add to the lists
+    list_legend.append(cross_name)
+    list_means.append(frame.loc[frame['1'].str.contains('EBI_avg generation')]['3'].mean())
+    list_std.append(frame.loc[frame['1'].str.contains('EBI_avg generation')]['3'].std())
 
-    # do a step plot and set to x = 0 as start
-    ax.plot(frame.loc[frame['1'].str.contains('Hamming Generation')]['2'],
-            frame.loc[frame['1'].str.contains('Hamming Generation')]['3'],
-            linestyle=line_style[count % 4])
-    ax.set_xlim(0)
+df = pd.DataFrame({'Mean':list_means,'Standard Dev':list_std}, index = list_legend)
+# two decimal places
+df = df.round(2)
+print(df.to_latex())
 
-if bench_name == '0':
-    plt.legend(list_legend, loc='lower left', framealpha=0.5)
 
-plt.xlabel('Generations')
-plt.ylabel('Hamming Distance')
-plt.tight_layout()
-plt.savefig('bmark_hamming_'+exit_name+'_'+bench_name+'.png', dpi=400)
