@@ -45,6 +45,7 @@ file_list = glob.glob('*'+sys.argv[2].rstrip()+'*')
 
 print (file_list)
 
+current_x = 0;
 count = 0
 # read through the file and create a data frame for each benchmark
 for log_file in file_list:
@@ -63,6 +64,13 @@ for log_file in file_list:
             frame.loc[frame['1'].str.contains('generation')]['6'],
             linestyle=line_style[count % 4])
     ax.set_xlim(0)
+    p = frame.loc[frame['1'].str.contains('generation')]['2'];
+
+    # adjust for the biggest x value
+    # -2 since there is a Generation term in their that is the exit
+    if (p.iloc[-2] > current_x):
+        current_x = p.iloc[-2]
+        ax.set_xbound(0,current_x)
 
 if bench_name == '0':
     plt.legend(list_legend, loc='lower left', framealpha=0.5)
