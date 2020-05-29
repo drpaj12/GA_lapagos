@@ -78,7 +78,7 @@ enum MODES {
                 };
 
 
-#define NUM_CROSSOVER_TYPES 12
+#define NUM_CROSSOVER_TYPES 14
 enum CROSSOVER_TYPE {
                         PMX, 
                         POSITION,
