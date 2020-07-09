@@ -366,8 +366,8 @@ short tsp_exit_condition()
 
 	breeding_cycles ++;
 	printf("breed cycle: %d\n", breeding_cycles);
-	fprintf(fresult_out, "%d", breeding_cycles);
-	fflush(stdout);
+	//fprintf(fresult_out, "%d", breeding_cycles);
+	//fflush(stdout);
 
 	if (recuring_best == 0)
 	{

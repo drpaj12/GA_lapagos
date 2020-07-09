@@ -39,7 +39,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 /* COMPILER SWITCHES */
 /* Creates data points for the run time - genetic_algorithm.cpp */
-//#define TIMING_RESULTS
+#define TIMING_RESULTS
 /* Creates data point for the generations that improve on the results - tsp_ga_genom... */
 //#define CURRENT_BEST_RESULTS
 

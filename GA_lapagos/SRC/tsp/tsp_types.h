@@ -28,7 +28,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 /* SWITCHES FOR MEASUREMENT AND PERFORMANCE */
 /* switch to turn on data points for hamming distance, marks, and EBI average - analyze_genomes.cpp */
-#define MEASURE_XOVER_RESULTS
+//#define MEASURE_XOVER_RESULTS
 
 #define NUM_TSP_PROBLEM_TYPES 4
 enum TSP_PROBLEM_TYPES {
